@@ -1,0 +1,8 @@
+@each $name, $color in $color-map {
+  .bg-#{$name} {
+    background: $color;
+  }
+  .bg-#{$name}-transparent {
+    background-color: rgba($color, 0.9);
+  }
+}

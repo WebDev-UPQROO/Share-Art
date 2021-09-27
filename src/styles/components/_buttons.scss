@@ -1,28 +1,88 @@
-.menu__button {
+.btn {
   display: flex;
-  justify-content: space-between;
+  padding: 1.2rem $defMargin;
+  background-color: transparent;
+  color: $text-primary;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-animation {
+  &:hover {
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(95deg, $primary, $primary-gradient);
+  border-radius: 1.8rem;
+}
+
+.btn-secondary {
+  background-color: $base;
+  border-radius: 1.8rem;
+}
+
+.btn-circle {
+  border-radius: 100%;
+  width: 4.8rem;
+  height: 4.8rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: $base;
+  }
+}
+
+.btn-profile {
+  height: 4.8rem;
+  border-radius: 8rem;
+  overflow: hidden;
+  background-color: $base;
+  padding: 1px;
+  img {
+    display: block;
+    height: 100%;
+    border-radius: 100%;
+  }
+  span {
+    display: none;
+    margin: auto 1.5rem auto 1rem;
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+.btn-menu {
   width: 100%;
   padding: $defMargin;
-  color: $text-primary;
-  background-color: transparent;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.6rem;
-  border: none;
   border-radius: $defRadius;
-  cursor: pointer;
   background-color: $background;
-  margin-bottom: $defMargin;
 
-  .menu__button__icon {
+  .btn-menu-icon {
     font-size: 2rem;
     margin-right: $defMargin;
   }
-  .menu__button__arrow{
+  .btn-menu-arrow {
     color: $primary;
   }
 
-  &:active,
   &:hover {
     color: $primary;
+    background-color: darken($color: $background, $amount: 3);
+  }
+
+  &:active {
+    background-color: darken($color: $background, $amount: 6);
   }
 }

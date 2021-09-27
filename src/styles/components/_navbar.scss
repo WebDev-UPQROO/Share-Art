@@ -1,8 +1,41 @@
 .navbar {
-    height: $navbarHeight;
-    background-color: $background;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+  height: $navbarHeight;
+  background-color: $background;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 $defMargin;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .navbar__logo {
+    width: auto;
+    display: flex;
+    align-items: center;
+    padding: 0;
+
+    span {
+      font-size: 2rem;
+    }
+
+    .navbar__logo__menu {
+      @media (min-width: 1200px) {
+        display: none;
+      }
+    }
   }
+
+  .navbar__login {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30rem;
+  }
+
+  .navbar__profile {
+    display: flex;
+  }
+}

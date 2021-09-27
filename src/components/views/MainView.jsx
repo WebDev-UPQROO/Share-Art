@@ -3,8 +3,7 @@ import React from 'react'
 export const MainView = () => {
     return (
         <main className="main">
-            <h1>Hola</h1>
-            <p>hola</p>
+            <h1>MainView</h1>
         </main>
     )
 }

@@ -7,13 +7,36 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
     faCheckSquare,
     faDraftingCompass,
-    faArrowRight
+    faArrowRight,
+    faUser,
+    faCog,
+    faQuestionCircle,
+    faThLarge,
+    faUsers,
+    faChild,
+    faComment,
+    faSearch,
+    faBell,
+    faChevronDown,
+    faBars,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
     faCheckSquare,
     faDraftingCompass,
-    faArrowRight);
+    faArrowRight,
+    faUser,
+    faCog,
+    faQuestionCircle,
+    faThLarge,
+    faUsers,
+    faChild,
+    faComment,
+    faSearch,
+    faBell,
+    faChevronDown,
+    faBars,
+);
 
 export const ShareArtApp = () => {
     return (

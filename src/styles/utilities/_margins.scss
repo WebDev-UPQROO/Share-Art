@@ -1,0 +1,25 @@
+@mixin m-and-p($className, $styleName) {
+  $i: 0;
+  $count: 0;
+  @while $count <= 5 {
+    #{$className + $count} {
+      #{$styleName}: #{$i + "rem"};
+    }
+    $i: $i + 0.8;
+    $count: $count + 1;
+  }
+}
+// Margins
+@include m-and-p(".mt-", "margin-top");
+@include m-and-p(".mr-", "margin-right");
+@include m-and-p(".mb-", "margin-bottom");
+@include m-and-p(".ml-", "margin-left");
+@include m-and-p(".m-", "margin");
+// Paddings
+@include m-and-p(".pt-", "padding-top");
+@include m-and-p(".pr-", "padding-right");
+@include m-and-p(".pb-", "padding-bottom");
+@include m-and-p(".pl-", "padding-left");
+@include m-and-p(".p-", "padding");
+
+@include m-and-p(".br-", "border-radius");

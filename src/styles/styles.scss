@@ -3,12 +3,16 @@
 @import 'base/base';
 
 // Utilities
+@import 'utilities/colors';
+@import 'utilities/margins';
+
 // Components
 @import 'components/navbar';
 @import 'components/buttons';
+@import 'components/inputs';
 
 // Layouts
 @import 'layouts/ThreeColsLayout';
 
 // Views
-@import 'views/menu'
+@import 'views/menu';

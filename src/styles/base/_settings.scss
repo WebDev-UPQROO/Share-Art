@@ -4,14 +4,24 @@
 $base: #000000;
 $background: #151621;
 $primary: #c92549;
+$primary-gradient:  adjust-hue($primary, 20);
 $text-primary: #ffffff;
 $text-secondary: #8a8a8a;
+$input-secondary: #3e3f48;
+
+$color-map: (
+    base: $base,
+    background: $background,
+    primary: $primary,
+    text-primary: $text-primary,
+    text-secondary: $text-secondary,
+    input-secondary: $input-secondary
+
+);
 
 $defMargin: 1.6rem;
-$defRadius: 0.5rem;
+$defRadius: 0.8rem;
 
 $navbarHeight: 8rem;
 $menuWidth: 28rem;
 $footerWidth: 34.4rem;
-
-

@@ -1,9 +1,8 @@
 import React from 'react'
+import { ThreeColsTemplate } from './components/templates/ThreeColsTemplate'
 
 export const ShareArtApp = () => {
     return (
-        <div>
-            <h1>ShareArt</h1>
-        </div>
+        <ThreeColsTemplate />
     )
 }

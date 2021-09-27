@@ -1,10 +1,14 @@
 // Base
 @import 'base/settings';
-@import 'base/baese';
+@import 'base/base';
 
+// Utilities
 // Components
-@import 'components/main'
+@import 'components/navbar';
+@import 'components/buttons';
 
 // Layouts
-// Utilities
-// Pages
+@import 'layouts/ThreeColsLayout';
+
+// Views
+@import 'views/menu'

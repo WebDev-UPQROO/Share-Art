@@ -1,0 +1,42 @@
+.three-cols-layout {
+  height: 100%;
+  padding-top: #{$navbarHeight + $defMargin};
+  display: flex;
+
+  .menu {
+    display: none;
+    width: $menuWidth;
+    height: calc(100% - #{$navbarHeight + $defMargin});
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    @media (min-width: 1200px) {
+      display: block;
+    }
+  }
+
+  .main {
+    flex-grow: 1;
+    @media (min-width: 768px) {
+      margin: 0 $footerWidth 0 0;
+    }
+    @media (min-width: 1200px) {
+      margin: 0 $footerWidth 0 $menuWidth;
+    }
+  }
+
+  .footer {
+    display: none;
+    width: $footerWidth;
+    height: calc(100% - #{$navbarHeight + $defMargin});
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}

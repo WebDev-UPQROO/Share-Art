@@ -1,0 +1,28 @@
+.menu__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: $defMargin;
+  color: $text-primary;
+  background-color: transparent;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: $defRadius;
+  cursor: pointer;
+  background-color: $background;
+  margin-bottom: $defMargin;
+
+  .menu__button__icon {
+    font-size: 2rem;
+    margin-right: $defMargin;
+  }
+  .menu__button__arrow{
+    color: $primary;
+  }
+
+  &:active,
+  &:hover {
+    color: $primary;
+  }
+}

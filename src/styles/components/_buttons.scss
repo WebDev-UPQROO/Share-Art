@@ -9,7 +9,7 @@
 
 .btn-animation {
   transition: all 0.2s ease;
-  
+
   &:hover {
     transform: scale(1.05);
   }
@@ -70,6 +70,9 @@
   border-radius: $defRadius;
   background-color: $background;
   text-decoration: none;
+
+  animation: fadeIn;
+  animation-duration: $animationDuration;
 
   .btn-menu-icon {
     font-size: $fontSize + 0.2rem;

@@ -5,23 +5,45 @@
 
   .menu {
     display: none;
-    width: $menuWidth;
-    padding: 0 $defMargin;
-    height: calc(100% - #{$navbarHeight + $defMargin});
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    top: 0;
     left: 0;
-    overflow-y: auto;
-    user-select: none; 
-    
+    width: 100%;
+    margin-top: $navbarHeight;
+    padding: $defMargin;
+    z-index: 5;
+    background-color: $base;
+
+    animation: slideInDown;
+    animation-duration: $animationDuration;
+
+    &.show {
+      display: block;
+    }
+
     @media (min-width: 1200px) {
       display: block;
+      width: $menuWidth;
+      padding: $defMargin $defMargin 0 $defMargin;
+      height: calc(100% - #{$navbarHeight + $defMargin});
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      user-select: none;
+
+      animation: fadeInLeft;
+      animation-duration: $animationDuration;
     }
   }
 
   .main-center {
     flex-grow: 1;
     padding: 0 $defMargin;
+
+    animation: fadeIn;
+    animation-duration: $animationDuration;
+
     @media (min-width: 768px) {
       margin: 0 $footerWidth 0 0;
     }
@@ -33,6 +55,9 @@
   .main-full {
     flex-grow: 1;
     padding: 0 $defMargin;
+
+    animation: fadeIn;
+    animation-duration: $animationDuration;
 
     @media (min-width: 1200px) {
       margin: 0 $defMargin 0 $menuWidth;
@@ -48,6 +73,9 @@
     bottom: 0;
     right: 0;
     overflow-y: auto;
+
+    animation: fadeInRight;
+    animation-duration: $animationDuration;
 
     @media (min-width: 768px) {
       display: block;

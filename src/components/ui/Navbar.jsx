@@ -1,17 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { routes } from '../../routes/routes';
+import { ShareArtContext } from '../../ShareArtContext';
 
 export const Navbar = () => {
 
-    const isLogged = true;
+    const {mobileMenu: [,setMenu], isLogged: [isLogged, setLogin]} = useContext(ShareArtContext);
+
+    const handleMobileMenu = () => {
+        setMenu( menu => !menu);
+    };
+
+    const handleLogin = () => {
+        setLogin( login  => !login);
+    };
+
     return (
         <div className="navbar">
-
-
             <div className="navbar__left" >
-                <div className="navbar__left__menu btn-animation">
+                <div className="navbar__left__menu btn-animation" onClick={handleMobileMenu}>
                     <FontAwesomeIcon icon="bars" />
                 </div>
 
@@ -34,16 +42,12 @@ export const Navbar = () => {
                                 <img src="./assets/temp/user.jfif" alt="profile" />
                                 <span>@Nombre_Usuario</span>
                             </Link>
-
-                            <button className="btn btn-circle btn-animation">
-                                <FontAwesomeIcon icon="chevron-down" className="" />
-                            </button>
                         </div>
                     )
                     :
                     (
                         <div className="navbar__login">
-                            <button className="btn btn-secondary btn-animation mr-2">Iniciar Sesión</button>
+                            <button className="btn btn-secondary btn-animation mr-2" onClick={handleLogin}>Iniciar Sesión</button>
                             <button className="btn btn-primary btn-animation">Registrarse</button>
                         </div>
                     )

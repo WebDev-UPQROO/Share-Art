@@ -5,10 +5,11 @@
   color: $text-primary;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .btn-animation {
+  transition: all 0.2s ease;
+  
   &:hover {
     transform: scale(1.05);
   }
@@ -62,27 +63,32 @@
 
 .btn-menu {
   width: 100%;
-  padding: $defMargin;
+  padding: 1.3rem $defMargin;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.6rem;
+  font-size: $fontSize - 0.2rem;
   border-radius: $defRadius;
   background-color: $background;
+  text-decoration: none;
 
   .btn-menu-icon {
-    font-size: 2rem;
+    font-size: $fontSize + 0.2rem;
     margin-right: $defMargin;
   }
   .btn-menu-arrow {
     color: $primary;
   }
 
-  &:hover {
+  &:hover,
+  &:active,
+  &.active {
     color: $primary;
+    font-weight: 700;
     background-color: darken($color: $background, $amount: 3);
   }
 
-  &:active {
+  &:active,
+  &.active {
     background-color: darken($color: $background, $amount: 6);
   }
 }

@@ -2,8 +2,8 @@ import React from 'react'
 
 export const ExploreView = () => {
     return (
-        <div>
-            <h1>Explore</h1>
-        </div>
+        <main className="main-full">
+            <h1>ExploreView</h1>
+        </main>
     )
 }

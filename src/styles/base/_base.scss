@@ -6,6 +6,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-color: $background rgba($color: darken($color: $background, $amount: 1), $alpha: 0.4);
+  scrollbar-width: thin;
 }
 html {
   background-color: $base;
@@ -15,10 +17,23 @@ html {
   height: 100%;
 }
 body {
-  font-size: 1.6rem;
+  font-size: $fontSize;
   flex-grow: 1;
 }
 
 #root {
   height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  
+}
+::-webkit-scrollbar-track {
+  background-color: rgba($color: darken($color: $background, $amount: 1), $alpha: 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $background ;
+  border-radius: $defRadius;
 }

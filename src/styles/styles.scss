@@ -5,6 +5,7 @@
 // Utilities
 @import 'utilities/colors';
 @import 'utilities/margins';
+@import 'utilities/utilities';
 
 // Components
 @import 'components/navbar';
@@ -12,7 +13,6 @@
 @import 'components/inputs';
 
 // Layouts
-@import 'layouts/ThreeColsLayout';
+@import 'layouts/layout';
 
 // Views
-@import 'views/menu';

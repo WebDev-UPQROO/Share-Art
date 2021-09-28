@@ -1,4 +1,4 @@
-.three-cols-layout {
+.layout {
   height: 100%;
   padding-top: #{$navbarHeight + $defMargin};
   display: flex;
@@ -6,18 +6,22 @@
   .menu {
     display: none;
     width: $menuWidth;
+    padding: 0 $defMargin;
     height: calc(100% - #{$navbarHeight + $defMargin});
     position: fixed;
     bottom: 0;
     left: 0;
     overflow-y: auto;
+    user-select: none; 
+    
     @media (min-width: 1200px) {
       display: block;
     }
   }
 
-  .main {
+  .main-center {
     flex-grow: 1;
+    padding: 0 $defMargin;
     @media (min-width: 768px) {
       margin: 0 $footerWidth 0 0;
     }
@@ -26,9 +30,19 @@
     }
   }
 
+  .main-full {
+    flex-grow: 1;
+    padding: 0 $defMargin;
+
+    @media (min-width: 1200px) {
+      margin: 0 $defMargin 0 $menuWidth;
+    }
+  }
+
   .footer {
     display: none;
     width: $footerWidth;
+    padding: 0 $defMargin;
     height: calc(100% - #{$navbarHeight + $defMargin});
     position: fixed;
     bottom: 0;

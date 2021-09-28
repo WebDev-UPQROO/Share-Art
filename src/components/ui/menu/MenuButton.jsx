@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 
-export const MenuButton = ({ title, icon, arrow = true }) => {
+export const MenuButton = ({ title, icon, route, arrow = true, exact = false }) => {
     return (
-        <button className="btn btn-menu">
+        <NavLink to={route} className="btn btn-menu" activeClassName="active" exact={exact}>
             <div>
                 <FontAwesomeIcon icon={icon} className="btn-menu-icon" />
                 <span>{title}</span>
@@ -14,7 +15,7 @@ export const MenuButton = ({ title, icon, arrow = true }) => {
                 <FontAwesomeIcon icon="arrow-right" className="btn-menu-arrow" />
             }
 
-        </button>
+        </NavLink>
 
     )
 }
@@ -22,4 +23,5 @@ export const MenuButton = ({ title, icon, arrow = true }) => {
 MenuButton.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
+    route: PropTypes.string.isRequired,
 };

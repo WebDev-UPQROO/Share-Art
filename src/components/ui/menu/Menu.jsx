@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { authActions } from '../../../reducers/authReducer';
 import { routes } from '../../../routes/routes';
 import { ShareArtContext } from '../../../ShareArtContext';
 import { MenuButton } from './MenuButton';
@@ -6,7 +7,8 @@ import { MenuList } from './MenuList';
 
 export const Menu = () => {
 
-    const { mobileMenu: [menu], isLogged: [isLogged, setLogOut] } = useContext(ShareArtContext);
+    const { mobileMenu, user, authDispatch } = useContext(ShareArtContext);
+    const [menu] = mobileMenu;
 
     const menuOptions = [
         { title: 'Mi Perfil', icon: 'user', route: routes.profile },
@@ -27,7 +29,8 @@ export const Menu = () => {
     );
 
     const handleLogOut = () => {
-        setLogOut (!isLogged);
+        const authAction = { type: authActions.logout };
+        authDispatch(authAction);
     };
 
     return (
@@ -41,14 +44,14 @@ export const Menu = () => {
             </div>
 
             {
-                (isLogged) &&
+                (user.logged) &&
                 menuOptions.map(item =>
                     <div className="mb-2" key={item.title}>
                         <MenuButton title={item.title} icon={item.icon} route={item.route} />
                     </div>
                 )
             } {
-                (isLogged) &&
+                (user.logged) &&
                 <div onClick={handleLogOut}>
                     <MenuButton title="Cerrar Sesión" icon="sign-out-alt" route='/' arrow={false} activeClassName="" />
                 </div>

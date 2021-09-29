@@ -10,8 +10,4 @@ export const routes = {
     groups: '/explore/groups',
     artist: '/explore/artist',
     publications: '/explore/pubs',
-
-    
-
-
 };

@@ -1,19 +1,31 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { authActions } from '../../reducers/authReducer';
 import { routes } from '../../routes/routes';
 import { ShareArtContext } from '../../ShareArtContext';
 
 export const Navbar = () => {
 
-    const {mobileMenu: [,setMenu], isLogged: [isLogged, setLogin]} = useContext(ShareArtContext);
+    const { mobileMenu, user, authDispatch } = useContext(ShareArtContext);
+    const [, setMenu] = mobileMenu;
+    const history = useHistory();
 
     const handleMobileMenu = () => {
-        setMenu( menu => !menu);
+        setMenu(menu => !menu);
     };
 
     const handleLogin = () => {
-        setLogin( login  => !login);
+        const lastPath = localStorage.getItem('lastPath') || '/';
+        const authAction = {
+            type: authActions.login,
+            payload: {
+                name: 'Hiram'
+            }
+        };
+        authDispatch(authAction);
+
+        history.replace(lastPath);
     };
 
     return (
@@ -30,7 +42,7 @@ export const Navbar = () => {
             </div>
 
             {
-                (isLogged)
+                (user.logged)
                     ?
                     (
                         <div className="navbar__profile">

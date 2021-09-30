@@ -1,18 +1,19 @@
 import React from 'react';
-import { MenuButton } from './MenuButton';
+import { ListRoute } from './ListRoute';
 import PropTypes from 'prop-types';
 
-export const MenuList = ({ title, icon, list, route }) => {
+export const ListView = ({ title, icon, list, route }) => {
     return (
         <div className="bg-background br-1">
-            <MenuButton title={title} icon={icon} route={route} />
+            <ListRoute title={title} icon={icon} route={route} />
             {list}
         </div>
     )
 }
 
-MenuButton.propTypes = {
+ListView.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     route: PropTypes.string.isRequired,
+    list: PropTypes.array.isRequired,
 };

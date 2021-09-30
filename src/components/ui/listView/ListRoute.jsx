@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import { ShareArtContext } from '../../../ShareArtContext';
 
-export const MenuButton = ({ title, icon, route, arrow = true, ...rest}) => {
+export const ListRoute = ({ title, icon, route, arrow = true, ...rest}) => {
 
     const {mobileMenu: [,setMenu]} = useContext(ShareArtContext);
 
@@ -28,7 +28,7 @@ export const MenuButton = ({ title, icon, route, arrow = true, ...rest}) => {
     )
 }
 
-MenuButton.propTypes = {
+ListRoute.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     route: PropTypes.string.isRequired,

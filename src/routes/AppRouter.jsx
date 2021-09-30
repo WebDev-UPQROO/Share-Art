@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { routes } from './routes';
-import { Menu } from '../components/ui/menu/Menu';
+import { Menu } from '../components/ui/Menu';
 import { Navbar } from '../components/ui/Navbar';
 
 import { MainView } from '../components/views/MainView';

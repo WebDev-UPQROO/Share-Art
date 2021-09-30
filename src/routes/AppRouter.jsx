@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
@@ -17,14 +17,15 @@ import { ShareArtContext } from '../ShareArtContext';
 
 export const AppRouter = () => {
     const { user } = useContext(ShareArtContext);
+    const menu = useState(false);
 
     return (
         <Router>
             <div>
-                <Navbar />
+                <Navbar menu={menu} />
 
                 <div className="layout">
-                    <Menu />
+                    <Menu menu={menu} />
 
                     <Switch>
                         <PublicRoute

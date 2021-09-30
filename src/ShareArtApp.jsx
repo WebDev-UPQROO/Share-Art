@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { AppRouter } from './routes/AppRouter';
 import './helpers/fontawesomeHelper';
 import { ShareArtContext } from './ShareArtContext';
@@ -13,10 +13,9 @@ export const ShareArtApp = () => {
     useEffect(() => {
         localStorage.setItem('user', JSON.stringify(user));
     }, [user]);
-    const mobileMenu = useState(false);
 
     return (
-        <ShareArtContext.Provider value={{ mobileMenu, user, authDispatch }}>
+        <ShareArtContext.Provider value={{ user, authDispatch }}>
             <AppRouter />
         </ShareArtContext.Provider>
     )

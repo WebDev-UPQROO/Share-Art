@@ -5,10 +5,10 @@ import { ShareArtContext } from '../../ShareArtContext';
 import { ListRoute } from './listView/ListRoute';
 import { ListView } from './listView/ListView';
 
-export const Menu = () => {
+export const Menu = ({menu: [menu, setMenu]}) => {
+    console.log('menu');
 
-    const { mobileMenu, user, authDispatch } = useContext(ShareArtContext);
-    const [menu, setMenu] = mobileMenu;
+    const { user, authDispatch } = useContext(ShareArtContext);
 
     const handleClick = () => {
         setMenu(menu => !menu);

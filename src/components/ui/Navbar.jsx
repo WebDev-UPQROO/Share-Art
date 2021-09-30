@@ -6,8 +6,6 @@ import { routes } from '../../routes/routes';
 import { ShareArtContext } from '../../ShareArtContext';
 
 export const Navbar = ({menu: [,setMenu]}) => {
-    console.log('nav');
-    
     const { user, authDispatch } = useContext(ShareArtContext);
     const history = useHistory();
 

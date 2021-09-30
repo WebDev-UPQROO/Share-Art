@@ -4,8 +4,6 @@ import { ListView } from '../ui/listView/ListView'
 import { routes } from './../../routes/routes';
 
 export const MainView = () => {
-    console.log('main');
-
     return (
         <>
             <main className="main-center">

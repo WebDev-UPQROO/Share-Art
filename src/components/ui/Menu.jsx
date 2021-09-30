@@ -6,8 +6,6 @@ import { ListRoute } from './listView/ListRoute';
 import { ListView } from './listView/ListView';
 
 export const Menu = ({menu: [menu, setMenu]}) => {
-    console.log('menu');
-
     const { user, authDispatch } = useContext(ShareArtContext);
 
     const handleClick = () => {

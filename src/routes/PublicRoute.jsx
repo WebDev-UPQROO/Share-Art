@@ -14,7 +14,7 @@ export const PublicRoute = ({
     return (
         <Route
             {...rest}
-            component={(props) => <Component {...props} />}
+            render={(props) => <Component {...props} />}
         />
     )
 }

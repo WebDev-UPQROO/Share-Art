@@ -2,10 +2,10 @@ import React from 'react';
 import { ListRoute } from './ListRoute';
 import PropTypes from 'prop-types';
 
-export const ListView = ({ title, icon, list, route }) => {
+export const ListView = ({ title, icon, list, route, ...rest }) => {
     return (
-        <div className="bg-background br-1">
-            <ListRoute title={title} icon={icon} route={route} />
+        <div className="list-view bg-background br-1">
+            <ListRoute title={title} icon={icon} route={route} {...rest}/>
             {list}
         </div>
     )

@@ -1,19 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import { ShareArtContext } from '../../../ShareArtContext';
 
-export const ListRoute = ({ title, icon, route, arrow = true, ...rest}) => {
-
-    const {mobileMenu: [,setMenu]} = useContext(ShareArtContext);
-
-    const handleClick = () => {
-        setMenu( menu => !menu);
-    };
+export const ListRoute = ({ title, icon, route, arrow = true, ...rest }) => {
 
     return (
-        <NavLink to={route} className="btn btn-menu" activeClassName="active" onClick={handleClick} {...rest}>
+        <NavLink to={route} className="btn btn-menu" activeClassName="active" {...rest}>
             <div>
                 <FontAwesomeIcon icon={icon} className="btn-menu-icon" />
                 <span>{title}</span>

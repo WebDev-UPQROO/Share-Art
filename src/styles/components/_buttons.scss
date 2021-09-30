@@ -70,6 +70,7 @@
   border-radius: $defRadius;
   background-color: $background;
   text-decoration: none;
+  transition: all ease 0.3s;
 
   animation: fadeIn;
   animation-duration: $animationDuration;
@@ -86,12 +87,30 @@
   &:active,
   &.active {
     color: $primary;
-    font-weight: 700;
     background-color: darken($color: $background, $amount: 3);
   }
 
   &:active,
   &.active {
     background-color: darken($color: $background, $amount: 6);
+  }
+}
+
+.btn-outline {
+  padding: 0.5rem 0.8rem;
+  border: $text-primary solid 1px;
+  border-radius: $defRadius - 0.3rem;
+  svg {
+    margin-right: 0.5rem;
+  }
+
+  &:hover, &.selected:hover {
+    background-color: $text-primary;
+    color: $background;
+  }
+
+  &.selected {
+    color: $text-secondary;
+    border: $text-secondary solid 1px;
   }
 }

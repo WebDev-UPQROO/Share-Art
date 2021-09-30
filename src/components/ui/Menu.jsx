@@ -8,7 +8,11 @@ import { ListView } from './listView/ListView';
 export const Menu = () => {
 
     const { mobileMenu, user, authDispatch } = useContext(ShareArtContext);
-    const [menu] = mobileMenu;
+    const [menu, setMenu] = mobileMenu;
+
+    const handleClick = () => {
+        setMenu(menu => !menu);
+    };
 
     const menuOptions = [
         { title: 'Mi Perfil', icon: 'user', route: routes.profile },
@@ -24,7 +28,7 @@ export const Menu = () => {
 
     const exploreList = exploreOptions.map(item =>
         <div className="ml-3" key={item.title}>
-            <ListRoute arrow={false} title={item.title} icon={item.icon} route={item.route} />
+            <ListRoute arrow={false} title={item.title} icon={item.icon} route={item.route} onClick={handleClick} />
         </div>
     );
 
@@ -36,24 +40,24 @@ export const Menu = () => {
     return (
         <div className={`menu ${menu ? 'show' : 'hide'}`}>
             <div className="mb-2">
-                <ListRoute title="Inicio" icon="home" route='/' exact={true} />
+                <ListRoute title="Inicio" icon="home" route='/' exact={true} onClick={handleClick} />
             </div>
 
             <div className="mb-2">
-                <ListView title="Explorar" icon="drafting-compass" list={exploreList} route="/explore" />
+                <ListView title="Explorar" icon="drafting-compass" list={exploreList} route="/explore" onClick={handleClick}/>
             </div>
 
             {
                 (user.logged) &&
                 menuOptions.map(item =>
                     <div className="mb-2" key={item.title}>
-                        <ListRoute title={item.title} icon={item.icon} route={item.route} />
+                        <ListRoute title={item.title} icon={item.icon} route={item.route} onClick={handleClick}/>
                     </div>
                 )
             } {
                 (user.logged) &&
                 <div onClick={handleLogOut}>
-                    <ListRoute title="Cerrar Sesión" icon="sign-out-alt" route='/' arrow={false} activeClassName="" />
+                    <ListRoute title="Cerrar Sesión" icon="sign-out-alt" route='/' arrow={false} activeClassName="" onClick={handleClick} />
                 </div>
             }
 

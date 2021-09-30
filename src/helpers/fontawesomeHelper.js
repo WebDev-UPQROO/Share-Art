@@ -18,6 +18,8 @@ import {
     faBars,
     faHome,
     faSignOutAlt,
+    faPlus,
+    faMinus,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -37,4 +39,6 @@ library.add(
     faBars,
     faHome,
     faSignOutAlt,
+    faPlus,
+    faMinus,
 );

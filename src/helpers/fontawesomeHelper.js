@@ -15,11 +15,14 @@ import {
     faSearch,
     faBell,
     faChevronDown,
+    faChevronUp,
     faBars,
     faHome,
     faSignOutAlt,
     faPlus,
     faMinus,
+    faCommentAlt,
+    faShareAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -36,9 +39,12 @@ library.add(
     faSearch,
     faBell,
     faChevronDown,
+    faChevronUp,
     faBars,
     faHome,
     faSignOutAlt,
     faPlus,
     faMinus,
+    faCommentAlt,
+    faShareAlt,
 );

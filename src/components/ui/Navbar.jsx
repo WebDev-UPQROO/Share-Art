@@ -5,7 +5,7 @@ import { authActions } from '../../reducers/authReducer';
 import { routes } from '../../routes/routes';
 import { ShareArtContext } from '../../ShareArtContext';
 
-export const Navbar = ({menu: [,setMenu]}) => {
+export const Navbar = ({ menu: [, setMenu] }) => {
     const { user, authDispatch } = useContext(ShareArtContext);
     const history = useHistory();
 
@@ -44,12 +44,14 @@ export const Navbar = ({menu: [,setMenu]}) => {
                     ?
                     (
                         <div className="navbar__profile">
-                            <button className="btn btn-circle btn-animation mr-2">
+                            <button className="btn btn-secondary btn-circle btn-animation mr-2">
                                 <FontAwesomeIcon icon="bell" className="" />
                             </button>
 
-                            <Link className="btn btn-animation btn-profile mr-2 text-none text-sm" to={routes.profile}>
-                                <img src="./assets/temp/user.jfif" alt="profile" />
+                            <Link className="btn btn-secondary btn-animation btn-profile mr-2 text-none text-sm" to={routes.profile}>
+                                <picture className="profile-image">
+                                    <img src='./assets/temp/user.jfif'/>
+                                </picture>
                                 <span>@Nombre_Usuario</span>
                             </Link>
                         </div>

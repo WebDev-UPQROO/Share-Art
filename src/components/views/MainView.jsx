@@ -1,13 +1,16 @@
 import React from 'react'
 import { ListArtist } from '../ui/listView/ListArtist';
 import { ListView } from '../ui/listView/ListView'
+import { Post } from '../ui/Post';
+import { Posting } from '../ui/Posting';
 import { routes } from './../../routes/routes';
 
 export const MainView = () => {
     return (
         <>
             <main className="main-center">
-                <h1>MainView</h1>
+                <Posting />
+                <Post />
             </main>
             <footer className="footer">
                 <div className="mb-2">
@@ -18,21 +21,7 @@ export const MainView = () => {
                             image="./assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
-                        />),
-                        (<ListArtist
-                            key="@artist2"
-                            name="@artist2"
-                            image="./assets/temp/user.jfif"
-                            action={false}
-                            route={routes.profile}
-                        />),
-                        (<ListArtist
-                            key="@artist3"
-                            name="@artist3"
-                            image="./assets/temp/user.jfif"
-                            action={true}
-                            route={routes.profile}
-                        />),
+                        />)
                     ]} route={routes.explore} />
                 </div>
 
@@ -45,14 +34,7 @@ export const MainView = () => {
                         image="./assets/temp/user.jfif"
                         action={true}
                         route={routes.profile}
-                    />),
-                    (<ListArtist
-                        key="@group2"
-                        name="@group2"
-                        image="./assets/temp/user.jfif"
-                        action={false}
-                        route={routes.profile}
-                    />),
+                    />)
                 ]} route={routes.explore} />
             </footer>
         </>

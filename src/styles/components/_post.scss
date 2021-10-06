@@ -1,0 +1,48 @@
+.post {
+  background-color: $background;
+  border-radius: $defRadius;
+  font-size: $fontSize - 0.2rem;
+  padding: $defMargin;
+
+  .post__heading {
+    display: flex;
+    align-items: center;
+    
+
+    small {
+      color: $text-secondary;
+      font-weight: 600;
+      font-size: $fontSize - 0.4rem;
+      
+    }
+
+    .post__heading--details {
+      display: none;
+      @media (min-width: 768px) {
+        display: inline;
+      }
+    }
+
+    .post__link {
+      margin-left: auto;
+    }
+  }
+
+  .post__content {
+    .post__images {
+      height: 30rem;
+      border-radius: $defRadius;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .post__share{
+    display: flex;
+    align-items: center;
+  }
+}

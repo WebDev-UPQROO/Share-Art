@@ -40,7 +40,6 @@
   .main-center {
     flex-grow: 1;
     padding: 0 $defMargin;
-
     animation: fadeIn;
     animation-duration: $animationDuration;
 
@@ -48,7 +47,8 @@
       margin: 0 $footerWidth 0 0;
     }
     @media (min-width: 1200px) {
-      margin: 0 $footerWidth 0 $menuWidth;
+      max-width: 60rem;
+      margin: 0 auto;
     }
   }
 

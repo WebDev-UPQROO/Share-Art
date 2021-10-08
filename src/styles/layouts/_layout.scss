@@ -25,7 +25,7 @@
     @media (min-width: 1200px) {
       display: block;
       width: $sideWidth;
-      left: calc(50% - #{$mainWidth + $defMargin*2});
+      left: calc(50% - #{($mainWidth + 10)/2 + $sideWidth});
       height: calc(100% - #{$navbarHeight + $defMargin});
       padding-top: 0;
 
@@ -45,6 +45,7 @@
       margin: 0 calc(50% - #{$sideWidth/2 + $mainWidth/2});
     }
     @media (min-width: 1200px) {
+      max-width: #{$mainWidth + 10};
       margin: 0 auto;
     }
   }
@@ -57,8 +58,8 @@
     animation-duration: $animationDuration;
 
     @media (min-width: 1200px) {
-      margin: 0 0 0 calc(50% - #{$sideWidth - $defMargin*2});
-      max-width: #{$mainWidth + $sideWidth - $defMargin};
+      margin: 0 0 0 calc(50% - #{$sideWidth + $defMargin});
+      max-width: #{$mainWidth + 10 + $sideWidth - $defMargin};
     }
   }
 
@@ -80,7 +81,7 @@
     }
     @media (min-width: 1200px) {
       display: block;
-      right: calc(50% - #{$mainWidth + $defMargin*2});
+      right: calc(50% - #{($mainWidth + 10)/2 + $sideWidth});
     }
   }
 }

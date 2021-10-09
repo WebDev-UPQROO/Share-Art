@@ -37,3 +37,8 @@ body {
   background-color: $background ;
   border-radius: $defRadius;
 }
+
+.no-text-decoration{
+  color: inherit;
+  text-decoration: none;
+}

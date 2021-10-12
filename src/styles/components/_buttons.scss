@@ -36,6 +36,17 @@
   color: $primary;
 }
 
+.btn-link-secondary {
+  color: $text-secondary;
+  padding: 0.3rem $defMargin;
+  margin-top: 0.5rem;
+  margin-bottom: $defMargin;
+
+  &:hover {
+    color: $primary;
+    background-color: lighten($background, 5);
+  }
+}
 
 .btn-icon-left {
   margin-right: $defMargin - 1rem;

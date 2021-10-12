@@ -1,0 +1,82 @@
+.comments-group {
+  width: 100%;
+  background-color: $background;
+  font-size: $fontSize - 0.2rem;
+  padding-top: $defMargin;
+
+  .comment {
+    position: relative;
+    animation: fadeIn;
+    animation-duration: $animationDuration;
+    z-index: 0;
+
+    .comment__content {
+      background: lighten($background, 10);
+      flex-grow: 1;
+      border-radius: $defRadius;
+      padding: ($defMargin - 0.5) $defMargin;
+
+      .comment__content__user {
+        font-weight: 500;
+      }
+
+      .comment__content__info {
+        color: $text-secondary;
+        font-weight: 500;
+      }
+    }
+
+    .comment__actions {
+      background-color: $background;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      color: $text-secondary;
+      font-weight: 500;
+
+      .comment__actions__buttons {
+        display: flex;
+        align-items: baseline;
+
+        .comment__actions__info {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
+    }
+
+    &.not-final::before {
+      position: absolute;
+      content: "";
+      width: 1px;
+      background-color: $text-secondary;
+      height: auto;
+      left: 1.5rem;
+      bottom: 2.5rem;
+      top: 1.5rem;
+      display: block;
+      z-index: -1;
+    }
+  }
+
+  .my-comment {
+    display: flex;
+    animation: fadeIn;
+    animation-duration: $animationDuration;
+    background-color: $background;
+
+    .my-comment__input {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+
+      @media (min-width: 1200px) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+  }
+}

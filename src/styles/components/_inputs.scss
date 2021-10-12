@@ -1,6 +1,19 @@
 .input {
   border: none;
   outline: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.input-secondary {
+  background: transparent;
+  color: $text-primary;
+  border-radius: 8rem;
+  border: 1px solid lighten($background, 20);
+
+  &:hover, &:focus {
+    border-color: lighten($background, 40);
+  }
 }
 
 .seeker {
@@ -20,17 +33,15 @@
     color: $text-primary;
 
     &:focus {
-        background-color: darken($color: $input-secondary, $amount: 8);
-      }
+      background-color: darken($color: $input-secondary, $amount: 8);
+    }
   }
 
-  .seeker-icon{
-      position: absolute;
-      width: 1.6rem;
-      height: 100%;
-      margin-left: $defMargin;
-      color: $text-secondary;
+  .seeker-icon {
+    position: absolute;
+    width: 1.6rem;
+    height: 100%;
+    margin-left: $defMargin;
+    color: $text-secondary;
   }
-
-  
 }

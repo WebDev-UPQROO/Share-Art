@@ -37,11 +37,12 @@
   .main-center {
     max-width: #{$mainWidth};
     margin: 0 auto;
-    padding: 0 $defMargin;
+    padding: 0;
     animation: fadeIn;
     animation-duration: $animationDuration;
 
     @media (min-width: 768px) {
+      padding: 0 $defMargin;
       margin: 0 calc(50% - #{$sideWidth/2 + $mainWidth/2});
     }
     @media (min-width: 1200px) {

@@ -50,7 +50,7 @@ export const Navbar = ({ menu: [, setMenu] }) => {
 
                             <Link className="btn btn-secondary btn-animation btn-profile mr-2 text-none text-sm" to={routes.profile}>
                                 <picture className="profile-image">
-                                    <img src='./assets/temp/user.jfif'/>
+                                    <img src='./assets/temp/user.jfif' alt="profile"/>
                                 </picture>
                                 <span>@Nombre_Usuario</span>
                             </Link>

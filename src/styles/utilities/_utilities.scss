@@ -9,10 +9,10 @@
   font-size: $fontSize;
 }
 
-.d-in-block{
+.d-in-block {
   display: inline-block;
 }
-.d-flex{
+.d-flex {
   display: flex;
 }
 
@@ -20,8 +20,17 @@
   display: block;
   height: 4rem;
   width: 4rem;
+  min-height: 4rem;
+  min-width: 4rem;
 
-  &.loading::after{
+  &.xs {
+    height: 2rem;
+    width: 2rem;
+    min-height: 2rem;
+    min-width: 2rem;
+  }
+
+  &.loading::after {
     border-radius: 100%;
   }
 
@@ -32,7 +41,7 @@
   }
 }
 
-.loading{
+.loading {
   position: relative;
 }
 .loading::after {
@@ -43,15 +52,15 @@
   height: 100%;
   border-radius: $defRadius;
   content: "";
-  
+
   background: linear-gradient(
     90deg,
     $input-secondary 30%,
-    lighten($color: $input-secondary, $amount: 5)50%,
-    $input-secondary  70%
+    lighten($color: $input-secondary, $amount: 5) 50%,
+    $input-secondary 70%
   );
   background-size: 300% 100%;
-  animation: loading  1s infinite;
+  animation: loading 1s infinite;
 }
 
 @keyframes loading {

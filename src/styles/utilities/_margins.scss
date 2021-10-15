@@ -23,3 +23,10 @@
 @include m-and-p(".p-", "padding");
 
 @include m-and-p(".br-", "border-radius");
+
+.ml-auto{
+  margin-left: auto;
+}
+.mr-auto{
+  margin-right: auto;
+}

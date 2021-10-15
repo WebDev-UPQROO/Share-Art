@@ -19,7 +19,7 @@
 }
 
 .btn-primary {
-  background: linear-gradient(95deg, $primary, $primary-gradient);
+  background: $gradient;
   border-radius: $defRadius - 0.4rem;
 }
 

@@ -4,7 +4,7 @@
 $base: #000000;
 $background: #151621;
 $primary: #c92549;
-$primary-gradient:  adjust-hue($primary, 20);
+$gradient: linear-gradient(95deg, $primary, adjust-hue(darken($primary, 10), -10));
 $text-primary: #ffffff;
 $text-secondary: #8a8a8a;
 $input-secondary: #3e3f48;

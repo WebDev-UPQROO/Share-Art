@@ -1,0 +1,33 @@
+.profile {
+  border-radius: $defRadius;
+  overflow: hidden;
+
+  .profile__background {
+    height: 15rem;
+    background: $gradient;
+  }
+
+  .profile__content {
+    position: relative;
+    padding: $defMargin;
+    background-color: $background;
+
+    .profile-image {
+      position: absolute;
+      left: $defMargin;
+      top: -5rem;
+
+      img {
+        border: 5px solid $background;
+      }
+    }
+
+    .profile__content__name{
+        font-weight: 600;
+    }
+
+    .profile__content__user{
+        color: $text-secondary;
+    }
+  }
+}

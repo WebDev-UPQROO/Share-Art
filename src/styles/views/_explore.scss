@@ -1,0 +1,32 @@
+.d-flex-between{
+    display: flex;
+    justify-content: space-between;
+}
+.explore {
+    .explore-categories{
+        .categories__heading{
+            @extend .d-flex-between;
+        }
+    }
+    
+    .explore-groups{
+        .groups__heading{
+            @extend .d-flex-between;
+        }
+    }
+
+    .explore-artists{
+        .artists__heading{
+            @extend .d-flex-between;
+        }
+    }
+
+    .explore-posts{
+        .posts__heading{
+            @extend .d-flex-between;
+        }
+    }
+
+
+  
+}

@@ -11,8 +11,11 @@ export const MainView = () => {
             <main className="main-center">
                 <Posting />
                 <Post />
-                <Post />
+            
+        
             </main>
+
+           
             <footer className="footer">
                 <div className="mb-2">
                     <ListView title="Artistas Destacados" icon="user" list={[

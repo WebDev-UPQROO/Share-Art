@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types';
 
-export const Group = ({ image, name, route, count, action }) => {
+export const CardGroup = ({ image, name, count, route, action }) => {
 
     const [loading, setLoading] = useState(true);
 
@@ -20,21 +20,21 @@ export const Group = ({ image, name, route, count, action }) => {
 
 
     return (
-        <div className="group">
+        <div className="card-group">
         {
             (!loading)
                 ? (
                     <>
-                        <div className="group__left">
-                            <div className="group__image">
+                        <div className="group-image">
+                            <div className="image__size">
                                 <img src= {{image}===undefined ? {image} : './assets/temp/user.jfif'} alt="default" />
                             </div>
                         </div>
-                        <div className="group__center">
-                            <p className="title btn-animation"> <a href='#' className="no-text-decoration"> {{name}===undefined ? {name} : 'Grupo de artistas'}</a> </p>
-                            <p className="count"> {{count}===undefined ? {count} : '13k integrantes '} </p>
+                        <div className="group-info">
+                            <p className="info__title btn-animation"> <a href='#' className="no-text-decoration"> {{name}===undefined ? {name} : 'Grupo de artistas'}</a> </p>
+                            <p className="info__count"> {{count}===undefined ? {count} : '13k integrantes '} </p>
                         </div>
-                        <div className="group__right">
+                        <div className="group-button">
                             <button className={'btn btn-animation btn-outline ' + (!action && 'selected')}>
                                 {(action) && <FontAwesomeIcon icon="plus" />}
                                 <span>{action ? 'Seguir' : 'Siguiendo'}</span>
@@ -61,9 +61,10 @@ export const Group = ({ image, name, route, count, action }) => {
 )
 }
 
-Group.propTypes = {
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
+CardGroup.propTypes = {
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    count: PropTypes.number.isRequired,
     route: PropTypes.string.isRequired,
-    list: PropTypes.array.isRequired,
+    action: PropTypes.bool.isRequired
 };

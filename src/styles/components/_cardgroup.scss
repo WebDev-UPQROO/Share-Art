@@ -1,17 +1,18 @@
-.group {
+.card-group {
     background-color: $background;
     border-radius: $defRadius;
     padding: 0;
     display: flex;
-    width: 380px;
+    width: 405px;
+    margin: 13px 0rem;
 
-    .group__left {
+    .group-image {
         width: 105px;
         height: 93px;
         overflow: hidden;
         position: relative;
        
-        .group__image{
+        .image__size{
             img {
                 border-bottom-left-radius: $defRadius;
                 border-top-left-radius: $defRadius;
@@ -24,20 +25,20 @@
 
     }
 
-    .group__center{
+    .group-info{
         margin: auto 0 auto 0;
         padding: 0 3rem 0 1rem;
         align-items: center;
-        .title{
+        .info__title{
             font-size: 1.8rem;
             font-weight: 700;
         }
-        .count{
+        .info__count{
             color: #8A8A8A;
         }
     }
 
-    .group__right {
+    .group-button {
         display: flex;
         align-items: center;
         

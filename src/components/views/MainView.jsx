@@ -1,5 +1,4 @@
 import React from 'react'
-import { Group } from '../ui/Group';
 import { ListArtist } from '../ui/listView/ListArtist';
 import { ListView } from '../ui/listView/ListView'
 import { Post } from '../ui/Post';
@@ -13,13 +12,7 @@ export const MainView = () => {
                 <Posting />
                 <Post />
             
-                <Group
-                 key="@artist1"
-                 name="@artist1"
-                 image="./assets/temp/user.jfif"
-                 action={true}
-                 route={routes.profile}
-                />
+        
             </main>
 
            

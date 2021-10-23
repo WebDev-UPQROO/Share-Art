@@ -29,5 +29,11 @@
     .profile__content__user{
         color: $text-secondary;
     }
+
+    .profile__content__categories{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+  }
   }
 }

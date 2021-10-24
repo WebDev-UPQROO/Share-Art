@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { authActions } from '../../reducers/authReducer';
@@ -30,7 +29,7 @@ export const Navbar = ({ menu: [, setMenu] }) => {
         <div className="navbar">
             <div className="navbar__left" >
                 <div className="navbar__left__menu btn-animation" onClick={handleMobileMenu}>
-                    <FontAwesomeIcon icon="bars" />
+                    <i className="fas fa-bars" />
                 </div>
 
                 <Link to="/" className="btn btn-animation text-none">
@@ -45,12 +44,12 @@ export const Navbar = ({ menu: [, setMenu] }) => {
                     (
                         <div className="navbar__profile">
                             <button className="btn btn-secondary btn-circle btn-animation mr-2">
-                                <FontAwesomeIcon icon="bell" className="" />
+                                <i className="fas fa-bell" />
                             </button>
 
                             <Link className="btn btn-secondary btn-animation btn-profile mr-2 text-none text-sm" to={routes.profile}>
                                 <picture className="profile-image">
-                                    <img src='./assets/temp/user.jfif' alt="profile"/>
+                                    <img src='./assets/temp/user.jfif' alt="profile" />
                                 </picture>
                                 <span>@Nombre_Usuario</span>
                             </Link>

@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
@@ -9,7 +8,7 @@ export const ListArtist = ({ image, name, route, action }) => {
     useEffect(() => {
         setTimeout(() => {
             isMounted.current &&
-            setLoading(false)
+                setLoading(false)
         }, 1000);
     }, []);
 
@@ -35,7 +34,7 @@ export const ListArtist = ({ image, name, route, action }) => {
                             </Link>
 
                             <button className={'btn btn-animation btn-outline ' + (!action && 'selected')}>
-                                {(action) && <FontAwesomeIcon icon="plus" />}
+                                {(action) && <i className="fas fa-plus mr-1" />}
                                 <span>{action ? 'Seguir' : 'Siguiendo'}</span>
                             </button>
                         </>

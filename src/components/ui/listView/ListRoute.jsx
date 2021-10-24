@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
 export const ListRoute = ({ title, icon, route, arrow = true, ...rest }) => {
@@ -8,12 +7,12 @@ export const ListRoute = ({ title, icon, route, arrow = true, ...rest }) => {
     return (
         <NavLink to={route} className="btn btn-menu" activeClassName="active" {...rest}>
             <div>
-                <FontAwesomeIcon icon={icon} className="btn-menu-icon" />
+                <i className={"btn-menu-icon fas fa-" + icon} />
                 <span>{title}</span>
             </div>
             {
                 (arrow) &&
-                <FontAwesomeIcon icon="arrow-right" className="btn-menu-arrow" />
+                <i className="btn-menu-arrow fas fa-arrow-right" />
             }
 
         </NavLink>

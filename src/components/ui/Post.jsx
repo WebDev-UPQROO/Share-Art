@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { CommentsGroup } from './comments/CommentsGroup';
@@ -43,7 +42,7 @@ export const Post = () => {
                                     </div>
                                     <Link to="/profile" className="post__link btn-animation btn-link">
                                         <span className="mr-1">Ir al grupo</span>
-                                        <FontAwesomeIcon icon="arrow-right" />
+                                        <i className="fas fa-arrow-right" />
                                     </Link>
                                 </div>
 
@@ -62,22 +61,22 @@ export const Post = () => {
                                         className="btn btn-secondary btn-animation mr-1"
                                         onClick={() => setComments(!comments)}
                                     >
-                                        <FontAwesomeIcon icon="comment-alt" className="btn-icon-left" />
+                                        <i className="fas fa-comment-alt btn-icon-left" />
                                         <span>Comentarios</span>
                                     </button>
 
                                     <button className="btn btn-secondary btn-animation">
-                                        <FontAwesomeIcon icon="chevron-up" />
+                                        <i className="fas fa-chevron-up" />
                                     </button>
 
                                     <span className="ml-1 mr-1 text-sm"> 100 Votos</span>
 
                                     <button className="btn btn-secondary btn-animation mr-1">
-                                        <FontAwesomeIcon icon="chevron-down" />
+                                        <i className="fas fa-chevron-down" />
                                     </button>
 
                                     <button className="btn btn-secondary btn-animation mr-1">
-                                        <FontAwesomeIcon icon="share-alt" className="btn-icon-left" />
+                                        <i className="fas fa-share-alt btn-icon-left" />
                                         <span>Compartir</span>
                                     </button>
 

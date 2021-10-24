@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 export const ProfileInfo = () => {
@@ -14,7 +13,7 @@ export const ProfileInfo = () => {
                 <button
                     className={'btn btn-animation btn-outline ml-auto mb-2' + (false && 'selected')}
                 >
-                    {(true) && <FontAwesomeIcon icon="plus" />}
+                    {(true) && <i className="fas fa-plus mr-1" />}
                     <span>{true ? 'Seguir' : 'Siguiendo'}</span>
                 </button>
 
@@ -24,12 +23,12 @@ export const ProfileInfo = () => {
                 <p className="mb-1">aqui va a ir la descripcion de prueba de la persona, esto esta en verion alpha</p>
 
                 <p>
-                    <FontAwesomeIcon icon="user" className="mr-1" />
+                    <i className="fas fa-user mr-1" />
                     <span>Edad: 34 años</span>
                 </p>
 
                 <p className="mt-2">
-                    <FontAwesomeIcon icon="drafting-compass" className="mr-1" />
+                    <i className="fas fa-drafting-compass mr-1" />
                     <span>Intereses</span>
                 </p>
 
@@ -37,7 +36,7 @@ export const ProfileInfo = () => {
 
                     <div className="check">
                         <label>
-                            <FontAwesomeIcon icon="drafting-compass" className="mr-1" />
+                            <i className="fas fa-drafting-compass mr-1" />
                             Categoria 1
                         </label>
                     </div>

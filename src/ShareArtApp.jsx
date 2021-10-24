@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
 import { AppRouter } from './routes/AppRouter';
-import './helpers/fontawesomeHelper';
 import { ShareArtContext } from './ShareArtContext';
 import { authReducer } from './reducers/authReducer';
 

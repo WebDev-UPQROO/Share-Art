@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react'
 import { MyComment } from './MyComment';
 
@@ -33,13 +32,13 @@ export const Comment = ({ item, counter }) => {
             <div className="comment__actions">
                 <div className="comment__actions__buttons">
                     <button className="btn btn-link-secondary btn-animation">
-                        <FontAwesomeIcon icon="chevron-up" />
+                        <i className="fas fa-chevron-up" />
                     </button>
 
                     <span className="comment__actions__info">122k</span>
 
                     <button className="btn btn-link-secondary btn-animation">
-                        <FontAwesomeIcon icon="chevron-down" />
+                        <i className="fas fa-chevron-down" />
                     </button>
 
                     {

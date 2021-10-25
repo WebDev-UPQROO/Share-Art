@@ -45,14 +45,14 @@ export const CardGroup = ({ image, name, count, route, action }) => {
                 :
                 (
                     <>
-                        <div className="loading" style={{ width: '60%', height: '10rem' }}></div>
-                        <div className="d-flex align-items-center mb-0 p-0" style={{ width: '130%', height: '10rem' }}>
-                            <div className="d-in-block my-auto">
-                                <div className="loading" style={{ width: '17rem', height: '2rem' }}></div>
-                                <div className="post__link loading mb-1" style={{ width: '6rem', height: '1rem' }}></div>
+                        <div className="loading" style={{ width: '65%' }}></div>
+                        <div className="d-flex align-items-center mb-0 p-0" style={{ width: '130%' }}>
+                            <div className="" style={{ marginTop: 'auto', marginBottom: 'auto', marginLeft: '10px'}}>
+                                <div className="loading" style={{ width: '17rem', height: '2rem', marginBottom: '5px' }}></div>
+                                <div className="post__link loading mb-1" style={{ width: '10rem', height: '1.5rem', margin: '0px' }}></div>
                             </div>
                         </div>
-                        <div className="loading" style={{ width: '50%', height: '2rem' }}></div>
+                        <div className="loading" style={{ width: '45%', height: '2.5rem', marginTop: 'auto', marginBottom: 'auto', marginRight: '25px' }}></div>
                     </>
                 )
         }

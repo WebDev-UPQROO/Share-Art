@@ -1,0 +1,53 @@
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba($background, 0.5);
+  z-index: 20;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: fadeIn;
+  animation-duration: 0.2s;
+
+  .modal-dialog {
+    box-shadow: 0px 4px 10px 0px $base;
+    background-color: $background;
+    border-radius: $defRadius;
+    padding: $defMargin $defMargin + 1rem;
+
+    animation: fadeInDown;
+    animation-duration: 0.2s;
+
+    &.max-width {
+      width: 100%;
+    }
+
+    &.xs {
+      max-width: 30rem;
+    }
+
+    &.md {
+      max-width: 50rem;
+    }
+
+    &.lg {
+      max-width: 80rem;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      .close {
+        font-size: $fontSize + 1rem;
+        margin: 0;
+      }
+    }
+  }
+}

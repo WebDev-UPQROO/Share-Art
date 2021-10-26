@@ -1,0 +1,20 @@
+.login {
+  display: flex;
+  justify-content: center;
+
+  animation: fadeIn;
+  animation-duration: 0.3s;
+
+  .login__container {
+    background-color: $background;
+    border-radius: $defRadius;
+    padding: $defMargin;
+    width: 100%;
+    max-width: 50rem;
+
+    @media (min-width: 480px) {
+        margin-top: 2rem;
+        padding: $defMargin + 3rem $defMargin + 5rem;
+    }
+  }
+}

@@ -2,6 +2,9 @@
   text-decoration: none;
 }
 
+.text-xs {
+  font-size: $fontSize - 0.3rem;
+}
 .text-sm {
   font-size: $fontSize - 0.2rem;
 }

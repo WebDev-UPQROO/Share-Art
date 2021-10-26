@@ -16,6 +16,7 @@ import { PublicRoute } from './PublicRoute';
 import { ShareArtContext } from '../ShareArtContext';
 import { LoginView } from '../components/views/LoginView';
 import { RegisterView } from '../components/views/RegisterView';
+import { AuthNavBar } from '../components/ui/AuthNavBar';
 
 export const AppRouter = () => {
     const { user } = useContext(ShareArtContext);
@@ -26,11 +27,14 @@ export const AppRouter = () => {
             <div>
                 <Switch>
                     <Route path="/auth">
-                        <Switch>
-                            <Route path={routes.login} component={LoginView} />
-                            <Route path={routes.register} component={RegisterView} />
-                            <Redirect to={routes.login} />
-                        </Switch>
+                        <AuthNavBar />
+                        <div className="layout">
+                            <Switch>
+                                <Route path={routes.login} component={LoginView} />
+                                <Route path={routes.register} component={RegisterView} />
+                                <Redirect to={routes.login} />
+                            </Switch>
+                        </div>
                     </Route>
 
                     <Route path="/app">

@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Post } from '../ui/Post';
 import { CardGroup } from '../ui/CardGroup';
 import { CardCategory } from '../ui/CardCategory';
@@ -17,33 +16,33 @@ export const ExploreView = () => {
                         <h3>Categorias</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir a categorias</span>
-                            <FontAwesomeIcon icon="arrow-right" />
+                            <i className="fas fa-arrow-right" />
                         </Link>
                     </div>
 
                     <div className="categories__body">
                         <CardCategory
-                        name="@artist1"
-                        image="./assets/temp/user.jfif"
-                        route={routes.profile}
+                            name="@artist1"
+                            image="./assets/temp/user.jfif"
+                            route={routes.profile}
                         />
 
                         <CardCategory
-                        name="@artist1"
-                        image="./assets/temp/user.jfif"
-                        route={routes.profile}
+                            name="@artist1"
+                            image="./assets/temp/user.jfif"
+                            route={routes.profile}
                         />
 
                         <CardCategory
-                        name="@artist1"
-                        image="./assets/temp/user.jfif"
-                        route={routes.profile}
+                            name="@artist1"
+                            image="./assets/temp/user.jfif"
+                            route={routes.profile}
                         />
 
                         <CardCategory
-                        name="@artist1"
-                        image="./assets/temp/user.jfif"
-                        route={routes.profile}
+                            name="@artist1"
+                            image="./assets/temp/user.jfif"
+                            route={routes.profile}
                         />
                     </div>
                 </div>
@@ -53,43 +52,43 @@ export const ExploreView = () => {
                         <h3>Grupos</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir al grupos</span>
-                            <FontAwesomeIcon icon="arrow-right" />
+                            <i className="fas fa-arrow-right" />
                         </Link>
                     </div>
 
                     <div className="groups__body">
-                    <CardGroup
-                    name="@artist1"
-                    image="./assets/temp/user.jfif"
-                    count={4}
-                    action={true}
-                    route={routes.profile}
-                    />
+                        <CardGroup
+                            name="@artist1"
+                            image="./assets/temp/user.jfif"
+                            count={4}
+                            action={true}
+                            route={routes.profile}
+                        />
 
-                    <CardGroup
-                    name="@artist1"
-                    image="./assets/temp/user.jfif"
-                    count={4}
-                    action={true}
-                    route={routes.profile}
-                    />
+                        <CardGroup
+                            name="@artist1"
+                            image="./assets/temp/user.jfif"
+                            count={4}
+                            action={true}
+                            route={routes.profile}
+                        />
 
-                    <CardGroup
-                    name="@artist1"
-                    image="./assets/temp/user.jfif"
-                    count={4}
-                    action={true}
-                    route={routes.profile}
-                    />
+                        <CardGroup
+                            name="@artist1"
+                            image="./assets/temp/user.jfif"
+                            count={4}
+                            action={true}
+                            route={routes.profile}
+                        />
 
-                    <CardGroup
-                    name="@artist1"
-                    count={4}
-                    image="./assets/temp/user.jfif"
-                    action={true}
-                    route={routes.profile}
-                    />
-                   
+                        <CardGroup
+                            name="@artist1"
+                            count={4}
+                            image="./assets/temp/user.jfif"
+                            action={true}
+                            route={routes.profile}
+                        />
+
                     </div>
                 </div>
 
@@ -98,41 +97,41 @@ export const ExploreView = () => {
                         <h3>Artistas</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir a artistas</span>
-                            <FontAwesomeIcon icon="arrow-right" />
+                            <i className="fas fa-arrow-right" />
                         </Link>
                     </div>
                     <div>
-                    <ListArtist
+                        <ListArtist
                             key="@artist1"
                             name="@artist1"
                             image="./assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
-                    />
+                        />
                         <div style={{ borderTop: "1px solid #1C1C1C ", marginTop: 3, marginBottom: 3 }}></div>
-                    <ListArtist
+                        <ListArtist
                             key="@artist2"
                             name="@artist1"
                             image="./assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
-                    />
+                        />
                         <div style={{ borderTop: "1px solid #1C1C1C ", marginTop: 3, marginBottom: 3 }}></div>
-                    <ListArtist
+                        <ListArtist
                             key="@artist3"
                             name="@artist1"
                             image="./assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
-                    />
+                        />
                         <div style={{ borderTop: "1px solid #1C1C1C ", marginTop: 3, marginBottom: 3 }}></div>
-                    <ListArtist
+                        <ListArtist
                             key="@artist4"
                             name="@artist1"
                             image="./assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
-                    />
+                        />
                     </div>
                 </div>
 
@@ -141,7 +140,7 @@ export const ExploreView = () => {
                         <h3>Publicaciones</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir al publicaciones</span>
-                            <FontAwesomeIcon icon="arrow-right" />
+                            <i className="fas fa-arrow-right" />
                         </Link>
                     </div>
                     <Post />

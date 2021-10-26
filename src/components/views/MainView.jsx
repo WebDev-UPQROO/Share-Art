@@ -22,7 +22,7 @@ export const MainView = () => {
                         (<ListArtist
                             key="@artist1"
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
                         />)
@@ -35,7 +35,7 @@ export const MainView = () => {
                     (<ListArtist
                         key="@group1"
                         name="@group1"
-                        image="./assets/temp/user.jfif"
+                        image="/assets/temp/user.jfif"
                         action={true}
                         route={routes.profile}
                     />)

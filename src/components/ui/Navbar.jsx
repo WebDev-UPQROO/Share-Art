@@ -32,8 +32,8 @@ export const Navbar = ({ menu: [, setMenu] }) => {
                     <i className="fas fa-bars" />
                 </div>
 
-                <Link to="/" className="btn btn-animation text-none">
-                    <img src="./assets/icons/logo.png" alt="logo" className="mr-1" />
+                <Link to={routes.home} className="btn btn-animation text-none">
+                    <img src="/assets/icons/logo.png" alt="logo" className="mr-1" />
                     <span>ShareArt</span>
                 </Link>
             </div>
@@ -49,7 +49,7 @@ export const Navbar = ({ menu: [, setMenu] }) => {
 
                             <Link className="btn btn-secondary btn-animation btn-profile mr-2 text-none text-sm" to={routes.profile}>
                                 <picture className="profile-image">
-                                    <img src='./assets/temp/user.jfif' alt="profile" />
+                                    <img src='/assets/temp/user.jfif' alt="profile" />
                                 </picture>
                                 <span>@Nombre_Usuario</span>
                             </Link>

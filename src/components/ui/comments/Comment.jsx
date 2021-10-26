@@ -17,7 +17,7 @@ export const Comment = ({ item, counter }) => {
                 <div className="d-flex">
                     <picture className='profile-image xs mr-1'>
                         <img
-                            src='./assets/temp/user.jfif'
+                            src='/assets/temp/user.jfif'
                             alt="profile"
                         />
                     </picture>

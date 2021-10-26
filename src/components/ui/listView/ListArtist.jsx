@@ -26,7 +26,7 @@ export const ListArtist = ({ image, name, route, action }) => {
                         <>
                             <Link to={route} className="artist__item__user">
                                 <picture className="profile-image">
-                                    <img src={(image) ? image : './assets/temp/user.jfif'} alt="default" />
+                                    <img src={(image) ? image : '/assets/temp/user.jfif'} alt="default" />
                                 </picture>
                                 <div className="artist__item__name">
                                     <span>{name}</span>

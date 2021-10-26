@@ -26,7 +26,7 @@ export const CardGroup = ({ image, name, count, route, action }) => {
                         <>
                             <div className="group-image">
                                 <div className="image__size">
-                                    <img src={{ image } === undefined ? { image } : './assets/temp/user.jfif'} alt="default" />
+                                    <img src={{ image } === undefined ? { image } : '/assets/temp/user.jfif'} alt="default" />
                                 </div>
                             </div>
                             <div className="group-info">

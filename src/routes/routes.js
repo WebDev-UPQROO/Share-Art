@@ -1,13 +1,16 @@
 export const routes = {
-    home: '/',
-    explore: '/explore',
-    profile: '/profile',
-    configs: '/configs',
-    help: '/help',
+    login: '/auth/login',
+    register: '/auth/register',
+
+    home: '/app/home',
+    explore: '/app/explore',
+    profile: '/app/profile',
+    configs: '/app/configs',
+    help: '/app/help',
 
     // Explore
-    categories: '/explore/categories',
-    groups: '/explore/groups',
-    artist: '/explore/artist',
-    publications: '/explore/pubs',
+    categories: 'app/explore/categories',
+    groups: 'app/explore/groups',
+    artist: 'app/explore/artist',
+    publications: 'app/explore/pubs',
 };

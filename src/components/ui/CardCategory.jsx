@@ -26,7 +26,7 @@ export const CardCategory = ({ image, name, route }) => {
                     <>
                         <div className="category-body">
                             <div className="body__image">
-                                <img src= {{image}===undefined ? {image} : './assets/temp/user.jfif'} alt="default" />
+                                <img src= {{image}===undefined ? {image} : '/assets/temp/user.jfif'} alt="default" />
                             </div>
 
                             <div className="body__text">

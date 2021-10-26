@@ -29,7 +29,7 @@ export const Post = () => {
                             <>
                                 <div className="post__heading">
                                     <picture className="profile-image">
-                                        <img src='./assets/temp/user.jfif' alt="default" />
+                                        <img src='/assets/temp/user.jfif' alt="default" />
                                     </picture>
                                     <div className="ml-1">
                                         <p>@eeqeqw</p>
@@ -51,7 +51,7 @@ export const Post = () => {
                                         There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                                     </p>
                                     <div className="post__images">
-                                        <img src="./assets/temp/image.jfif" alt="default" />
+                                        <img src="/assets/temp/image.jfif" alt="default" />
                                     </div>
                                 </div>
 

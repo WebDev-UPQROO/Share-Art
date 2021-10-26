@@ -20,7 +20,7 @@ export const ProfileView = () => {
                         (<ListArtist
                             key="@artist1"
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             action={true}
                             route={routes.artist}
                         />)
@@ -33,7 +33,7 @@ export const ProfileView = () => {
                     (<ListArtist
                         key="@group1"
                         name="@group1"
-                        image="./assets/temp/user.jfif"
+                        image="/assets/temp/user.jfif"
                         action={true}
                         route={routes.artist}
                     />)

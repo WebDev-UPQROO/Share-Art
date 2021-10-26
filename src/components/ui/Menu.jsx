@@ -38,11 +38,11 @@ export const Menu = ({menu: [menu, setMenu]}) => {
     return (
         <div className={`menu ${menu ? 'show' : 'hide'}`}>
             <div className="mb-2">
-                <ListRoute title="Inicio" icon="home" route='/' exact={true} onClick={handleClick} />
+                <ListRoute title="Inicio" icon="home" route={routes.home} exact={true} onClick={handleClick} />
             </div>
 
             <div className="mb-2">
-                <ListView title="Explorar" icon="drafting-compass" list={exploreList} route="/explore" onClick={handleClick}/>
+                <ListView title="Explorar" icon="drafting-compass" list={exploreList} route={routes.explore} onClick={handleClick}/>
             </div>
 
             {
@@ -55,7 +55,7 @@ export const Menu = ({menu: [menu, setMenu]}) => {
             } {
                 (user.logged) &&
                 <div onClick={handleLogOut}>
-                    <ListRoute title="Cerrar Sesión" icon="sign-out-alt" route='/' arrow={false} activeClassName="" onClick={handleClick} />
+                    <ListRoute title="Cerrar Sesión" icon="sign-out-alt" route={routes.login} arrow={false} activeClassName="" onClick={handleClick} />
                 </div>
             }
 

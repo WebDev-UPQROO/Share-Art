@@ -23,25 +23,25 @@ export const ExploreView = () => {
                     <div className="categories__body">
                         <CardCategory
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             route={routes.profile}
                         />
 
                         <CardCategory
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             route={routes.profile}
                         />
 
                         <CardCategory
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             route={routes.profile}
                         />
 
                         <CardCategory
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             route={routes.profile}
                         />
                     </div>
@@ -59,7 +59,7 @@ export const ExploreView = () => {
                     <div className="groups__body">
                         <CardGroup
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             count={4}
                             action={true}
                             route={routes.profile}
@@ -67,7 +67,7 @@ export const ExploreView = () => {
 
                         <CardGroup
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             count={4}
                             action={true}
                             route={routes.profile}
@@ -75,7 +75,7 @@ export const ExploreView = () => {
 
                         <CardGroup
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             count={4}
                             action={true}
                             route={routes.profile}
@@ -84,7 +84,7 @@ export const ExploreView = () => {
                         <CardGroup
                             name="@artist1"
                             count={4}
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
                         />
@@ -104,7 +104,7 @@ export const ExploreView = () => {
                         <ListArtist
                             key="@artist1"
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
                         />
@@ -112,7 +112,7 @@ export const ExploreView = () => {
                         <ListArtist
                             key="@artist2"
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
                         />
@@ -120,7 +120,7 @@ export const ExploreView = () => {
                         <ListArtist
                             key="@artist3"
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
                         />
@@ -128,7 +128,7 @@ export const ExploreView = () => {
                         <ListArtist
                             key="@artist4"
                             name="@artist1"
-                            image="./assets/temp/user.jfif"
+                            image="/assets/temp/user.jfif"
                             action={true}
                             route={routes.profile}
                         />

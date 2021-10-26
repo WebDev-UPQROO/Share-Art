@@ -5,7 +5,7 @@ export const MyComment = () => {
         <div className="my-comment">
             <picture className="profile-image">
                 <img
-                    src='./assets/temp/user.jfif'
+                    src='/assets/temp/user.jfif'
                     alt="profile"
                 />
             </picture>

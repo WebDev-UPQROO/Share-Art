@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, Route } from 'react-router';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { routes } from './routes';
@@ -14,6 +14,8 @@ import { HelpView } from '../components/views/HelpView';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { ShareArtContext } from '../ShareArtContext';
+import { LoginView } from '../components/views/LoginView';
+import { RegisterView } from '../components/views/RegisterView';
 
 export const AppRouter = () => {
     const { user } = useContext(ShareArtContext);
@@ -22,47 +24,66 @@ export const AppRouter = () => {
     return (
         <Router>
             <div>
-                <Navbar menu={menu} />
+                <Switch>
+                    <Route path="/auth">
+                        <Switch>
+                            <Route path={routes.login} component={LoginView} />
+                            <Route path={routes.register} component={RegisterView} />
+                            <Redirect to={routes.login} />
+                        </Switch>
+                    </Route>
 
-                <div className="layout">
-                    <Menu menu={menu} />
+                    <Route path="/app">
+                        <Navbar menu={menu} />
 
-                    <Switch>
-                        <PublicRoute
-                            exact
-                            path={routes.home}
-                            component={MainView}
-                            isAuthenticated={user.logged}
-                        />
-                        <PublicRoute
-                            exact
-                            path={routes.explore}
-                            component={ExploreView}
-                            isAuthenticated={user.logged}
-                        />
+                        <div className="layout">
 
-                        <PrivateRoute
-                            exact
-                            path={routes.profile}
-                            component={ProfileView}
-                            isAuthenticated={user.logged}
-                        />
-                        <PrivateRoute
-                            exact
-                            path={routes.configs}
-                            component={SettingView}
-                            isAuthenticated={user.logged}
-                        />
-                        <PrivateRoute
-                            exact
-                            path={routes.help}
-                            component={HelpView}
-                            isAuthenticated={user.logged}
-                        />
 
-                        <Redirect to="/" />
-                    </Switch>
-                </div>
+                            <Menu menu={menu} />
+
+                            <Switch>
+                                <PublicRoute
+                                    exact
+                                    path={routes.home}
+                                    component={MainView}
+                                    isAuthenticated={user.logged}
+                                />
+                                <PublicRoute
+                                    exact
+                                    path={routes.explore}
+                                    component={ExploreView}
+                                    isAuthenticated={user.logged}
+                                />
+
+                                <PrivateRoute
+                                    exact
+                                    path={routes.profile}
+                                    component={ProfileView}
+                                    isAuthenticated={user.logged}
+                                />
+                                <PrivateRoute
+                                    exact
+                                    path={routes.configs}
+                                    component={SettingView}
+                                    isAuthenticated={user.logged}
+                                />
+                                <PrivateRoute
+                                    exact
+                                    path={routes.help}
+                                    component={HelpView}
+                                    isAuthenticated={user.logged}
+                                />
+                                <Redirect to={routes.home} />
+                            </Switch>
+
+
+                        </div>
+                    </Route>
+
+                    <Redirect to={routes.home} />
+
+                </Switch>
+
 
             </div>
         </Router>

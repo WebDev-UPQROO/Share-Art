@@ -7,7 +7,7 @@ export const ProfileInfo = () => {
             </div>
             <div className="profile__content text-sm">
                 <picture className="profile-image lg">
-                    <img src='./assets/temp/user.jfif' alt="default" />
+                    <img src='/assets/temp/user.jfif' alt="default" />
                 </picture>
 
                 <button

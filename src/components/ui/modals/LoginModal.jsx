@@ -20,18 +20,22 @@ const LoginModal = ({ visible, toggle }) => visible ? ReactDOM.createPortal(
                         id="email"
                         type="text"
                         placeholder="Correo Electrónico"
-                        className="input"
+                        className="form-input input"
                     />
                 </div>
 
-                <div className="form-item full">
+                <div className="form-item full mb-4">
                     <label htmlFor="password">Contraseña</label>
                     <input
                         id="password"
                         type="text"
                         placeholder="Contraseña"
-                        className="input"
+                        className="form-input input"
                     />
+                </div>
+
+                <div className="mb-3">
+                    <button className="btn btn-primary w-100">Iniciar Sesión</button>
                 </div>
             </div>
         </div>

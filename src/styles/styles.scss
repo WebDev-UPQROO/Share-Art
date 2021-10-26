@@ -18,9 +18,11 @@
 @import 'components/profile';
 @import 'components/cardgroup';
 @import 'components/cardcategory';
+@import 'components/modal'; 
 
 // Layouts
 @import 'layouts/layout';
 
 // Views
 @import 'views/explore';
+@import 'views/login'

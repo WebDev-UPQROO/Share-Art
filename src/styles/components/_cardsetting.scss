@@ -1,0 +1,26 @@
+.card-setting{
+
+    background-color: #1D1D1D;
+    padding: 3.3rem 4.6rem;
+    width:  800px;
+    height: 90px;
+    margin: 25px 0rem;
+    cursor: pointer;
+    
+
+    .setting-body{
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+
+        .body__text{
+            display: flex;
+            justify-content: left;
+            p{
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
+        }
+    }
+
+}

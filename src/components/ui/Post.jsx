@@ -58,7 +58,7 @@ export const Post = () => {
                                 <div className="post__share mt-1">
 
                                     <button
-                                        className="btn btn-secondary btn-animation mr-1"
+                                        className="post__share__side btn btn-secondary btn-animation mr-1"
                                         onClick={() => setComments(!comments)}
                                     >
                                         <i className="fas fa-comment-alt btn-icon-left" />
@@ -69,13 +69,13 @@ export const Post = () => {
                                         <i className="fas fa-chevron-up" />
                                     </button>
 
-                                    <span className="ml-1 mr-1 text-sm"> 100 Votos</span>
+                                    <p className="ml-1 mr-1 text-sm"> 100 Votos</p>
 
                                     <button className="btn btn-secondary btn-animation mr-1">
                                         <i className="fas fa-chevron-down" />
                                     </button>
 
-                                    <button className="btn btn-secondary btn-animation mr-1">
+                                    <button className="post__share__side btn btn-secondary btn-animation">
                                         <i className="fas fa-share-alt btn-icon-left" />
                                         <span>Compartir</span>
                                     </button>

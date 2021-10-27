@@ -53,9 +53,6 @@
 
   .main-full {
     padding: 0 $defMargin;
-    max-width: #{$mainWidth};
-    //background-color: blue;
-
     animation: fadeIn;
     animation-duration: $animationDuration;
 

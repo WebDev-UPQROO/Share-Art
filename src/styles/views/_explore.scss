@@ -1,54 +1,40 @@
-.d-flex-between{
-    display: flex;
-    justify-content: space-between;
-}
 .explore {
-    h1{
-        font-size: 4rem;
-        font-weight: 700;
-    }
-    h3{
-        font-size: 2.7rem;
-        font-weight: 700;
-    }
-    .explore-categories{
-        margin: 6vh 0;
-        .categories__heading{
-            @extend .d-flex-between;
-        }
-        .categories__body{
-            display: flex; 
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-    }
-    
-    .explore-groups{
-        margin: 6vh 0;
-        .groups__heading{
-            @extend .d-flex-between;
-        }
-        .groups__body{
-            display: flex; 
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 2.7rem;
+    font-weight: 700;
+  }
+  .explore__container {
+    margin: 5rem 0;
+
+    .explore__heading {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
     }
 
-    .explore-artists{
-        margin: 6vh 0;
-        .artists__heading{
-            @extend .d-flex-between;
-            margin-bottom: 13px;
-        }
-    }
+    .explore__body {
+      display: grid;
+      gap: 2rem;
 
-    .explore-posts{
-        margin: 6vh 0;
-        .posts__heading{
-            @extend .d-flex-between;
-            margin-bottom: 13px;
+      &.category {
+        grid-template-columns: repeat(2, 1fr);
+        @media (min-width: 480px) {
+          grid-template-columns: repeat(3, 1fr);
         }
-    }
+        @media (min-width: 768px) {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
 
+      &.groups {
+        @media (min-width: 768px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+  }
 }

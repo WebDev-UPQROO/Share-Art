@@ -11,8 +11,8 @@ export const ExploreView = () => {
         <main className="main-full">
             <div className="explore">
                 <h1>Explorar</h1>
-                <div className="explore-categories">
-                    <div className="categories__heading">
+                <div className="explore__container">
+                    <div className="explore__heading">
                         <h3>Categorias</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir a categorias</span>
@@ -20,35 +20,35 @@ export const ExploreView = () => {
                         </Link>
                     </div>
 
-                    <div className="categories__body">
+                    <div className="explore__body category">
                         <CardCategory
                             name="@artist1"
-                            image="/assets/temp/user.jfif"
+                            image="user"
                             route={routes.profile}
                         />
 
                         <CardCategory
                             name="@artist1"
-                            image="/assets/temp/user.jfif"
+                            image="user"
                             route={routes.profile}
                         />
 
                         <CardCategory
                             name="@artist1"
-                            image="/assets/temp/user.jfif"
+                            image="user"
                             route={routes.profile}
                         />
 
                         <CardCategory
                             name="@artist1"
-                            image="/assets/temp/user.jfif"
+                            image="user"
                             route={routes.profile}
                         />
                     </div>
                 </div>
 
-                <div className="explore-groups">
-                    <div className="groups__heading">
+                <div className="explore__container">
+                    <div className="explore__heading">
                         <h3>Grupos</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir al grupos</span>
@@ -56,7 +56,7 @@ export const ExploreView = () => {
                         </Link>
                     </div>
 
-                    <div className="groups__body">
+                    <div className="explore__body groups">
                         <CardGroup
                             name="@artist1"
                             image="/assets/temp/user.jfif"
@@ -92,8 +92,8 @@ export const ExploreView = () => {
                     </div>
                 </div>
 
-                <div className="explore-artists">
-                    <div className="artists__heading">
+                <div className="explore__container">
+                    <div className="explore__heading">
                         <h3>Artistas</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir a artistas</span>
@@ -135,8 +135,8 @@ export const ExploreView = () => {
                     </div>
                 </div>
 
-                <div className="explore-posts">
-                    <div className="posts__heading">
+                <div className="explore__container">
+                    <div className="explore__heading">
                         <h3>Publicaciones</h3>
                         <Link to="#" className="post__link btn-animation btn-link">
                             <span className="mr-1">Ir al publicaciones</span>

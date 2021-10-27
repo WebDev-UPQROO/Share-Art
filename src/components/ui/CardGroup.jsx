@@ -25,13 +25,19 @@ export const CardGroup = ({ image, name, count, route, action }) => {
                     ? (
                         <>
                             <div className="group-image">
-                                <div className="image__size">
-                                    <img src={{ image } === undefined ? { image } : '/assets/temp/user.jfif'} alt="default" />
-                                </div>
+                                <img
+                                    src={{ image } === undefined ? { image } : '/assets/temp/user.jfif'} alt="group"
+                                />
                             </div>
                             <div className="group-info">
-                                <p className="info__title btn-animation"> <a href='#' className="no-text-decoration"> {{ name } === undefined ? { name } : 'Grupo de artistas'}</a> </p>
-                                <p className="info__count"> {{ count } === undefined ? { count } : '13k integrantes '} </p>
+                                <p className="info__title btn-animation">
+                                    <a href='#' className="no-text-decoration">
+                                        {{ name } === undefined ? { name } : 'Grupo de artistas'}
+                                    </a>
+                                </p>
+                                <p className="info__count">
+                                    {{ count } === undefined ? { count } : '13k integrantes '}
+                                </p>
                             </div>
                             <div className="group-button">
                                 <button className={'btn btn-animation btn-outline ' + (!action && 'selected')}>
@@ -44,14 +50,27 @@ export const CardGroup = ({ image, name, count, route, action }) => {
                     :
                     (
                         <>
-                            <div className="loading" style={{ width: '65%' }}></div>
-                            <div className="d-flex align-items-center mb-0 p-0" style={{ width: '130%' }}>
-                                <div className="" style={{ marginTop: 'auto', marginBottom: 'auto', marginLeft: '10px' }}>
-                                    <div className="loading" style={{ width: '17rem', height: '2rem', marginBottom: '5px' }}></div>
-                                    <div className="post__link loading mb-1" style={{ width: '10rem', height: '1.5rem', margin: '0px' }}></div>
+                            <div className="loading" style={{ width: '10rem' }}></div>
+                            <div
+                                className="d-flex ml-1"
+                                style={{ width: 'calc( 100% - 13rem)', justifyContent: 'space-between' }}
+                            >
+                                <div style={{ margin: 'auto 0' }}>
+                                    <div
+                                        className="loading"
+                                        style={{ width: '13rem', height: '2rem', marginBottom: '5px' }}
+                                    >
+                                    </div>
+                                    <div
+                                        className="post__link loading mb-1"
+                                        style={{ width: '10rem', height: '1.5rem' }}
+                                    >
+                                    </div>
+                                </div>
+                                <div className="loading" style={{ width: '5rem', height: '2.5rem', margin: 'auto 0' }}>
                                 </div>
                             </div>
-                            <div className="loading" style={{ width: '45%', height: '2.5rem', marginTop: 'auto', marginBottom: 'auto', marginRight: '25px' }}></div>
+
                         </>
                     )
             }

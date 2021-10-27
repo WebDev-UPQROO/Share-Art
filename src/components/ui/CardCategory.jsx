@@ -28,27 +28,20 @@ export const CardCategory = ({ image, name, route }) => {
                             <div className="body__image">
                                 <img src= {{image}===undefined ? {image} : '/assets/temp/user.jfif'} alt="default" />
                             </div>
-
                             <div className="body__text">
                                 <p>{{name}===undefined ? {name} : 'General'}</p>
-                            </div>
-
-                        
+                            </div>      
                         </div>
-                        
                     </>               
                 )
                 :
                 (
                     <>
-                        <div className="loading" style={{ width: '60%', height: '10rem' }}></div>
-                        <div className="d-flex align-items-center mb-0 p-0" style={{ width: '130%', height: '10rem' }}>
-                            <div className="d-in-block my-auto">
-                                <div className="loading" style={{ width: '17rem', height: '2rem' }}></div>
-                                <div className="post__link loading mb-1" style={{ width: '6rem', height: '1rem' }}></div>
-                            </div>
-                        </div>
-                        <div className="loading" style={{ width: '50%', height: '2rem' }}></div>
+                   
+                        <div className="loading" style={{ width: '125px', height: '125px', marginTop: '20px', marginRight: 'auto', marginBottom: '5px', marginLeft: 'auto' }}></div>
+                        <div className="loading" style={{ width: '8rem', height: '2rem', marginLeft: 'auto', marginRight: 'auto' }}></div>
+                    
+                        
                     </>
                 )
         }

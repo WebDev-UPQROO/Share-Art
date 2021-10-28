@@ -1,6 +1,6 @@
 .list-view {
   overflow: hidden;
-  background-color: getColor(background);
+  background-color: getColor(menu);
 }
 
 .artist__item {
@@ -25,6 +25,6 @@
   }
 
   &:hover {
-    background-color: getColor(background-d-5);
+    background-color: getColor(menu-hover);
   }
 }

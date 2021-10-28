@@ -1,6 +1,6 @@
 .card-group {
   display: flex;
-  background-color: getColor(background);
+  background-color: getColor(card-color);
   border-radius: $defRadius;
   height: 10rem;
 

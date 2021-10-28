@@ -1,5 +1,5 @@
 .posting {
-  background-color: getColor(background);
+  background-color: getColor(card-color);
   padding: $defMargin;
   border-radius: $defRadius;
   display: flex;

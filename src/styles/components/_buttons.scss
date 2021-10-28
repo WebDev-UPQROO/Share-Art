@@ -26,10 +26,10 @@
 
 .btn-secondary {
   border-radius: $defRadius - 0.4rem;
-  background: getColor(background-l-5);
+  background: getColor(secondary);
 
   &:hover {
-    background: getColor(background-l-10);
+    background: getColor(secondary-hover);
   }
 }
 
@@ -45,7 +45,7 @@
 
   &:hover {
     color: getColor(primary);
-    background-color: getColor(background-l-5);
+    background-color: getColor(secondary-hover);
   }
 }
 
@@ -91,7 +91,7 @@
   align-items: center;
   font-size: $fontSize - 0.2rem;
   border-radius: $defRadius;
-  background-color: getColor(background);
+  background-color: getColor(menu);
   text-decoration: none;
   transition: all ease 0.3s;
 
@@ -110,12 +110,7 @@
   &:active,
   &.active {
     color: getColor(primary);
-    background-color: getColor(background-d-5);
-  }
-
-  &:active,
-  &.active {
-    background-color:getColor(background-d-10);
+    background-color: getColor(menu-hover);
   }
 }
 
@@ -130,7 +125,7 @@
   &:hover,
   &.selected:hover {
     background-color: getColor(text-primary);
-    color: getColor(background);
+    color: getColor(menu);
   }
 
   &.selected {

@@ -1,6 +1,6 @@
 .comments-group {
   width: 100%;
-  background-color: getColor(background);
+  background-color: getColor(card-color);
   font-size: $fontSize - 0.2rem;
   padding-top: $defMargin;
 
@@ -11,7 +11,7 @@
     z-index: 0;
 
     .comment__content {
-      background: getColor(background-l-10);
+      background: getColor(secondary-hover);
       flex-grow: 1;
       border-radius: $defRadius;
       padding: ($defMargin - 0.5) $defMargin;
@@ -27,7 +27,7 @@
     }
 
     .comment__actions {
-      background-color: getColor(background);
+      background-color: getColor(card-color);
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -63,7 +63,7 @@
     display: flex;
     animation: fadeIn;
     animation-duration: $animationDuration;
-    background-color: getColor(background);
+    background-color: getColor(card-color);
 
     .my-comment__input {
       padding-left: 1rem;

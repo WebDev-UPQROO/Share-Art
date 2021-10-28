@@ -1,0 +1,96 @@
+$pink: #c92549;
+$blue: #151621;
+
+$pink-100: lighten($pink, 20%);
+$pink-200: lighten($pink, 15%);
+$pink-300: lighten($pink, 10%);
+$pink-400: lighten($pink, 5%);
+$pink-500: $pink;
+$pink-600: darken($pink, 5%);
+$pink-700: darken($pink, 10%);
+$pink-800: darken($pink, 15%);
+$pink-900: darken($pink, 20%);
+
+$blue-100: lighten($blue, 20%);
+$blue-200: lighten($blue, 15%);
+$blue-300: lighten($blue, 10%);
+$blue-400: lighten($blue, 5%);
+$blue-500: $blue;
+$blue-600: darken($blue, 5%);
+$blue-700: darken($blue, 10%);
+$blue-800: darken($blue, 15%);
+$blue-900: darken($blue, 20%);
+
+$white: #ffffff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000000;
+
+$blue-04: rgba($blue, 0.4);
+
+$colors-dark: (
+  base: $black,
+  nav: $blue-500,
+  menu: $blue-500,
+  menu-hover: $blue-600,
+  card-color: $blue-500,
+  scroll-bar: $blue-500,
+  scroll-bg: $blue-04,
+  primary: $pink-500,
+  primary-gradient: $pink-800,
+  secondary: $blue-400,
+  secondary-hover: $blue-300,
+  text-primary: $white,
+  text-secondary: $gray-600,
+  loading-first: $gray-800,
+  loading-second: $gray-700,
+);
+
+$colors-light: (
+  base: $white,
+  nav: $white,
+  menu: $gray-100,
+  menu-hover: $gray-300,
+  card-color: $gray-200,
+  scroll-bar: $blue-100,
+  scroll-bg: $blue-04,
+  primary: $pink-500,
+  primary-gradient: $pink-800,
+  secondary: $gray-400,
+  secondary-hover: $gray-500,
+  text-primary: $gray-900,
+  text-secondary: $gray-600,
+  loading-first: $gray-400,
+  loading-second: $gray-300,
+);
+
+@mixin setColors($theme) {
+  @each $name, $color in $theme {
+    --color-#{$name}: #{$color};
+  }
+}
+
+:root {
+  @include setColors($colors-light);
+
+  @media (prefers-color-scheme: dark) {
+    @include setColors($colors-dark);
+  }
+}
+
+@function getColor($color-name) {
+  @return var(--color-#{$color-name});
+}
+
+$gradient: linear-gradient(
+  95deg,
+  getColor(primary),
+  getColor(primary-gradient)
+);

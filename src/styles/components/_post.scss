@@ -1,5 +1,5 @@
 .post {
-  background-color: getColor(background);
+  background-color: getColor(card-color);
   border-radius: $defRadius;
   font-size: $fontSize - 0.2rem;
   padding: $defMargin;

@@ -2,7 +2,7 @@
   display: flex;
   padding: 1.2rem $defMargin;
   background-color: transparent;
-  color: $text-primary;
+  color: getColor(text-primary);
   border: none;
   cursor: pointer;
   justify-content: center;
@@ -26,26 +26,26 @@
 
 .btn-secondary {
   border-radius: $defRadius - 0.4rem;
-  background: lighten($background, 6);
+  background: getColor(background-l-5);
 
   &:hover {
-    background: lighten($background, 10);
+    background: getColor(background-l-10);
   }
 }
 
 .btn-link {
-  color: $primary;
+  color: getColor(primary);
 }
 
 .btn-link-secondary {
-  color: $text-secondary;
+  color: getColor(text-secondary);
   padding: 0.3rem $defMargin;
   margin-top: 0.5rem;
   margin-bottom: $defMargin;
 
   &:hover {
-    color: $primary;
-    background-color: lighten($background, 5);
+    color: getColor(primary);
+    background-color: getColor(background-l-5);
   }
 }
 
@@ -91,7 +91,7 @@
   align-items: center;
   font-size: $fontSize - 0.2rem;
   border-radius: $defRadius;
-  background-color: $background;
+  background-color: getColor(background);
   text-decoration: none;
   transition: all ease 0.3s;
 
@@ -103,25 +103,25 @@
     margin-right: $defMargin;
   }
   .btn-menu-arrow {
-    color: $primary;
+    color: getColor(primary);
   }
 
   &:hover,
   &:active,
   &.active {
-    color: $primary;
-    background-color: darken($background, 3);
+    color: getColor(primary);
+    background-color: getColor(background-d-5);
   }
 
   &:active,
   &.active {
-    background-color: darken($background, 6);
+    background-color:getColor(background-d-10);
   }
 }
 
 .btn-outline {
   padding: 0.5rem 0.8rem;
-  border: $text-primary solid 1px;
+  border: getColor(text-primary) solid 1px;
   border-radius: $defRadius - 0.3rem;
   svg {
     margin-right: 0.5rem;
@@ -129,12 +129,12 @@
 
   &:hover,
   &.selected:hover {
-    background-color: $text-primary;
-    color: $background;
+    background-color: getColor(text-primary);
+    color: getColor(background);
   }
 
   &.selected {
-    color: $text-secondary;
-    border: $text-secondary solid 1px;
+    color: getColor(text-secondary);
+    border: getColor(text-secondary) solid 1px;
   }
 }

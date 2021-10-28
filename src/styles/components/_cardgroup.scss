@@ -1,6 +1,6 @@
 .card-group {
   display: flex;
-  background-color: $background;
+  background-color: getColor(background);
   border-radius: $defRadius;
   height: 10rem;
 
@@ -23,7 +23,7 @@
       font-weight: 700;
     }
     .info__count {
-      color: $text-secondary;
+      color: getColor(text-secondary);
     }
   }
 

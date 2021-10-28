@@ -6,7 +6,7 @@
   animation-duration: 0.3s;
 
   .login__container {
-    background-color: $background;
+    background-color: getColor(background);
     border-radius: $defRadius;
     padding: $defMargin;
     width: 100%;

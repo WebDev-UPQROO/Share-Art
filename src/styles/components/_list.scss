@@ -1,5 +1,6 @@
 .list-view {
   overflow: hidden;
+  background-color: getColor(background);
 }
 
 .artist__item {
@@ -19,11 +20,11 @@
     .artist__item__name{
       margin-left: 1rem;
       font-size: $fontSize - 0.2;
-      color: $text-primary;
+      color: getColor(text-primary);
     }
   }
 
   &:hover {
-    background-color: darken($color: $background, $amount: 5);
+    background-color: getColor(background-d-5);
   }
 }

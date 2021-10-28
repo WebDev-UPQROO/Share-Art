@@ -69,9 +69,9 @@
 
   background: linear-gradient(
     90deg,
-    $input-secondary 30%,
-    lighten($color: $input-secondary, $amount: 5) 50%,
-    $input-secondary 70%
+    getColor(text-secondary-d-20) 30%,
+    getColor(text-secondary-d-10) 50%,
+    getColor(text-secondary-d-20) 70%
   );
   background-size: 300% 100%;
   animation: loading 1s infinite;

@@ -10,7 +10,7 @@
   .profile__content {
     position: relative;
     padding: $defMargin;
-    background-color: $background;
+    background-color: getColor(background);
 
     .profile-image {
       position: absolute;
@@ -18,7 +18,7 @@
       top: -5rem;
 
       img {
-        border: 5px solid $background;
+        border: 5px solid getColor(background);
       }
     }
 
@@ -27,7 +27,7 @@
     }
 
     .profile__content__user{
-        color: $text-secondary;
+        color: getColor(text-secondary);
     }
 
     .profile__content__categories{

@@ -1,5 +1,5 @@
 .card-category {
-  background-color: $background;
+  background-color: getColor(background);
   border-radius: $defRadius;
 
   height: 15rem;

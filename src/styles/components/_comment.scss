@@ -1,6 +1,6 @@
 .comments-group {
   width: 100%;
-  background-color: $background;
+  background-color: getColor(background);
   font-size: $fontSize - 0.2rem;
   padding-top: $defMargin;
 
@@ -11,7 +11,7 @@
     z-index: 0;
 
     .comment__content {
-      background: lighten($background, 10);
+      background: getColor(background-l-10);
       flex-grow: 1;
       border-radius: $defRadius;
       padding: ($defMargin - 0.5) $defMargin;
@@ -21,17 +21,17 @@
       }
 
       .comment__content__info {
-        color: $text-secondary;
+        color: getColor(text-secondary);
         font-weight: 500;
       }
     }
 
     .comment__actions {
-      background-color: $background;
+      background-color: getColor(background);
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      color: $text-secondary;
+      color: getColor(text-secondary);
       font-weight: 500;
 
       .comment__actions__buttons {
@@ -49,7 +49,7 @@
       position: absolute;
       content: "";
       width: 1px;
-      background-color: $text-secondary;
+      background-color: getColor(text-secondary);
       height: auto;
       left: 1.5rem;
       bottom: 2.5rem;
@@ -63,7 +63,7 @@
     display: flex;
     animation: fadeIn;
     animation-duration: $animationDuration;
-    background-color: $background;
+    background-color: getColor(background);
 
     .my-comment__input {
       padding-left: 1rem;

@@ -1,5 +1,5 @@
 .post {
-  background-color: $background;
+  background-color: getColor(background);
   border-radius: $defRadius;
   font-size: $fontSize - 0.2rem;
   padding: $defMargin;
@@ -10,7 +10,7 @@
     
 
     small {
-      color: $text-secondary;
+      color: getColor(text-secondary);
       font-weight: 600;
       font-size: $fontSize - 0.4rem;
       

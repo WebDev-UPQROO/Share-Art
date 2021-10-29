@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 export const CardSetting = ({ name, route }) => {
@@ -7,13 +8,14 @@ export const CardSetting = ({ name, route }) => {
     return (
 
         <div className="card-setting">
-            <div className="setting-body">
-                <div className="body__text">
-                    <p>{{ name } === undefined ? { name } : 'Configuracion'}</p>
+            <Link to={route}>
+                <div className="setting-body">
+                    <div className="body__text">
+                        <p>{name}</p>
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
-
     )
 }
 

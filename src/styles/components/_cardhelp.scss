@@ -1,0 +1,38 @@
+.dropdown{
+
+    display: flex;
+    flex-direction: column;
+
+    .drop-title{
+        background-color: getColor(configurations);
+        cursor: pointer;
+        padding: 2rem 4.6rem;
+        order: 0;
+        transition: all ease 0.3s;
+
+        p{
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+    }
+
+    .drop-body{
+        overflow: hidden;
+        background-color: getColor(configurations);
+        transition: max-height 0.3s;
+        padding: 2rem 4.6rem;
+        order: 1;
+    
+        &.disable~.drop-title{
+            background-color: getColor(primary-gradient);
+    }
+        
+
+        &.active{
+            max-height: 0;
+            padding: 0;
+        }
+    }
+
+}

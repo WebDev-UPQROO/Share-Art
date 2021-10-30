@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 
-export const CardSetting = ({ name, route }) => {
+export const CardSetting = ({ name, icon, route }) => {
 
     return (
 
@@ -11,6 +11,7 @@ export const CardSetting = ({ name, route }) => {
             <Link to={route}>
                 <div className="setting-body">
                     <div className="body__text">
+                        <i class={`fas fa-${icon}`}></i>
                         <p>{name}</p>
                     </div>
                 </div>

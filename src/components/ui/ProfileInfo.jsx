@@ -5,7 +5,7 @@ export const ProfileInfo = () => {
         <div className="profile mb-2">
             <div className="profile__background">
             </div>
-            <div className="profile__content text-sm">
+            <div className="profile__content">
                 <picture className="profile-image lg">
                     <img src='/assets/temp/user.jfif' alt="default" />
                 </picture>
@@ -32,7 +32,7 @@ export const ProfileInfo = () => {
                     <span>Intereses</span>
                 </p>
 
-                <div className="profile__content__categories mb-1 mt-1">
+                <div className="profile__content__categories mb-3 mt-1">
 
                     <div className="check">
                         <label>
@@ -40,6 +40,21 @@ export const ProfileInfo = () => {
                             Categoria 1
                         </label>
                     </div>
+                </div>
+
+                <div className="profile__content__follows">
+                    <button className="btn btn-secondary btn-animation">
+                        <b>Seguidores</b>
+                        <p>100k</p>
+                    </button>
+                    <button className="btn btn-secondary btn-animation">
+                        <b>Siguiendo</b>
+                        <p>100k</p>
+                    </button>
+                    <button className="btn btn-secondary btn-animation">
+                        <b>Grupos</b>
+                        <p>100k</p>
+                    </button>
                 </div>
             </div>
         </div>

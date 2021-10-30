@@ -22,18 +22,39 @@
       }
     }
 
-    .profile__content__name{
-        font-weight: 600;
+    .profile__content__name {
+      font-weight: 600;
     }
 
-    .profile__content__user{
-        color: getColor(text-secondary);
+    .profile__content__user {
+      color: getColor(text-secondary);
     }
 
-    .profile__content__categories{
+    .profile__content__categories {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-  }
+    }
+
+    .profile__content__follows{
+      display: grid;
+      grid-template-columns: repeat( 3, 1fr);
+      column-gap: $defMargin;
+
+      @media (min-width: 768px) {
+        display: none;
+      }
+
+      button{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        b{
+          margin-bottom: 0.4rem;
+        }
+      }
+    }
   }
 }

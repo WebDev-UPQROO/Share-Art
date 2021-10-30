@@ -1,7 +1,7 @@
 .post {
   background-color: getColor(card-color);
   border-radius: $defRadius;
-  font-size: $fontSize - 0.2rem;
+  font-size: $fontSize;
   padding: $defMargin;
 
   .post__heading {
@@ -12,7 +12,7 @@
     small {
       color: getColor(text-secondary);
       font-weight: 600;
-      font-size: $fontSize - 0.4rem;
+      font-size: $fontSize - 0.2rem;
       
     }
 

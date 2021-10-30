@@ -19,10 +19,13 @@ export const HelpView = () => {
     ]
     return (
         <div className="main-full">
-            <h1>Centro de Ayuda</h1>
+            <h1 className="mb-5">Centro de Ayuda</h1>
             {
-                content.map(item =>
-                    <CardHelp name={item.name} content={item.content} />
+                content.map(item => (
+                    <div className="mt-2">
+                        <CardHelp name={item.name} content={item.content} />
+                    </div>
+                )
                 )
             }
 

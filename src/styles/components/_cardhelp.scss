@@ -1,38 +1,44 @@
-.dropdown{
+.dropdown {
+  display: flex;
+  flex-direction: column;
 
-    display: flex;
-    flex-direction: column;
+  .drop-title {
+    order: 0;
 
-    .drop-title{
-        background-color: getColor(configurations);
-        cursor: pointer;
-        padding: 2rem 4.6rem;
-        order: 0;
-        transition: all ease 0.3s;
+    background-color: getColor(configurations);
+    width: 100%;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    padding: $defMargin + 0.4rem $defMargin;
 
-        p{
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
+    @media (min-width:480px){
+        padding: 3.3rem 4.6rem;
     }
 
-    .drop-body{
-        overflow: hidden;
-        background-color: getColor(configurations);
-        transition: max-height 0.3s;
-        padding: 2rem 4.6rem;
-        order: 1;
-    
-        &.disable~.drop-title{
-            background-color: getColor(primary-gradient);
-    }
-        
-
-        &.active{
-            max-height: 0;
-            padding: 0;
-        }
+    p {
+      font-size: $fontSize + 0.2rem;
+      font-weight: 700;
     }
 
+    &:hover {
+      background-color: getColor(primary-gradient);
+    }
+  }
+
+  .drop-body {
+    overflow: hidden;
+    background-color: getColor(configurations);
+    transition: max-height 0.3s;
+    padding: 2rem 4.6rem;
+    order: 1;
+
+    &.disable ~ .drop-title {
+      background-color: getColor(primary-gradient);
+    }
+
+    &.active {
+      max-height: 0;
+      padding: 0;
+    }
+  }
 }

@@ -4,7 +4,7 @@ import { authActions } from '../../reducers/authReducer';
 import { routes } from '../../routes/routes';
 import { ShareArtContext } from '../../ShareArtContext';
 
-export const Navbar = ({ menu: [, setMenu] }) => {
+export const Navbar = ({ menu: [ menu, setMenu] }) => {
     const { user, authDispatch } = useContext(ShareArtContext);
     const history = useHistory();
 
@@ -28,11 +28,16 @@ export const Navbar = ({ menu: [, setMenu] }) => {
     return (
         <div className="navbar">
             <div className="navbar__left" >
-                <div className="navbar__left__menu btn-animation" onClick={handleMobileMenu}>
-                    <i className="fas fa-bars" />
+                <div className="navbar__left__menu btn-animation">
+                    <input type="checkbox" id="menu" className={menu ? 'active': ''}/>
+                    <label className="menu-icon" htmlFor="menu" onClick={handleMobileMenu}>
+                        <div className="bar-icon bar1" />
+                        <div className="bar-icon bar2" />
+                        <div className="bar-icon bar3" />
+                    </label>
                 </div>
 
-                <Link to={routes.home} className="btn btn-animation text-none">
+                <Link to={routes.home} className="navbar__left__text btn btn-animation text-none">
                     <img src="/assets/icons/logo.png" alt="logo" className="mr-1" />
                     <span>ShareArt</span>
                 </Link>
@@ -47,7 +52,7 @@ export const Navbar = ({ menu: [, setMenu] }) => {
                                 <i className="fas fa-bell" />
                             </button>
 
-                            <Link className="btn btn-secondary btn-animation btn-profile mr-2 text-none text-sm" to={routes.profile}>
+                            <Link className="btn btn-secondary btn-animation btn-profile text-none" to={routes.profile}>
                                 <picture className="profile-image">
                                     <img src='/assets/temp/user.jfif' alt="profile" />
                                 </picture>

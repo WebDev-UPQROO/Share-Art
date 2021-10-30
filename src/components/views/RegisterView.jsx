@@ -11,7 +11,7 @@ export const RegisterView = () => {
                     <div>
                         <div>
                             <h3>Unete a ShareArt hoy mismo</h3>
-                            <span className="text-sm">Crear una nueva cuenta</span>
+                            <span>Crear una nueva cuenta</span>
                         </div>
                     </div>
                     <div className="mt-3">

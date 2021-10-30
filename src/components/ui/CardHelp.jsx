@@ -5,7 +5,7 @@ import useModal from '../../hooks/useModal'
 export const CardHelp = ({ name, content }) => {
     const { toggle, visible } = useModal(true)
     return (
-        <div className="dropdown mt-3">
+        <div className="dropdown">
             <div className={`drop-body ${visible ? 'active' : 'disable'}`}>
                 <p>{content}</p>
             </div>

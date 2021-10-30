@@ -89,7 +89,7 @@
   padding: 1.3rem $defMargin;
   justify-content: space-between;
   align-items: center;
-  font-size: $fontSize - 0.2rem;
+  font-size: $fontSize;
   border-radius: $defRadius;
   background-color: getColor(menu);
   text-decoration: none;
@@ -99,7 +99,7 @@
   animation-duration: $animationDuration;
 
   .btn-menu-icon {
-    font-size: $fontSize + 0.2rem;
+    font-size: $fontSize + 0.4rem;
     margin-right: $defMargin;
   }
   .btn-menu-arrow {

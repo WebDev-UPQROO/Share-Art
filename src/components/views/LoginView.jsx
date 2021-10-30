@@ -10,7 +10,7 @@ export const LoginView = () => {
                 <div>
                     <div>
                         <h3>Inicio de Sesión</h3>
-                        <span className="text-sm">Ingresa tu usuario y contraseña para continuar</span>
+                        <span>Ingresa tu usuario y contraseña para continuar</span>
                     </div>
                 </div>
                 <div className="mt-3">

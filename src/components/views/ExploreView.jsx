@@ -22,26 +22,26 @@ export const ExploreView = () => {
 
                     <div className="explore__body category">
                         <CardCategory
-                            name="@artist1"
-                            image="user"
+                            name="Música"
+                            image="music"
                             route={routes.profile}
                         />
 
                         <CardCategory
-                            name="@artist1"
-                            image="user"
+                            name="Teatro"
+                            image="theater-masks"
                             route={routes.profile}
                         />
 
                         <CardCategory
-                            name="@artist1"
-                            image="user"
+                            name="Escultura"
+                            image="palette"
                             route={routes.profile}
                         />
 
                         <CardCategory
-                            name="@artist1"
-                            image="user"
+                            name="PixelArt"
+                            image="laptop"
                             route={routes.profile}
                         />
                     </div>

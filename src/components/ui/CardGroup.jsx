@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export const CardGroup = ({ image, name, count, route, action }) => {
 
@@ -31,9 +32,9 @@ export const CardGroup = ({ image, name, count, route, action }) => {
                             </div>
                             <div className="group-info">
                                 <p className="info__title btn-animation">
-                                    <a href='#' className="no-text-decoration">
+                                    <Link to={route} className="no-text-decoration">
                                         {{ name } === undefined ? { name } : 'Grupo de artistas'}
-                                    </a>
+                                    </Link>
                                 </p>
                                 <p className="info__count">
                                     {{ count } === undefined ? { count } : '13k integrantes '}

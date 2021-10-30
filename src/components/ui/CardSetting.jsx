@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export const CardSetting = ({ name, icon, route }) => {
             <Link to={route}>
                 <div className="setting-body">
                     <div className="body__text">
-                        <i class={`fas fa-${icon}`}></i>
+                        <i className={`fas fa-${icon}`}></i>
                         <p>{name}</p>
                     </div>
                 </div>

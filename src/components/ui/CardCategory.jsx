@@ -8,7 +8,7 @@ export const CardCategory = ({ image, name, route }) => {
                 <div className="card-category__icon">
                     <i className={`fas fa-${image ? image : 'user'}`} />
                 </div>
-                <p>{{ name } === undefined ? { name } : 'General'}</p>
+                <p>{ name }</p>
             </div>
         </div >
     )

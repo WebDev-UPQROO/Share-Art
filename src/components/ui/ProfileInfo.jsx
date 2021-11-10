@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { userEditName, userGetInfo } from '../../store/user/userActions'
+import { connect } from 'react-redux'
 
-export const ProfileInfo = () => {
+const ProfileInfo = ({ user, userEditName, userGetInfo }) => {
+    useEffect(() => {
+        userGetInfo('6169a793fc358e71ee5fee8f');
+    }, []);
+
     return (
         <div className="profile mb-2">
             <div className="profile__background">
@@ -12,13 +18,14 @@ export const ProfileInfo = () => {
 
                 <button
                     className={'btn btn-animation btn-outline ml-auto mb-2' + (false && 'selected')}
+                    onClick={() => userEditName('nuevo')}
                 >
                     {(true) && <i className="fas fa-plus mr-1" />}
                     <span>{true ? 'Seguir' : 'Siguiendo'}</span>
                 </button>
 
-                <h2 className="profile__content__name">Nombre completo</h2>
-                <p className="profile__content__user mb-1">@usuario</p>
+                <h2 className="profile__content__name">{user.user.name}</h2>
+                <p className="profile__content__user mb-1">{user.user.username}</p>
 
                 <p className="mb-1">aqui va a ir la descripcion de prueba de la persona, esto esta en verion alpha</p>
 
@@ -60,3 +67,8 @@ export const ProfileInfo = () => {
         </div>
     )
 }
+
+const data = (state) => ({ user: state.userReducer });
+const actions = { userEditName, userGetInfo };
+
+export default connect(data, actions)(ProfileInfo);

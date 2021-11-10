@@ -3,7 +3,7 @@ import { routes } from '../../routes/routes'
 import { ListArtist } from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { Post } from '../ui/Post'
-import { ProfileInfo } from '../ui/ProfileInfo'
+import ProfileInfo from '../ui/ProfileInfo'
 
 export const ProfileView = () => {
     return (

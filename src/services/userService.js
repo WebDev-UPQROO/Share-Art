@@ -6,6 +6,6 @@ export const getUser = async (uid) => {
     const data = await axios.get(API.base + API.getUser + uid);
     return data;
   } catch ({response: {data, status}}) {
-      throw(Error(`${status} - ${data.error}`));
+      throw(Error(`Error ${status} - ${data.error}`));
   }
 };

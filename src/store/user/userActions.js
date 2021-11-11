@@ -1,13 +1,14 @@
 import { getUser } from "../../services/userService";
 import { userActions } from "./userReducer";
 
-export const userGetInfo = (userId) => async (dispatch) => {
+export const userGetInfo = (userId, history) => async (dispatch) => {
   dispatch(userLoading());
   try {
     const data = await getUser(userId);
     dispatch(userGetInfoSuccess(data.data));
-  } catch (e) {
-    dispatch(userFailure(e.message));
+  } catch ({message}) {
+    history.goBack();
+    dispatch(userFailure(message));
   }
 };
 

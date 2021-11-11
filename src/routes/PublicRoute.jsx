@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Route } from 'react-router'
 
 
@@ -17,8 +16,4 @@ export const PublicRoute = ({
             render={(props) => <Component {...props} />}
         />
     )
-}
-
-PublicRoute.propTypes = {
-    component: PropTypes.func.isRequired
 }

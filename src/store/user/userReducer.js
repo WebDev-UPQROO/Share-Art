@@ -1,5 +1,5 @@
 const initialState = {
-  loading: false,
+  loading: true,
   user: [],
   error: null,
 };
@@ -12,9 +12,6 @@ const userReducer = (state = initialState, { type, payload }) => {
         user: payload,
         loading: false
       };
-      return state;
-
-    case userActions.edit:
       return state;
 
     case userActions.loading:

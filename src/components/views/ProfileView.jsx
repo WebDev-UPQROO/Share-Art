@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router'
 import { routes } from '../../routes/routes'
+import { userGetInfo } from '../../store/user/userActions'
 import { ListArtist } from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { Post } from '../ui/Post'
 import ProfileInfo from '../ui/ProfileInfo'
 
-export const ProfileView = () => {
+const ProfileView = ({ uid = "6169a793fc358e71ee5fee8f", user, userGetInfo }) => {
+    const history = useHistory();
+
+    useEffect(() => {
+        userGetInfo(uid, history);
+    }, [userGetInfo, uid, history]);
+
+    useEffect(() => {
+        if (user.error !== null)
+            alert(user.error);
+    }, [user.error]);
     return (
         <>
             <div className="main-center">
@@ -43,3 +56,7 @@ export const ProfileView = () => {
 
     )
 }
+
+const data = (state) => ({ user: state.userReducer });
+const actions = { userGetInfo };
+export default connect(data, actions)(ProfileView);

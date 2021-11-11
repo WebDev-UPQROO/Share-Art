@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Redirect, Route } from 'react-router'
 import { routes } from './routes';
 
@@ -21,8 +20,4 @@ export const PrivateRoute = ({
             }
         />
     )
-}
-
-PrivateRoute.propTypes = {
-    component: PropTypes.func.isRequired
 }

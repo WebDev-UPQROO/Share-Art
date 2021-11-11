@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect, Route } from 'react-router';
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { routes } from './routes';
-import { Menu } from '../components/ui/Menu';
-import { Navbar } from '../components/ui/Navbar';
+import Menu from '../components/ui/Menu';
+import Navbar from '../components/ui/Navbar';
 
 import { MainView } from '../components/views/MainView';
 import { ExploreView } from '../components/views/ExploreView';
@@ -13,13 +13,18 @@ import { SettingView } from '../components/views/SettingView';
 import { HelpView } from '../components/views/HelpView';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-import { ShareArtContext } from '../ShareArtContext';
-import { LoginView } from '../components/views/LoginView';
+import LoginView from '../components/views/LoginView';
 import { RegisterView } from '../components/views/RegisterView';
 import { AuthNavBar } from '../components/ui/AuthNavBar';
 
-export const AppRouter = () => {
-    const { user } = useContext(ShareArtContext);
+import { connect } from 'react-redux';
+
+
+const AppRouter = ({ user }) => {
+    useEffect(() => {
+        localStorage.setItem('uid', user.uid);
+    }, [user.uid]);
+
     const menu = useState(false);
 
     return (
@@ -50,32 +55,32 @@ export const AppRouter = () => {
                                     exact
                                     path={routes.home}
                                     component={MainView}
-                                    isAuthenticated={user.logged}
+                                    isAuthenticated={user.uid}
                                 />
                                 <PublicRoute
                                     exact
                                     path={routes.explore}
                                     component={ExploreView}
-                                    isAuthenticated={user.logged}
+                                    isAuthenticated={user.uid}
                                 />
 
                                 <PrivateRoute
                                     exact
                                     path={routes.profile}
                                     component={ProfileView}
-                                    isAuthenticated={user.logged}
+                                    isAuthenticated={user.uid}
                                 />
                                 <PrivateRoute
                                     exact
                                     path={routes.configs}
                                     component={SettingView}
-                                    isAuthenticated={user.logged}
+                                    isAuthenticated={user.uid}
                                 />
                                 <PrivateRoute
                                     exact
                                     path={routes.help}
                                     component={HelpView}
-                                    isAuthenticated={user.logged}
+                                    isAuthenticated={user.uid}
                                 />
                                 <Redirect to={routes.home} />
                             </Switch>
@@ -93,3 +98,6 @@ export const AppRouter = () => {
         </Router>
     )
 }
+
+const data = (state) => ({ user: state.authReducer });
+export default connect(data)(AppRouter);

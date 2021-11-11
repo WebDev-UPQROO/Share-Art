@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 const ProfileInfo = ({ user, userEditName, userGetInfo }) => {
     useEffect(() => {
         userGetInfo('6169a793fc358e71ee5fee8f');
-    }, []);
+    }, [userGetInfo]);
 
     return (
         <div className="profile mb-2">

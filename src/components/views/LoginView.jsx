@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { routes } from '../../routes/routes'
+import { useHistory } from 'react-router'
+import { authHandleLogin } from '../../store/auth/authActions'
+import { connect } from 'react-redux'
 
-export const LoginView = () => {
+const LoginView = ({ authHandleLogin }) => {
+    const history = useHistory();
+
     return (
         <div className="login">
 
@@ -35,7 +40,7 @@ export const LoginView = () => {
                     </div>
 
                     <div className="mb-3">
-                        <button className="btn btn-animation btn-primary w-100 mb-3">
+                        <button onClick={() => authHandleLogin("qewe", "wqqwe", history)} className="btn btn-animation btn-primary w-100 mb-3">
                             Iniciar Sesión
                         </button>
 
@@ -53,3 +58,6 @@ export const LoginView = () => {
         </div>
     )
 }
+
+const actions = { authHandleLogin };
+export default connect(null, actions)(LoginView);

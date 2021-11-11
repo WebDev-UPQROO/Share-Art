@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
-import { authActions } from '../../reducers/authReducer';
+import React from 'react';
 import { routes } from '../../routes/routes';
-import { ShareArtContext } from '../../ShareArtContext';
 import { ListRoute } from './listView/ListRoute';
 import { ListView } from './listView/ListView';
+import { authHandleLogout } from '../../store/auth/authActions';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
-export const Menu = ({menu: [menu, setMenu]}) => {
-    const { user, authDispatch } = useContext(ShareArtContext);
+const Menu = ({ user, authHandleLogout, menu: [menu, setMenu] }) => {
+    const history = useHistory();
 
     const handleClick = () => {
         setMenu(menu => !menu);
@@ -30,11 +31,6 @@ export const Menu = ({menu: [menu, setMenu]}) => {
         </div>
     );
 
-    const handleLogOut = () => {
-        const authAction = { type: authActions.logout };
-        authDispatch(authAction);
-    };
-
     return (
         <div className={`menu ${menu ? 'show' : 'hide'}`}>
             <div className="mb-2">
@@ -42,19 +38,19 @@ export const Menu = ({menu: [menu, setMenu]}) => {
             </div>
 
             <div className="mb-2">
-                <ListView title="Explorar" icon="drafting-compass" list={exploreList} route={routes.explore} onClick={handleClick}/>
+                <ListView title="Explorar" icon="drafting-compass" list={exploreList} route={routes.explore} onClick={handleClick} />
             </div>
 
             {
-                (user.logged) &&
+                (user.uid) &&
                 menuOptions.map(item =>
                     <div className="mb-2" key={item.title}>
-                        <ListRoute title={item.title} icon={item.icon} route={item.route} onClick={handleClick}/>
+                        <ListRoute title={item.title} icon={item.icon} route={item.route} onClick={handleClick} />
                     </div>
                 )
             } {
-                (user.logged) &&
-                <div onClick={handleLogOut}>
+                (user.uid) &&
+                <div onClick={() => authHandleLogout(history)}>
                     <ListRoute title="Cerrar Sesión" icon="sign-out-alt" route={routes.login} arrow={false} activeClassName="" onClick={handleClick} />
                 </div>
             }
@@ -63,3 +59,7 @@ export const Menu = ({menu: [menu, setMenu]}) => {
         </div>
     )
 }
+
+const data = (state) => ({ user: state.authReducer });
+const actions = { authHandleLogout };
+export default connect(data, actions)(Menu);

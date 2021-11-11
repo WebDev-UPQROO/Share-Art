@@ -4,6 +4,6 @@ import { ShareArtApp } from './ShareArtApp';
 import './styles/styles.scss';
 
 ReactDOM.render(
-    <ShareArtApp />,
+  <ShareArtApp />,
   document.getElementById('root')
 );

@@ -1,35 +1,22 @@
-import React, { useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom';
-import { authActions } from '../../reducers/authReducer';
+import React from 'react'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { routes } from '../../routes/routes';
-import { ShareArtContext } from '../../ShareArtContext';
+import { authHandleLogin } from '../../store/auth/authActions';
+import { useHistory } from 'react-router';
 
-export const Navbar = ({ menu: [ menu, setMenu] }) => {
-    const { user, authDispatch } = useContext(ShareArtContext);
+const Navbar = ({ menu: [menu, setMenu], user, authHandleLogin, }) => {
     const history = useHistory();
 
     const handleMobileMenu = () => {
         setMenu(menu => !menu);
     };
 
-    const handleLogin = () => {
-        const lastPath = localStorage.getItem('lastPath') || '/';
-        const authAction = {
-            type: authActions.login,
-            payload: {
-                name: 'Hiram'
-            }
-        };
-        authDispatch(authAction);
-
-        history.replace(lastPath);
-    };
-
     return (
         <div className="navbar">
             <div className="navbar__left" >
                 <div className="navbar__left__menu btn-animation">
-                    <input type="checkbox" id="menu" className={menu ? 'active': ''}/>
+                    <input type="checkbox" id="menu" className={menu ? 'active' : ''} />
                     <label className="menu-icon" htmlFor="menu" onClick={handleMobileMenu}>
                         <div className="bar-icon bar1" />
                         <div className="bar-icon bar2" />
@@ -44,7 +31,7 @@ export const Navbar = ({ menu: [ menu, setMenu] }) => {
             </div>
 
             {
-                (user.logged)
+                (user.uid)
                     ?
                     (
                         <div className="navbar__profile">
@@ -63,7 +50,7 @@ export const Navbar = ({ menu: [ menu, setMenu] }) => {
                     :
                     (
                         <div className="navbar__login">
-                            <button className="btn btn-secondary btn-animation mr-2" onClick={handleLogin}>Iniciar Sesión</button>
+                            <button className="btn btn-secondary btn-animation mr-2" onClick={() => authHandleLogin('weqeq', 'qweqeqw', history)}>Iniciar Sesión</button>
                             <button className="btn btn-primary btn-animation">Registrarse</button>
                         </div>
                     )
@@ -71,3 +58,7 @@ export const Navbar = ({ menu: [ menu, setMenu] }) => {
         </div>
     )
 }
+
+const data = (state) => ({ user: state.authReducer });
+const actions = { authHandleLogin };
+export default connect(data, actions)(Navbar);

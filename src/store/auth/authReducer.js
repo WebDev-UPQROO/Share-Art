@@ -42,6 +42,6 @@ export const authReducer = (state = initialState, { type, payload }) => {
 export const authActions = {
   login: "[auth] login",
   logout: "[auth] logout",
-  loading: "loading",
-  failure: "failure",
+  loading: "[auth] loading",
+  failure: "[auth] failure",
 };

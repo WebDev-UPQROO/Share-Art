@@ -7,6 +7,11 @@ const ProfileInfo = ({ user, userEditName, userGetInfo }) => {
         userGetInfo('6169a793fc358e71ee5fee8f');
     }, [userGetInfo]);
 
+    useEffect(() => {
+        if (user.error !== null)
+            alert(user.error);
+    }, [user.error]);
+
     return (
         <div className="profile mb-2">
             <div className="profile__background">

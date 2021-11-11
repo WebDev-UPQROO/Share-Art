@@ -10,6 +10,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       state = {
         ...state,
         user: payload,
+        loading: false
       };
       return state;
 
@@ -37,8 +38,8 @@ const userReducer = (state = initialState, { type, payload }) => {
 export default userReducer;
 
 export const userActions = {
-  get: "get",
-  edit: "edit",
-  loading: "loading",
-  failure: "failure",
+  get: "[user] get",
+  edit: "[user] edit",
+  loading: "[user] loading",
+  failure: "[user] failure",
 };

@@ -1,11 +1,10 @@
-import axios from "axios";
-import API from "../../services/constants";
+import { getUser } from "../../services/userService";
 import { userActions } from "./userReducer";
 
 export const userGetInfo = (userId) => async (dispatch) => {
   dispatch(userLoading());
   try {
-    const data = await axios.get(API.base + API.getUser + userId);
+    const data = await getUser(userId);
     dispatch(userGetInfoSuccess(data.data));
   } catch (e) {
     dispatch(userFailure(e.message));

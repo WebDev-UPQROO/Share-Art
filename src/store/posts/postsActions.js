@@ -5,7 +5,6 @@ export const postsHandleGet = (uid, history) => async (dispatch) => {
   dispatch(postsLoading());
   try {
     const data = await getPosts(uid);
-    console.log(data);
     dispatch(postsGet(data.data));
   } catch ({ message }) {
     // history.goBack();

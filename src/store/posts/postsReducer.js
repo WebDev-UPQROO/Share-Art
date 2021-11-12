@@ -7,10 +7,11 @@ const initialState = {
 const postsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case postsActions.get:
-      return { ...state, posts: [...state.posts, payload], loading: false };
-
+      state = { ...state, posts: [...state.posts, ...payload], loading: false };
+      return state;
+      
     case postsActions.update:
-      return { ...state, posts: [...state.posts, payload], loading: false };
+      return { ...state, posts: [...state.posts, ...payload], loading: false };
 
     case postsActions.loading:
       return { ...state, loading: true };

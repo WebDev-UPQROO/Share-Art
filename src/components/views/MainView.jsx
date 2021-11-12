@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
 import { postsHandleGet } from '../../store/posts/postsActions';
 import { ListArtist } from '../ui/listView/ListArtist';
 import { ListView } from '../ui/listView/ListView'
+import { LastPost } from '../ui/notifications/LastPost';
+import { Loading } from '../ui/notifications/Loading';
 import { Post } from '../ui/Post';
 import { Posting } from '../ui/Posting';
 import { routes } from './../../routes/routes';
@@ -24,11 +27,17 @@ const MainView = ({ posts, postsHandleGet }) => {
         <>
             <main className="main-center">
                 <Posting />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+
+                <InfiniteScroll
+                    dataLength={posts.posts.length}
+                    next={() => postsHandleGet("6169a793fc358e71ee5fee8f", history)}
+                    hasMore={posts.posts.length < 20}
+                    loader={<Loading />}
+                    scrollThreshold={1}
+                    endMessage={<LastPost />}
+                >
+                    {posts.posts.map((post, index) => (<Post key={index} />))}
+                </InfiniteScroll>
             </main>
 
 

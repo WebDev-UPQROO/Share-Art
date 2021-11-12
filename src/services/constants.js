@@ -8,7 +8,7 @@ const API = {
   postUser: "",
 
   // Home
-  getHomePost: "/home/post",
+  getHomePost: "home/post",
   postPost: "",
   deletePost: "",
 };

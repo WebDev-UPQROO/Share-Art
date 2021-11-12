@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
+import { toast } from 'react-toastify';
+import { postsHandleGet } from '../../store/posts/postsActions';
 import { ListArtist } from '../ui/listView/ListArtist';
 import { ListView } from '../ui/listView/ListView'
 import { Post } from '../ui/Post';
 import { Posting } from '../ui/Posting';
 import { routes } from './../../routes/routes';
 
-export const MainView = () => {
+const MainView = ({ posts, postsHandleGet }) => {
+    const history = useHistory();
+    useEffect(() => {
+        postsHandleGet("6169a793fc358e71ee5fee8f", history);
+    }, [postsHandleGet, history])
+
+    useEffect(() => {
+        if (posts.error !== null)
+            toast.error(posts.error);
+    }, [posts.error]);
+
     return (
         <>
             <main className="main-center">
                 <Posting />
                 <Post />
-
-
+                <Post />
+                <Post />
+                <Post />
+                <Post />
             </main>
 
 
@@ -47,3 +63,7 @@ export const MainView = () => {
 
     )
 }
+
+const data = (state) => ({ posts: state.postsReducer });
+const actions = { postsHandleGet };
+export default connect(data, actions)(MainView);

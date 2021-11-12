@@ -76,6 +76,7 @@ $colors-light: (
   @each $name, $color in $theme {
     --color-#{$name}: #{$color};
   }
+  --toastify-color-dark: #{map-get($theme, secondary-hover)};
 }
 
 :root {

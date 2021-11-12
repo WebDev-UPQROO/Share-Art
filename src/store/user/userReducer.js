@@ -9,8 +9,9 @@ const userReducer = (state = initialState, { type, payload }) => {
     case userActions.get:
       state = {
         ...state,
+        loading: false,
         user: payload,
-        loading: false
+        error: null,
       };
       return state;
 

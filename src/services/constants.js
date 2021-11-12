@@ -7,8 +7,8 @@ const API = {
   getUser: "profile/",
   postUser: "",
 
-  // Post
-  getPost: "",
+  // Home
+  getHomePost: "/home/post",
   postPost: "",
   deletePost: "",
 };

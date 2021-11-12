@@ -6,7 +6,7 @@ import { routes } from './routes';
 import Menu from '../components/ui/Menu';
 import Navbar from '../components/ui/Navbar';
 
-import { MainView } from '../components/views/MainView';
+import MainView from '../components/views/MainView';
 import { ExploreView } from '../components/views/ExploreView';
 import ProfileView from '../components/views/ProfileView';
 import { SettingView } from '../components/views/SettingView';

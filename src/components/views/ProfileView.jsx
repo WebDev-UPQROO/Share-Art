@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
+import { toast } from 'react-toastify'
 import { routes } from '../../routes/routes'
 import { userGetInfo } from '../../store/user/userActions'
 import { ListArtist } from '../ui/listView/ListArtist'
@@ -17,8 +18,9 @@ const ProfileView = ({ uid = "6169a793fc358e71ee5fee8f", user, userGetInfo }) =>
 
     useEffect(() => {
         if (user.error !== null)
-            alert(user.error);
+            toast.error(user.error);
     }, [user.error]);
+    
     return (
         <>
             <div className="main-center">

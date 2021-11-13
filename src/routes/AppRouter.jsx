@@ -18,6 +18,7 @@ import { RegisterView } from '../components/views/RegisterView';
 import { AuthNavBar } from '../components/ui/AuthNavBar';
 
 import { connect } from 'react-redux';
+import ScrollToTop from '../components/ScrollToTop';
 
 
 const AppRouter = ({ user }) => {
@@ -30,6 +31,7 @@ const AppRouter = ({ user }) => {
     return (
         <Router>
             <div>
+                <ScrollToTop />
                 <Switch>
                     <Route path="/auth">
                         <AuthNavBar />

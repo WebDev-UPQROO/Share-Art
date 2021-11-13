@@ -7,7 +7,18 @@ export const postsHandleGet = (uid, history) => async (dispatch) => {
     const data = await getPosts(uid);
     dispatch(postsGet(data.data));
   } catch ({ message }) {
-    // history.goBack();
+    history.goBack();
+    dispatch(postsFailure(message));
+  }
+};
+
+export const postsHandleUpdate = (uid, lastPost, history) => async (dispatch) => {
+  dispatch(postsLoading());
+  try {
+    const data = await getPosts(uid, lastPost);
+    dispatch(postsUpdate(data.data));
+  } catch ({ message }) {
+    history.goBack();
     dispatch(postsFailure(message));
   }
 };
@@ -15,6 +26,13 @@ export const postsHandleGet = (uid, history) => async (dispatch) => {
 export const postsGet = (posts) => {
   return {
     type: postsActions.get,
+    payload: posts,
+  };
+};
+
+export const postsUpdate = (posts) => {
+  return {
+    type: postsActions.update,
     payload: posts,
   };
 };

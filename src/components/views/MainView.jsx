@@ -3,16 +3,16 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
-import { postsHandleGet } from '../../store/posts/postsActions';
+import { postsHandleGet, postsHandleUpdate } from '../../store/posts/postsActions';
 import { ListArtist } from '../ui/listView/ListArtist';
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost';
-import { Loading } from '../ui/notifications/Loading';
+import { LoadingPost } from '../ui/notifications/LoadingPost';
 import { Post } from '../ui/Post';
 import { Posting } from '../ui/Posting';
 import { routes } from './../../routes/routes';
 
-const MainView = ({ posts, postsHandleGet }) => {
+const MainView = ({ posts, postsHandleGet, postsHandleUpdate }) => {
     const history = useHistory();
     useEffect(() => {
         postsHandleGet("6169a793fc358e71ee5fee8f", history);
@@ -30,9 +30,14 @@ const MainView = ({ posts, postsHandleGet }) => {
 
                 <InfiniteScroll
                     dataLength={posts.posts.length}
-                    next={() => postsHandleGet("6169a793fc358e71ee5fee8f", history)}
-                    hasMore={posts.posts.length < 20}
-                    loader={<Loading />}
+                    next={() =>
+                        postsHandleUpdate(
+                            "6169a793fc358e71ee5fee8f",
+                            posts.posts[posts.posts.length - 1]?._id,
+                            history
+                        )}
+                    hasMore={!posts.limit}
+                    loader={<LoadingPost />}
                     scrollThreshold={1}
                     endMessage={<LastPost />}
                 >
@@ -74,5 +79,5 @@ const MainView = ({ posts, postsHandleGet }) => {
 }
 
 const data = (state) => ({ posts: state.postsReducer });
-const actions = { postsHandleGet };
+const actions = { postsHandleGet, postsHandleUpdate };
 export default connect(data, actions)(MainView);

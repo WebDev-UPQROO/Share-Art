@@ -1,17 +1,25 @@
 const initialState = {
   loading: false,
   posts: [],
+  limit: false,
   error: null,
 };
 
 const postsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case postsActions.get:
+      state =
+        payload.length === 0
+          ? { ...state, limit: true }
+          : { ...state, limit: false };
+
+      state = { ...state, posts: [...payload], loading: false };
+      return state;
+
+    case postsActions.update:
+      if (payload.length === 0) state = { ...state, limit: true };
       state = { ...state, posts: [...state.posts, ...payload], loading: false };
       return state;
-      
-    case postsActions.update:
-      return { ...state, posts: [...state.posts, ...payload], loading: false };
 
     case postsActions.loading:
       return { ...state, loading: true };

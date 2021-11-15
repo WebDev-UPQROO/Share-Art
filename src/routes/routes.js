@@ -4,7 +4,7 @@ export const routes = {
 
     home: '/app/home',
     explore: '/app/explore',
-    profile: '/app/profile',
+    profile: '/app/profile/',
     configs: '/app/configs',
     help: '/app/help',
 

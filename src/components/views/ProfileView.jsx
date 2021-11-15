@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import { routes } from '../../routes/routes'
 import { userGetInfo } from '../../store/user/userActions'
@@ -9,22 +9,24 @@ import { ListView } from '../ui/listView/ListView'
 import { Post } from '../ui/Post'
 import ProfileInfo from '../ui/ProfileInfo'
 
-const ProfileView = ({ uid = "6169a793fc358e71ee5fee8f", user, userGetInfo }) => {
+const ProfileView = ({ user, auth, userGetInfo }) => {
+    let { uid } = useParams();
     const history = useHistory();
 
     useEffect(() => {
-        userGetInfo(uid, history);
-    }, [userGetInfo, uid, history]);
+        if (uid !== user.user._id)
+            userGetInfo(uid, history);
+    }, [userGetInfo, uid, history, user.user._id]);
 
     useEffect(() => {
         if (user.error !== null)
             toast.error(user.error);
     }, [user.error]);
-    
+
     return (
         <>
             <div className="main-center">
-                <ProfileInfo />
+                <ProfileInfo uid={auth.uid}/>
 
                 <Post />
                 <Post />
@@ -59,6 +61,6 @@ const ProfileView = ({ uid = "6169a793fc358e71ee5fee8f", user, userGetInfo }) =>
     )
 }
 
-const data = (state) => ({ user: state.userReducer });
+const data = (state) => ({ user: state.userReducer, auth: state.authReducer });
 const actions = { userGetInfo };
 export default connect(data, actions)(ProfileView);

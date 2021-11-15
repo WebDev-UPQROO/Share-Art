@@ -1,57 +1,107 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
+import LinesEllipsis from 'react-lines-ellipsis';
 import { Link } from 'react-router-dom';
+import { getDate } from '../../helpers/getDate';
+import { getPhoto } from '../../helpers/getPhoto';
+import { routes } from '../../routes/routes';
 import { CommentsGroup } from './comments/CommentsGroup';
 
-export const Post = () => {
+export const Post = ({ uid, post, group = false }) => {
+    const reactions = {
+        like: 1,
+        dislike: 0,
+    }
+    const userReaction = post?.votes?.find(user => user[0] === uid);
+    const userLike = userReaction && userReaction[1] === reactions.like;
+    const userDislike = userReaction && userReaction[1] === reactions.dislike;
 
-    const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            isMounted.current &&
-                setLoading(false)
-        }, 3000);
-    }, [])
-
-    const isMounted = useRef(true);
-    useEffect(() => {
-        return () => isMounted.current = false;
-    }, [])
-
+    const [isExpand, setExpand] = useState(false);
 
     return (
         <div className="mb-2">
             <div className="post">
                 <div className="post__heading">
                     <picture className="profile-image">
-                        <img src='/assets/temp/user.jfif' alt="default" />
+                        <img src={getPhoto(post?.user.photo)} alt="default" />
                     </picture>
                     <div className="ml-1">
-                        <p>@eeqeqw</p>
+                        <Link
+                            to={routes.profile + post?.user._id}
+                            className="post__heading--user"
+                        >
+                            {post?.user.username}
+                        </Link>
                         <p>
-                            <small>1m </small>
+                            <small>{getDate(post?.date)} </small>
                             <small className="post__heading--details">
-                                &#8226; Arte Abstracto | Pintura
+                                &#8226; Arte Abstracto
                             </small>
                         </p>
                     </div>
-                    <Link to="/profile" className="post__link btn-animation btn-link">
-                        <span className="mr-1">Ir al grupo</span>
-                        <i className="fas fa-arrow-right" />
-                    </Link>
+
+
+                    <div className="post__options">
+                        {
+                            (post?.group && group === false) &&
+                            (
+                                <Link to={routes.home} className="btn-animation btn-link">
+                                    <span className="mr-1">Ir al grupo</span>
+                                </Link>
+                            )
+                        }
+                        {
+                            (uid === post?.user?._id) &&
+                            (
+                                <div className="post__options__menu ml-1">
+
+                                    <div className="dropdown">
+                                        <button
+                                            className="dropdown-btn btn btn-link-secondary btn-animation"
+                                        >
+                                            <i className="fas fa-ellipsis-v" />
+                                        </button>
+                                        <div className="menu-dropdown">
+                                            <button className="item btn btn-secondary" >
+                                                Editar
+                                            </button>
+                                            <button className="item btn btn-secondary" >
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                    </div>
+
                 </div>
 
                 <div className="post__content mt-1">
-                    <p className="mb-1">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
-                    </p>
-                    <div className="post__images">
-                        <img src="/assets/temp/image.jfif" alt="default" />
+                    <span>{post?.title}</span>
+                    <div className="mb-1">
+                        {isExpand ? (
+                            <div className="">
+                                <div>{post?.post}</div>
+                                <p className="btn-link  mt-1" onClick={() => setExpand(!isExpand)}>...Ver  menos</p>
+                            </div>
+
+                        ) : (
+                            <div onClick={() => setExpand(!isExpand)}>
+                                <LinesEllipsis text={post?.post} maxLine="2" ellipsis="...ver más" />
+                            </div>
+                        )}
                     </div>
+                    {
+                        (post?.photo) &&
+                        (<div className="post__images">
+                            <img src={post?.photo} alt="pub" />
+                        </div>)
+                    }
                 </div>
 
-                <div className="post__share mt-1">
+                <div className="post__share mt-2">
 
                     <button
                         className="post__share__side btn btn-secondary btn-animation mr-1"
@@ -61,17 +111,43 @@ export const Post = () => {
                         <span>Comentarios</span>
                     </button>
 
-                    <button className="btn btn-secondary btn-animation">
+                    <input
+                        id={"like" + post?._id}
+                        type="radio"
+                        name="votes"
+                        defaultChecked={userLike}
+                        value={reactions.like}
+                        className="d-none"
+                    />
+                    <label
+                        htmlFor={"like" + post?._id}
+                        className={"btn btn-secondary btn-animation " + (userLike && "active")}
+                    >
                         <i className="fas fa-chevron-up" />
-                    </button>
+                    </label>
 
-                    <p className="ml-1 mr-1 text-sm"> 100 Votos</p>
+                    <p className="ml-1 mr-1 text-sm"> {post?.votes?.length ?? 0} Votos</p>
 
-                    <button className="btn btn-secondary btn-animation mr-1">
-                        <i className="fas fa-chevron-down" />
-                    </button>
+                    <input
+                        id={"dislike" + post?._id}
+                        type="radio" name="votes"
+                        defaultChecked={userDislike}
+                        value={reactions.dislike}
+                        className="d-none"
+                    />
+                    <label
+                        htmlFor={"dislike" + post?._id}
+                        className={"btn btn-secondary btn-animation " + (userDislike && "active")}
+                    >
+                        <i className="fas fa-chevron-up" />
+                    </label>
 
-                    <button className="post__share__side btn btn-secondary btn-animation">
+                    <button
+                        disabled={uid === post?.idUser}
+                        title={(uid === post?.idUser ? "Ya has compartido esta publicación" : null)}
+                        className={"post__share__side btn btn-secondary ml-1 "
+                            + (uid !== post?.idUser && "btn-animation")}
+                    >
                         <i className="fas fa-share-alt btn-icon-left" />
                         <span>Compartir</span>
                     </button>

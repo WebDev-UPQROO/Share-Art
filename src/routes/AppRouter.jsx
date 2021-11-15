@@ -68,7 +68,7 @@ const AppRouter = ({ user }) => {
 
                                 <PrivateRoute
                                     exact
-                                    path={routes.profile}
+                                    path={routes.profile + ":uid"}
                                     component={ProfileView}
                                     isAuthenticated={user.uid}
                                 />

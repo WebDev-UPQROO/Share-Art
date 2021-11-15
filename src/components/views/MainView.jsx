@@ -12,11 +12,12 @@ import { Post } from '../ui/Post';
 import { Posting } from '../ui/Posting';
 import { routes } from './../../routes/routes';
 
-const MainView = ({ posts, postsHandleGet, postsHandleUpdate }) => {
+const MainView = ({ auth: { uid }, posts, postsHandleGet, postsHandleUpdate }) => {
     const history = useHistory();
+
     useEffect(() => {
-        postsHandleGet("6169a793fc358e71ee5fee8f", history);
-    }, [postsHandleGet, history])
+        postsHandleGet(uid, history);
+    }, [postsHandleGet, history, uid])
 
     useEffect(() => {
         if (posts.error !== null)
@@ -32,7 +33,7 @@ const MainView = ({ posts, postsHandleGet, postsHandleUpdate }) => {
                     dataLength={posts.posts.length}
                     next={() =>
                         postsHandleUpdate(
-                            "6169a793fc358e71ee5fee8f",
+                            uid,
                             posts.posts[posts.posts.length - 1]?._id,
                             history
                         )}
@@ -41,7 +42,7 @@ const MainView = ({ posts, postsHandleGet, postsHandleUpdate }) => {
                     scrollThreshold={1}
                     endMessage={<LastPost />}
                 >
-                    {posts.posts.map((post, index) => (<Post key={index} />))}
+                    {posts.posts.map((post, index) => (<Post key={index} post={post} uid={uid} />))}
                 </InfiniteScroll>
             </main>
 
@@ -78,6 +79,6 @@ const MainView = ({ posts, postsHandleGet, postsHandleUpdate }) => {
     )
 }
 
-const data = (state) => ({ posts: state.postsReducer });
+const data = (state) => ({ posts: state.postsReducer, auth: state.authReducer });
 const actions = { postsHandleGet, postsHandleUpdate };
 export default connect(data, actions)(MainView);

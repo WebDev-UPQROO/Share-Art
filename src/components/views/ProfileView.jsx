@@ -3,18 +3,20 @@ import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import { toast } from 'react-toastify'
 import { routes } from '../../routes/routes'
+import { ArtistListHandleGet } from '../../store/artistList/artisListAction'
 import { userGetInfo } from '../../store/user/userActions'
 import { ListArtist } from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { Post } from '../ui/Post'
 import ProfileInfo from '../ui/ProfileInfo'
 
-const ProfileView = ({ uid = "6169a793fc358e71ee5fee8f", user, userGetInfo }) => {
+const ProfileView = ({ uid = "6169a793fc358e71ee5fee8f", user, userGetInfo, ArtistListHandleGet }) => {
     const history = useHistory();
 
     useEffect(() => {
         userGetInfo(uid, history);
-    }, [userGetInfo, uid, history]);
+        ArtistListHandleGet(history);
+    }, [userGetInfo, ArtistListHandleGet, uid, history]);
 
     useEffect(() => {
         if (user.error !== null)
@@ -59,6 +61,6 @@ const ProfileView = ({ uid = "6169a793fc358e71ee5fee8f", user, userGetInfo }) =>
     )
 }
 
-const data = (state) => ({ user: state.userReducer });
-const actions = { userGetInfo };
+const data = (state) => ({ user: state.userReducer, artistList : state.artistList.Reducer });
+const actions = { userGetInfo, ArtistListHandleGet };
 export default connect(data, actions)(ProfileView);

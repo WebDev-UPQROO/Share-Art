@@ -11,6 +11,8 @@ const API = {
   getHomePost: "home/post",
   postPost: "",
   deletePost: "",
+  getArtists: "home/artists",
+  
 };
 
 export default API;

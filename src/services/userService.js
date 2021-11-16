@@ -9,3 +9,12 @@ export const getUser = async (uid) => {
       throw(Error(`Error ${status} - ${data.error}`));
   }
 };
+
+export const getArtistList = async () => {
+  try {
+    const data = await axios.get(API.base + API.getArtists);
+    return data;
+  } catch ({response: {data, status}}) {
+      throw(Error(`Error ${status} - ${data.error}`));
+  }
+};

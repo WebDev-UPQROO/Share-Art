@@ -25,16 +25,27 @@
 }
 
 .btn-secondary {
+  padding: 0.9rem $defMargin;
   border-radius: $defRadius - 0.4rem;
   background: getColor(secondary);
 
-  &:hover {
+  &:hover,
+  &.active {
     background: getColor(secondary-hover);
+  }
+  &.active {
+    color: getColor(primary);
+  }
+  &:disabled{
+    background-color: getColor(base);
+    color: getColor(text-secondary);
   }
 }
 
 .btn-link {
   color: getColor(primary);
+  text-decoration: underline getColor(primary);
+  cursor: pointer;
 }
 
 .btn-link-secondary {
@@ -131,5 +142,29 @@
   &.selected {
     color: getColor(text-secondary);
     border: getColor(text-secondary) solid 1px;
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  .dropdown-btn:focus ~ .menu-dropdown {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .menu-dropdown {
+    background-color: getColor(secondary);
+    border-radius: $defRadius;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.3s;
+
+    & .item {
+      width: 100%;
+    }
   }
 }

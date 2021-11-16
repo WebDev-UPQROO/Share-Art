@@ -5,7 +5,7 @@ import { routes } from '../../routes/routes';
 import { authHandleLogin } from '../../store/auth/authActions';
 import { useHistory } from 'react-router';
 
-const Navbar = ({ menu: [menu, setMenu], user, authHandleLogin, }) => {
+const Navbar = ({ menu: [menu, setMenu], user, auth: { uid }, authHandleLogin, }) => {
     const history = useHistory();
 
     const handleMobileMenu = () => {
@@ -39,7 +39,7 @@ const Navbar = ({ menu: [menu, setMenu], user, authHandleLogin, }) => {
                                 <i className="fas fa-bell" />
                             </button>
 
-                            <Link className="btn btn-secondary btn-animation btn-profile text-none" to={routes.profile}>
+                            <Link className="btn btn-secondary btn-animation btn-profile text-none" to={routes.profile + uid}>
                                 <picture className="profile-image">
                                     <img src='/assets/temp/user.jfif' alt="profile" />
                                 </picture>
@@ -59,6 +59,6 @@ const Navbar = ({ menu: [menu, setMenu], user, authHandleLogin, }) => {
     )
 }
 
-const data = (state) => ({ user: state.authReducer });
+const data = (state) => ({ user: state.authReducer, auth: state.authReducer });
 const actions = { authHandleLogin };
 export default connect(data, actions)(Navbar);

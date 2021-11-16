@@ -6,7 +6,7 @@ import { authHandleLogout } from '../../store/auth/authActions';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
-const Menu = ({ user, authHandleLogout, menu: [menu, setMenu] }) => {
+const Menu = ({ user, auth: {uid}, authHandleLogout, menu: [menu, setMenu] }) => {
     const history = useHistory();
 
     const handleClick = () => {
@@ -14,7 +14,7 @@ const Menu = ({ user, authHandleLogout, menu: [menu, setMenu] }) => {
     };
 
     const menuOptions = [
-        { title: 'Mi Perfil', icon: 'user', route: routes.profile },
+        { title: 'Mi Perfil', icon: 'user', route: routes.profile + uid },
         { title: 'Configuraciones', icon: 'cog', route: routes.configs },
         { title: 'Centro de Ayuda', icon: 'question-circle', route: routes.help },
     ];
@@ -60,6 +60,6 @@ const Menu = ({ user, authHandleLogout, menu: [menu, setMenu] }) => {
     )
 }
 
-const data = (state) => ({ user: state.authReducer });
+const data = (state) => ({ user: state.authReducer, auth: state.authReducer });
 const actions = { authHandleLogout };
 export default connect(data, actions)(Menu);

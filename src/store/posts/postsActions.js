@@ -1,21 +1,21 @@
-import { getPosts } from "../../services/postsServices";
+import { getHomePosts, getProfilePosts } from "../../services/postsServices";
 import { postsActions } from "./postsReducer";
 
-export const postsHandleGet = (uid, history) => async (dispatch) => {
+export const homePostsHandleGet = (uid, history) => async (dispatch) => {
   dispatch(postsLoading());
   try {
-    const data = await getPosts(uid);
-    dispatch(postsGet(data.data));
+    const data = await getHomePosts(uid);
+    dispatch(postsGet(data.data, "home"));
   } catch ({ message }) {
     history.goBack();
     dispatch(postsFailure(message));
   }
 };
 
-export const postsHandleUpdate = (uid, lastPost, history) => async (dispatch) => {
+export const homePostsHandleUpdate = (uid, lastPost, history) => async (dispatch) => {
   dispatch(postsLoading());
   try {
-    const data = await getPosts(uid, lastPost);
+    const data = await getHomePosts(uid, lastPost);
     dispatch(postsUpdate(data.data));
   } catch ({ message }) {
     history.goBack();
@@ -23,10 +23,33 @@ export const postsHandleUpdate = (uid, lastPost, history) => async (dispatch) =>
   }
 };
 
-export const postsGet = (posts) => {
+
+export const profilePostsHandleGet = (uid, history) => async (dispatch) => {
+  dispatch(postsLoading());
+  try {
+    const data = await getProfilePosts(uid);
+    dispatch(postsGet(data.data, "profile"));
+  } catch ({ message }) {
+    history.goBack();
+    dispatch(postsFailure(message));
+  }
+};
+
+export const profilePostsHandleUpdate = (uid, lastPost, history) => async (dispatch) => {
+  dispatch(postsLoading());
+  try {
+    const data = await getProfilePosts(uid, lastPost);
+    dispatch(postsUpdate(data.data));
+  } catch ({ message }) {
+    history.goBack();
+    dispatch(postsFailure(message));
+  }
+};
+
+export const postsGet = (posts, section) => {
   return {
     type: postsActions.get,
-    payload: posts,
+    payload: {posts, section},
   };
 };
 

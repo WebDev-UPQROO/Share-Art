@@ -12,6 +12,12 @@
     padding: $defMargin;
     background-color: getColor(card-color);
 
+    .profile__content__config{
+      width: fit-content;
+      text-decoration: none;
+      align-items: center;
+    }
+
     .profile-image {
       position: absolute;
       left: $defMargin;

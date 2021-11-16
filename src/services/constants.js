@@ -8,9 +8,12 @@ const API = {
   postUser: "",
 
   // Home
-  getHomePost: "home/post",
+  getHomePosts: "home/post",
   postPost: "",
   deletePost: "",
+  
+  //Profile
+  getProfilePosts: "profile/posts",
 };
 
 export default API;

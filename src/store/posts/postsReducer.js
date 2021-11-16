@@ -1,5 +1,6 @@
 const initialState = {
   loading: false,
+  section: null,
   posts: [],
   limit: false,
   error: null,
@@ -9,16 +10,31 @@ const postsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case postsActions.get:
       state =
-        payload.length === 0
+        payload.posts.length === 0
           ? { ...state, limit: true }
           : { ...state, limit: false };
 
-      state = { ...state, posts: [...payload], loading: false };
+      state = {
+        posts: [...payload.posts],
+        section: payload.section,
+        loading: false,
+        error: null
+      };
       return state;
 
     case postsActions.update:
-      if (payload.length === 0) state = { ...state, limit: true };
-      state = { ...state, posts: [...state.posts, ...payload], loading: false };
+      if (payload.length === 0)
+        state = {
+          ...state,
+          limit: true,
+        };
+
+      state = {
+        ...state,
+        posts: [...state.posts, ...payload],
+        loading: false,
+        error: null
+      };
       return state;
 
     case postsActions.loading:

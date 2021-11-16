@@ -23,14 +23,14 @@ export const Post = ({ uid, post, group = false }) => {
             <div className="post">
                 <div className="post__heading">
                     <picture className="profile-image">
-                        <img src={getPhoto(post?.user.photo)} alt="default" />
+                        <img src={getPhoto(post?.user?.photo)} alt="default" />
                     </picture>
                     <div className="ml-1">
                         <Link
-                            to={routes.profile + post?.user._id}
+                            to={routes.profile + post?.user?._id}
                             className="post__heading--user"
                         >
-                            {post?.user.username}
+                            {post?.user?.username}
                         </Link>
                         <p>
                             <small>{getDate(post?.date)} </small>
@@ -143,10 +143,10 @@ export const Post = ({ uid, post, group = false }) => {
                     </label>
 
                     <button
-                        disabled={uid === post?.idUser}
-                        title={(uid === post?.idUser ? "Ya has compartido esta publicación" : null)}
+                        disabled={uid === post?.user?._id}
+                        title={(uid === post?.user?._id ? "Ya has compartido esta publicación" : null)}
                         className={"post__share__side btn btn-secondary ml-1 "
-                            + (uid !== post?.idUser && "btn-animation")}
+                            + (uid !== post?.user?._id && "btn-animation")}
                     >
                         <i className="fas fa-share-alt btn-icon-left" />
                         <span>Compartir</span>

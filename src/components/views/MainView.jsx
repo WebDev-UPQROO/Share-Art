@@ -3,7 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
-import { postsHandleGet, postsHandleUpdate } from '../../store/posts/postsActions';
+import { homePostsHandleGet, homePostsHandleUpdate } from '../../store/posts/postsActions';
 import { ListArtist } from '../ui/listView/ListArtist';
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost';
@@ -12,12 +12,19 @@ import { Post } from '../ui/Post';
 import { Posting } from '../ui/Posting';
 import { routes } from './../../routes/routes';
 
-const MainView = ({ auth: { uid }, posts, postsHandleGet, postsHandleUpdate }) => {
+const MainView = ({
+    auth: { uid },
+    posts,
+    homePostsHandleGet,
+    homePostsHandleUpdate
+}) => {
+
     const history = useHistory();
 
     useEffect(() => {
-        postsHandleGet(uid, history);
-    }, [postsHandleGet, history, uid])
+        if (posts.section !== "home")
+            homePostsHandleGet(uid, history);
+    }, [uid])
 
     useEffect(() => {
         if (posts.error !== null)
@@ -32,7 +39,7 @@ const MainView = ({ auth: { uid }, posts, postsHandleGet, postsHandleUpdate }) =
                 <InfiniteScroll
                     dataLength={posts.posts.length}
                     next={() =>
-                        postsHandleUpdate(
+                        homePostsHandleUpdate(
                             uid,
                             posts.posts[posts.posts.length - 1]?._id,
                             history
@@ -79,6 +86,12 @@ const MainView = ({ auth: { uid }, posts, postsHandleGet, postsHandleUpdate }) =
     )
 }
 
-const data = (state) => ({ posts: state.postsReducer, auth: state.authReducer });
-const actions = { postsHandleGet, postsHandleUpdate };
+const data = (state) => ({
+    posts: state.postsReducer,
+    auth: state.authReducer
+});
+const actions = {
+    homePostsHandleGet,
+    homePostsHandleUpdate
+};
 export default connect(data, actions)(MainView);

@@ -15,7 +15,7 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                         </div>
                         <div className="profile__content">
                             <picture className="profile-image lg">
-                                <img src={getPhoto(user.photo)} alt="default" />
+                                <img src={getPhoto(user?.photo)} alt="default" />
                             </picture>
 
                             {
@@ -37,15 +37,15 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                             }
 
 
-                            <h2 className="profile__content__name">{user.name}</h2>
-                            <p className="profile__content__user mb-1">{user.username}</p>
+                            <h2 className="profile__content__name">{user?.name}</h2>
+                            <p className="profile__content__user mb-1">{user?.username}</p>
 
-                            <p className="mb-1">{user.bio}</p>
+                            <p className="mb-1">{user?.bio}</p>
                             {
-                                (user.age) &&
+                                (user?.age) &&
                                 <p>
                                     <i className="fas fa-user mr-1" />
-                                    <span>Edad: {user.age} años</span>
+                                    <span>Edad: {user?.age} años</span>
                                 </p>
                             }
 
@@ -61,8 +61,8 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                                     <div className="profile__content__categories mb-3 mt-1">
 
                                         {
-                                            (user.categories) &&
-                                            user.categories.map(category => (
+                                            (user?.categories) &&
+                                            user?.categories.map(category => (
                                                 <div className="check" key={category._id}>
                                                     <label>
                                                         <i className={`fas fa-${category.icon} mr-1`} />

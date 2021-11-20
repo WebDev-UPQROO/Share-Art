@@ -37,7 +37,6 @@ const initialState = {
   
   export const artistListActions = {
     get: "[artistList] get",
-    edit: "[artistList] edit",
     loading: "[artistList] loading",
     failure: "[artistList] failure",
   };

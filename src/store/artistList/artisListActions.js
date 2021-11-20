@@ -1,12 +1,11 @@
 import { getArtistList } from "../../services/userService";
 import { artistListActions  } from "./artistListReducer";
 
-export const ArtistListHandleGet = (history) => async (dispatch) => {
+export const artistListHandleGet = (history) => async (dispatch) => {
   dispatch(artistListLoading());
   try {
     const data = await getArtistList();
     dispatch(artistListGetInfoSuccess(data.data));
-    console.log(data.data);
   } catch ({message}) {
     history.goBack();
     dispatch(artistListFailure(message));

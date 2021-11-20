@@ -12,7 +12,7 @@ export const getUser = async (uid) => {
 
 export const getArtistList = async () => {
   try {
-    const data = await axios.get(API.base + API.getArtists);
+    const data = await axios.put(API.base + API.getArtistList);
     return data;
   } catch ({response: {data, status}}) {
       throw(Error(`Error ${status} - ${data.error}`));

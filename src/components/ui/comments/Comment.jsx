@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { getDate } from '../../../helpers/getDate';
+import { getPhoto } from '../../../helpers/getPhoto';
 import { MyComment } from './MyComment';
 
-export const Comment = ({ item, counter }) => {
+export const Comment = ({ id, comment, counter }) => {
+    console.log(id);
 
-    const notFinalComment = typeof item === 'object';
+    const notFinalComment = comment?.comments?.length > 0;
     const [response, setResponse] = useState(false);
     const [more, setMore] = useState(false);
 
@@ -11,22 +14,27 @@ export const Comment = ({ item, counter }) => {
     if (notFinalComment && more) classes.push('not-final');
     if (counter !== 0) classes.push('ml-4');
 
+    if (notFinalComment)
+        comment?.comments.forEach(comment => {
+            console.log("hijo " + comment);
+        });
+
     return (
         <div className={classes.join(' ')} >
             <div className="comment__content">
                 <div className="d-flex">
                     <picture className='profile-image xs mr-1'>
                         <img
-                            src='/assets/temp/user.jfif'
+                            src={getPhoto(comment?.user?.photo)}
                             alt="profile"
                         />
                     </picture>
-                    <span className="comment__content__user mr-1">Sofi Vera </span>
-                    <span className="comment__content__info">@sofi12 &#8226; 4d</span>
+                    <span className="comment__content__user mr-1">{comment?.user?.name}</span>
+                    <span className="comment__content__info">{comment?.user?.username} &#8226; {getDate(comment?.date)}</span>
                 </div>
 
                 <p className="comment__content__text">
-                    este es un comentario de prueba, supongamos que aqui esta el señor de los churros ofreciendo churros a todo el mundo.
+                    {comment?.comment}
                 </p>
             </div>
             <div className="comment__actions">
@@ -69,10 +77,10 @@ export const Comment = ({ item, counter }) => {
             }
 
             {
-                (item && notFinalComment && more) &&
+                (comment && notFinalComment && more) &&
 
-                item.map(i => (
-                    <Comment key={i} item={i} counter={counter + 1} />
+                comment?.comments.map(id => (
+                    <Comment key={id} id={id} comment={null} counter={counter + 1} />
                 ))
             }
         </div>

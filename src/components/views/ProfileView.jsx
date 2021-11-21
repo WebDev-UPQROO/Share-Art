@@ -33,6 +33,7 @@ const ProfileView = ({
 
         if (posts.section !== "profile" || uid !== user.user._id)
             profilePostsHandleGet(uid, history);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [uid]);
 
     // Waiting Errorss

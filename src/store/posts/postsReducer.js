@@ -15,25 +15,25 @@ const postsReducer = (state = initialState, { type, payload }) => {
           : { ...state, limit: false };
 
       state = {
+        ...state,
         posts: [...payload.posts],
         section: payload.section,
         loading: false,
-        error: null
+        error: null,
       };
       return state;
 
     case postsActions.update:
-      if (payload.length === 0)
-        state = {
-          ...state,
-          limit: true,
-        };
+      state =
+        payload.length === 0
+          ? { ...state, limit: true }
+          : { ...state, limit: false };
 
       state = {
         ...state,
         posts: [...state.posts, ...payload],
         loading: false,
-        error: null
+        error: null,
       };
       return state;
 

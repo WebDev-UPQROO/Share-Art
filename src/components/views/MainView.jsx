@@ -24,6 +24,7 @@ const MainView = ({
     useEffect(() => {
         if (posts.section !== "home")
             homePostsHandleGet(uid, history);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [uid])
 
     useEffect(() => {

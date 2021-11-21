@@ -9,6 +9,7 @@ const API = {
 
   // Home
   getHomePosts: "home/post",
+  getComments: "/home/comments",
   postPost: "",
   deletePost: "",
   

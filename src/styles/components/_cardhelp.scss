@@ -5,7 +5,7 @@
   .drop-title {
     order: 0;
 
-    background-color: getColor(configurations);
+    background-color: getColor(card-color);
     width: 100%;
     cursor: pointer;
     transition: all ease 0.3s;
@@ -22,18 +22,24 @@
 
     &:hover {
       background-color: getColor(primary-gradient);
+      * {
+        color: getColor(text-inverted);
+      }
     }
   }
 
   .drop-body {
     overflow: hidden;
-    background-color: getColor(configurations);
+    background-color: getColor(card-color);
     transition: max-height 0.3s;
     padding: 2rem 4.6rem;
     order: 1;
 
     &.disable ~ .drop-title {
       background-color: getColor(primary-gradient);
+      * {
+        color: getColor(text-inverted);
+      }
     }
 
     &.active {

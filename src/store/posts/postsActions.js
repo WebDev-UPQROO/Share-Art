@@ -46,26 +46,6 @@ export const profilePostsHandleUpdate = (uid, lastPost, history) => async (dispa
   }
 };
 
-export const commentsHandleGet = (comments) => async (dispatch) => {
-  dispatch(postsLoading());
-  try {
-    const data = await getCommentsPost(comments);
-    dispatch(commentsGet(data.data));
-  } catch ({ message }) {
-    dispatch(postsFailure(message));
-  }
-};
-
-export const commentsHandleUpdate = (comments) => async (dispatch) => {
-  dispatch(postsLoading());
-  try {
-    const data = await getCommentsPost(comments);
-    dispatch(commentsUpdate(data.data));
-  } catch ({ message }) {
-    dispatch(postsFailure(message));
-  }
-};
-
 export const postsGet = (posts, section) => {
   return {
     type: postsActions.get,
@@ -73,21 +53,7 @@ export const postsGet = (posts, section) => {
   };
 };
 
-export const commentsGet = (posts, section) => {
-  return {
-    type: postsActions.get,
-    payload: {posts, section},
-  };
-};
-
 export const postsUpdate = (posts) => {
-  return {
-    type: postsActions.update,
-    payload: posts,
-  };
-};
-
-export const commentsUpdate = (posts) => {
   return {
     type: postsActions.update,
     payload: posts,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Comment } from './Comment'
+import Comment from './Comment'
 import { MyComment } from './MyComment'
 
 export const CommentsGroup = ({ active, comments }) => {
@@ -14,11 +14,14 @@ export const CommentsGroup = ({ active, comments }) => {
                 </div>
 
                 {
-                    comments.map(comment => (
-                        <div key={comment._id}>
-                            <Comment id={comment._id} comment={comment} counter={0} />
+                    (comments.length > 0) ?
+                    comments.map(idComment => (
+                        <div key={idComment}>
+                            <Comment id={idComment} counter={0} />
                         </div>
                     ))
+                    :
+                    <p className="text-sm">Se el primero en comentar!!</p>
                 }
             </div>
         </>

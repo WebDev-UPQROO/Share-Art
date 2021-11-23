@@ -5,7 +5,7 @@ import { CardHelp } from '../ui/CardHelp'
 export const HelpView = () => {
     const content = [
         {
-            name: "1Olvidé mi contraseña ¿Cómo puedo recuperarla",
+            name: "¿Cómo puedo borrar una publicación?",
             content: "No puedes"
         },
         {

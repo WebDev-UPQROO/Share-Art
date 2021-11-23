@@ -27,7 +27,7 @@ export const getProfilePosts = async (idUser = null, lastPost = null) => {
   }
 };
 
-export const getCommentsPost = async (comment) => {
+export const getComments = async (comment) => {
   try {
     const data = await axios.put(API.base + API.getComments, { comment: [comment] });
     return data;

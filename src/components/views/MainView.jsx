@@ -56,7 +56,7 @@ const MainView = ({
 
 
             <footer className="footer">
-                <div className="mb-2">
+                <div className="mb-5">
                     <ListView title="Artistas Destacados" icon="user" list={[
                         (
                             <ListArtist

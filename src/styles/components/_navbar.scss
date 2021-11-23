@@ -10,7 +10,7 @@
   user-select: none;
   animation: fadeIn;
   animation-duration: $animationDuration;
-  box-shadow: 0px 0px 10px 5px getColor(base);
+  box-shadow: 0px 0px 5px 2px getColor(shadows);
 
   display: flex;
   justify-content: space-between;

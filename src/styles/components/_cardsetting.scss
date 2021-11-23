@@ -1,39 +1,43 @@
-.card-setting{
-    background-color: getColor(configurations);
-    width:  100%;
-    margin: $defMargin 0;
-    padding: $defMargin + 0.4rem $defMargin;
-    cursor: pointer;
-    transition: all ease 0.3s;
+.card-setting {
+  background-color: getColor(card-color);
+  width: 100%;
+  margin: $defMargin 0;
+  padding: $defMargin + 0.4rem $defMargin;
+  cursor: pointer;
+  transition: all ease 0.3s;
 
-    @media (min-width:480px){
-        padding: 3.3rem 4.6rem;
+  @media (min-width: 480px) {
+    padding: 3.3rem 4.6rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: getColor(primary-gradient);
+    * {
+      color: getColor(text-inverted);
     }
+  }
 
-    a{
+  .setting-body {
+    .body__text {
+      display: flex;
+      color: getColor(text-primary);
+      transition: all ease 0.3s;
+      i {
+        transition: all ease 0.3s;
+        font-size: $fontSize + 0.4rem;
+      }
+
+      p {
+        transition: all ease 0.3s;
+        margin-left: $defMargin;
         text-decoration: none;
+        font-size: $fontSize + 0.2rem;
+        font-weight: 700;
+      }
     }
-
-    &:hover{
-        background-color: getColor(primary-gradient);
-    }
-    
-
-    .setting-body{
-        .body__text{
-            display: flex;
-            color: getColor(text-primary);
-            i{
-                font-size: $fontSize + 0.4rem;
-            }
-
-            p{
-                margin-left: $defMargin;
-                text-decoration: none;
-                font-size: $fontSize + 0.2rem;
-                font-weight: 700;
-            }
-        }
-    }
-
+  }
 }

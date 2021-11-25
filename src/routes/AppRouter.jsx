@@ -19,9 +19,12 @@ import { AuthNavBar } from '../components/ui/AuthNavBar';
 
 import { connect } from 'react-redux';
 import ScrollToTop from '../components/ScrollToTop';
+import { EditProfileView } from '../components/views/configs/EditProfileView';
+import { EditPersonalView } from '../components/views/configs/EditPersonalView';
+import { EditPassword } from '../components/views/configs/EditPassword';
 
 
-const AppRouter = ({ user: {user} }) => {
+const AppRouter = ({ user: { user } }) => {
     useEffect(() => {
         localStorage.setItem('user', JSON.stringify(user));
     }, [user]);
@@ -72,12 +75,41 @@ const AppRouter = ({ user: {user} }) => {
                                     component={ProfileView}
                                     isAuthenticated={user?._id}
                                 />
-                                <PrivateRoute
-                                    exact
-                                    path={routes.configs}
-                                    component={SettingView}
-                                    isAuthenticated={user?._id}
-                                />
+
+                                <Route path={routes.configs}>
+                                    <Switch>
+                                        <PrivateRoute
+                                            exact
+                                            path={routes.configs}
+                                            component={SettingView}
+                                            isAuthenticated={user?._id}
+                                        />
+
+                                        <PrivateRoute
+                                            exact
+                                            path={routes.configsProfile}
+                                            component={EditProfileView}
+                                            isAuthenticated={user?._id}
+                                        />
+
+                                        <PrivateRoute
+                                            exact
+                                            path={routes.configsPersonal}
+                                            component={EditPersonalView}
+                                            isAuthenticated={user?._id}
+                                        />
+
+                                        <PrivateRoute
+                                            exact
+                                            path={routes.configsPassword}
+                                            component={EditPassword}
+                                            isAuthenticated={user?._id}
+                                        />
+
+                                        <Redirect to={routes.configs} />
+                                    </Switch>
+                                </Route>
+
                                 <PrivateRoute
                                     exact
                                     path={routes.help}

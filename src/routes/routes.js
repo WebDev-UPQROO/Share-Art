@@ -5,7 +5,6 @@ export const routes = {
     home: '/app/home',
     explore: '/app/explore',
     profile: '/app/profile/',
-    configs: '/app/configs',
     help: '/app/help',
 
     // Explore
@@ -13,4 +12,12 @@ export const routes = {
     groups: 'app/explore/groups',
     artist: 'app/explore/artist',
     publications: 'app/explore/pubs',
+
+    // Configs
+    configs: '/app/configs',
+    configsProfile: '/app/configs/profile',
+    configsPersonal: '/app/configs/personal',
+    configsPassword: '/app/configs/password',
+
+
 };

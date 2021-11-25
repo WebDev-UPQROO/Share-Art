@@ -22,7 +22,7 @@ export const HelpView = () => {
 
                     <br />
                     <div align="center">
-                        <img src="/assets/help/editScreen1.jpg" alt="edit" />
+                        <img src="/assets/help/editScreen1.jpg" alt="edit" className="mw-100" />
                     </div>
                     <br />
 
@@ -47,7 +47,7 @@ export const HelpView = () => {
 
                     <br />
                     <div align="center">
-                        <img src="/assets/help/deleteScreen1.jpg" alt="edit" />
+                        <img src="/assets/help/deleteScreen1.jpg" alt="edit" className="mw-100" />
                     </div>
                     <br />
 

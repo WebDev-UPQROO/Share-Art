@@ -29,6 +29,7 @@
   padding: 0.9rem $defMargin;
   border-radius: $defRadius - 0.4rem;
   background: getColor(secondary);
+  text-decoration: none;
 
   &:hover,
   &.active {

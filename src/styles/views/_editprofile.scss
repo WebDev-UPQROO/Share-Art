@@ -1,0 +1,66 @@
+.edit-profile {
+  .edit-profile__photo {
+    display: flex;
+    align-items: center;
+    column-gap: $defMargin;
+
+    .edit-profile__photo--edit {
+      @extend .btn;
+      @extend .btn-animation;
+      @extend .btn-primary;
+      padding: 1rem;
+    }
+
+    .edit-profile__photo--delete {
+      @extend .btn;
+      @extend .btn-animation;
+      @extend .btn-secondary;
+    }
+  }
+
+  .edit-profile__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 40rem;
+
+    input,
+    textarea {
+      @extend .input;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .edit-profile__form--interests {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .edit-profile__form--buttons {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      flex-direction: column;
+      gap: $defMargin;
+      flex-wrap: wrap;
+
+      @media (min-width: 480px) {
+          flex-direction: row;
+      }
+
+      .cancel {
+        @extend .btn;
+        @extend .btn-animation;
+        @extend .btn-secondary;
+      }
+
+      .submit {
+        @extend .btn;
+        @extend .btn-animation;
+        @extend .btn-primary;
+        padding: 1rem;
+      }
+    }
+  }
+}

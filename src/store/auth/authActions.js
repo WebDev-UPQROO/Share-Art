@@ -5,7 +5,7 @@ export const authHandleLogin =
     dispatch(authLoading());
     try {
       //   const data = await axios.get(API.base + API.getUser + userId);
-      dispatch(authLogin("6169a793fc358e71ee5fee8f"));
+      dispatch(authLogin("61993b9f7d23fe6325ca8945"));
 
       const lastPath = localStorage.getItem("lastPath") || "/";
       history.replace(lastPath);

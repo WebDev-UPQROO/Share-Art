@@ -108,7 +108,7 @@ export const ExploreView = () => {
                             action={true}
                             route={routes.profile}
                         />
-                        <div style={{ borderTop: "1px solid #1C1C1C ", marginTop: 3, marginBottom: 3 }}></div>
+                        <div className="divider" />
                         <ListArtist
                             key="@artist2"
                             name="@artist1"
@@ -116,7 +116,7 @@ export const ExploreView = () => {
                             action={true}
                             route={routes.profile}
                         />
-                        <div style={{ borderTop: "1px solid #1C1C1C ", marginTop: 3, marginBottom: 3 }}></div>
+                        <div className="divider" />
                         <ListArtist
                             key="@artist3"
                             name="@artist1"
@@ -124,7 +124,7 @@ export const ExploreView = () => {
                             action={true}
                             route={routes.profile}
                         />
-                        <div style={{ borderTop: "1px solid #1C1C1C ", marginTop: 3, marginBottom: 3 }}></div>
+                        <div className="divider" />
                         <ListArtist
                             key="@artist4"
                             name="@artist1"

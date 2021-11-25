@@ -6,7 +6,7 @@
   animation-duration: 0.3s;
 
   .login__container {
-    background-color: getColor(menu);
+    background-color: getColor(card-color);
     border-radius: $defRadius;
     padding: $defMargin;
     width: 100%;

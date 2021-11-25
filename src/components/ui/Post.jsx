@@ -108,7 +108,7 @@ export const Post = ({ uid, post, group = false }) => {
                         onClick={() => setComments(!comments)}
                     >
                         <i className="fas fa-comment-alt btn-icon-left" />
-                        <span>Comentarios</span>
+                        <span>Comentarios {post?.comments?.length > 0 && `(${post?.comments?.length})`}</span>
                     </button>
 
                     <input
@@ -152,7 +152,7 @@ export const Post = ({ uid, post, group = false }) => {
                         <span>Compartir</span>
                     </button>
                 </div>
-                <CommentsGroup active={comments} />
+                <CommentsGroup active={comments} comments={post?.comments}/>
             </div >
         </div>
 

@@ -1,5 +1,7 @@
 $pink: #c92549;
-$blue: #151621;
+$blue-light: #2f5ae7;
+$blue-light-2: #213d99;
+$blue: #101011;
 
 $pink-100: lighten($pink, 20%);
 $pink-200: lighten($pink, 15%);
@@ -29,47 +31,73 @@ $gray-400: #ced4da;
 $gray-500: #adb5bd;
 $gray-600: #6c757d;
 $gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
+$gray-800: #3f4142;
+$gray-900: #272829;
 $black: #000000;
 
 $blue-04: rgba($blue, 0.4);
 
 $colors-dark: (
   base: $black,
+  shadows: $black,
+
   nav: $blue-500,
   menu: $blue-500,
   menu-hover: $blue-600,
-  card-color: $blue-500,
+
   scroll-bar: $blue-500,
   scroll-bg: $blue-04,
+
+  card-color: $blue-500,
+  
   primary: $pink-500,
   primary-gradient: $pink-800,
+  
   secondary: $blue-400,
   secondary-hover: $blue-300,
+  
   text-primary: $white,
   text-secondary: $gray-600,
-  loading-first: $gray-800,
-  loading-second: $gray-700,
-  configurations: $gray-900,
+  text-inverted: $white,
+  
+  loading-first: $gray-900,
+  loading-second: $gray-800,
+
+  icons: $gray-100,
+  outline-background: $white,
+  outline-color: $black
 );
 
 $colors-light: (
-  base: $white,
+  base: $gray-200,
+  shadows: $gray-300,
+
   nav: $white,
-  menu: $gray-100,
+  menu: $gray-200,
   menu-hover: $gray-300,
-  card-color: $gray-200,
+
   scroll-bar: $blue-100,
   scroll-bg: $blue-04,
-  primary: $pink-500,
-  primary-gradient: $pink-800,
-  secondary: $gray-400,
-  secondary-hover: $gray-500,
-  text-primary: $gray-900,
+
+  card-color: $white,
+  
+  primary: $blue-light,
+  primary-gradient: $blue-light-2,
+  
+  secondary: $gray-200,
+  secondary-hover: $gray-300,
+  
+  text-primary: $black,
   text-secondary: $gray-600,
+  text-inverted: $white,
+  
   loading-first: $gray-400,
   loading-second: $gray-300,
+
+  icons: $blue-light,
+  outline-background: $blue-light-2,
+  outline-color: $white
+
 );
 
 @mixin setColors($theme) {

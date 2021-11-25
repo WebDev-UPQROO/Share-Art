@@ -26,3 +26,12 @@ export const getProfilePosts = async (idUser = null, lastPost = null) => {
     throw Error(`Error ${status} - ${data.error}`);
   }
 };
+
+export const getComments = async (comment) => {
+  try {
+    const data = await axios.put(API.base + API.getComments, { comment: [comment] });
+    return data;
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
+  }
+};

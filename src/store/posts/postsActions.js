@@ -1,4 +1,4 @@
-import { getHomePosts, getProfilePosts } from "../../services/postsServices";
+import { getCommentsPost, getHomePosts, getProfilePosts } from "../../services/postsServices";
 import { postsActions } from "./postsReducer";
 
 export const homePostsHandleGet = (uid, history) => async (dispatch) => {

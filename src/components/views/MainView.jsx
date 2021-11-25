@@ -24,6 +24,7 @@ const MainView = ({
     useEffect(() => {
         if (posts.section !== "home")
             homePostsHandleGet(uid, history);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [uid])
 
     useEffect(() => {
@@ -55,7 +56,7 @@ const MainView = ({
 
 
             <footer className="footer">
-                <div className="mb-2">
+                <div className="mb-5">
                     <ListView title="Artistas Destacados" icon="user" list={[
                     /*     (
                             <ListArtist

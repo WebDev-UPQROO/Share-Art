@@ -11,7 +11,7 @@
     z-index: 0;
 
     .comment__content {
-      background: getColor(secondary-hover);
+      background: getColor(secondary);
       flex-grow: 1;
       border-radius: $defRadius;
       padding: ($defMargin - 0.5) $defMargin;
@@ -21,8 +21,12 @@
       }
 
       .comment__content__info {
+        display: none;
         color: getColor(text-secondary);
         font-weight: 500;
+        @media (min-width: 1200px) {
+          display: block;
+        }
       }
     }
 
@@ -49,7 +53,7 @@
       position: absolute;
       content: "";
       width: 1px;
-      background-color: getColor(text-secondary);
+      background-color: getColor(secondary-hover);
       height: auto;
       left: 1.5rem;
       bottom: 2.5rem;

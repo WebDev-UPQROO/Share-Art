@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { routes } from '../../routes/routes';
 import { authHandleLogin } from '../../store/auth/authActions';
 import { useHistory } from 'react-router';
+import { getPhoto } from '../../helpers/getPhoto';
 
-const Navbar = ({ menu: [menu, setMenu], user, auth: { uid }, authHandleLogin, }) => {
+const Navbar = ({ menu: [menu, setMenu], auth: { user }, authHandleLogin, }) => {
     const history = useHistory();
 
     const handleMobileMenu = () => {
@@ -31,7 +32,7 @@ const Navbar = ({ menu: [menu, setMenu], user, auth: { uid }, authHandleLogin, }
             </div>
 
             {
-                (user.uid)
+                (user?._id)
                     ?
                     (
                         <div className="navbar__profile">
@@ -39,11 +40,11 @@ const Navbar = ({ menu: [menu, setMenu], user, auth: { uid }, authHandleLogin, }
                                 <i className="fas fa-bell" />
                             </button>
 
-                            <Link className="btn btn-secondary btn-animation btn-profile text-none" to={routes.profile + uid}>
+                            <Link className="btn btn-secondary btn-animation btn-profile text-none" to={routes.profile + user._id}>
                                 <picture className="profile-image">
-                                    <img src='/assets/temp/user.jfif' alt="profile" />
+                                    <img src={getPhoto(user?.photo)} alt="profile" />
                                 </picture>
-                                <span>@Nombre_Usuario</span>
+                                <span>{user?.username ?? "Username"}</span>
                             </Link>
                         </div>
                     )
@@ -59,6 +60,6 @@ const Navbar = ({ menu: [menu, setMenu], user, auth: { uid }, authHandleLogin, }
     )
 }
 
-const data = (state) => ({ user: state.authReducer, auth: state.authReducer });
+const data = (state) => ({ auth: state.authReducer });
 const actions = { authHandleLogin };
 export default connect(data, actions)(Navbar);

@@ -7,7 +7,7 @@ export const CardHelp = ({ name, content }) => {
     return (
         <div className="dropdown">
             <div className={`drop-body ${visible ? 'active' : 'disable'}`}>
-                <p>{content}</p>
+                {content}
             </div>
             <div className="drop-title" onClick={toggle}>
                 <p>{name}</p>

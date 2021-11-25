@@ -29,6 +29,7 @@
   padding: 0.9rem $defMargin;
   border-radius: $defRadius - 0.4rem;
   background: getColor(secondary);
+  text-decoration: none;
 
   &:hover,
   &.active {
@@ -55,7 +56,8 @@
   margin-top: 0.5rem;
   margin-bottom: $defMargin;
 
-  &:hover {
+  &:hover,
+  &.active {
     color: getColor(primary);
     background-color: getColor(secondary-hover);
   }
@@ -150,12 +152,22 @@
 .dropdown {
   position: relative;
 
+  .dropdown-btn {
+    @extend .btn;
+    @extend .btn-link-secondary;
+    @extend .btn-animation;
+
+    margin: 0;
+    padding: 0.5rem;
+  }
+
   .dropdown-btn:focus ~ .menu-dropdown {
     opacity: 1;
     visibility: visible;
   }
 
   .menu-dropdown {
+    box-shadow: 0px 2px 10px 1px getColor(base);
     background-color: getColor(secondary);
     border-radius: $defRadius;
     position: absolute;

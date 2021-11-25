@@ -20,7 +20,7 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
 
                             {
                                 (uid === user?._id)
-                                    ? <Link to={routes.configs}
+                                    ? <Link to={routes.configsProfile}
                                         className='profile__content__config btn btn-animation btn-outline ml-auto mb-2'
                                     >
                                         <i className="fas fa-pen mr-1" />

@@ -108,7 +108,10 @@ export const Post = ({ uid, post, group = false }) => {
                         onClick={() => setComments(!comments)}
                     >
                         <i className="fas fa-comment-alt btn-icon-left" />
-                        <span>Comentarios {post?.comments?.length > 0 && `(${post?.comments?.length})`}</span>
+                        <span className="text-action-post">Comentarios</span>
+                        <span>
+                            {post?.comments?.length > 0 && `(${post?.comments?.length})`}
+                        </span>
                     </button>
 
                     <input
@@ -139,7 +142,7 @@ export const Post = ({ uid, post, group = false }) => {
                         htmlFor={"dislike" + post?._id}
                         className={"btn btn-secondary btn-animation " + (userDislike && "active")}
                     >
-                        <i className="fas fa-chevron-up" />
+                        <i className="fas fa-chevron-down" />
                     </label>
 
                     <button
@@ -149,10 +152,10 @@ export const Post = ({ uid, post, group = false }) => {
                             + (uid !== post?.user?._id && "btn-animation")}
                     >
                         <i className="fas fa-share-alt btn-icon-left" />
-                        <span>Compartir</span>
+                        <span className="text-action-post">Compartir</span>
                     </button>
                 </div>
-                <CommentsGroup active={comments} comments={post?.comments}/>
+                <CommentsGroup active={comments} comments={post?.comments} />
             </div >
         </div>
 

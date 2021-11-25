@@ -11,8 +11,8 @@
     transition: all ease 0.3s;
     padding: $defMargin + 0.4rem $defMargin;
 
-    @media (min-width:480px){
-        padding: 3.3rem 4.6rem;
+    @media (min-width: 480px) {
+      padding: 3.3rem 4.6rem;
     }
 
     p {
@@ -32,8 +32,13 @@
     overflow: hidden;
     background-color: getColor(card-color);
     transition: max-height 0.3s;
-    padding: 2rem 4.6rem;
+    padding: 2rem 1rem;
+
     order: 1;
+
+    @media (min-width: 768px) {
+      padding: 2rem 4.6rem;
+    }
 
     &.disable ~ .drop-title {
       background-color: getColor(primary-gradient);

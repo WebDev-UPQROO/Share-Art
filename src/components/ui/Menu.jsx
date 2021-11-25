@@ -6,7 +6,7 @@ import { authHandleLogout } from '../../store/auth/authActions';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
-const Menu = ({ user, auth: {uid}, authHandleLogout, menu: [menu, setMenu] }) => {
+const Menu = ({ auth: {user}, authHandleLogout, menu: [menu, setMenu] }) => {
     const history = useHistory();
 
     const handleClick = () => {
@@ -14,7 +14,7 @@ const Menu = ({ user, auth: {uid}, authHandleLogout, menu: [menu, setMenu] }) =>
     };
 
     const menuOptions = [
-        { title: 'Mi Perfil', icon: 'user', route: routes.profile + uid },
+        { title: 'Mi Perfil', icon: 'user', route: routes.profile + user?._id },
         { title: 'Configuraciones', icon: 'cog', route: routes.configs },
         { title: 'Centro de Ayuda', icon: 'question-circle', route: routes.help },
     ];
@@ -42,14 +42,14 @@ const Menu = ({ user, auth: {uid}, authHandleLogout, menu: [menu, setMenu] }) =>
             </div>
 
             {
-                (user.uid) &&
+                (user?._id) &&
                 menuOptions.map(item =>
                     <div className="mb-2" key={item.title}>
                         <ListRoute title={item.title} icon={item.icon} route={item.route} onClick={handleClick} />
                     </div>
                 )
             } {
-                (user.uid) &&
+                (user?._id) &&
                 <div onClick={() => authHandleLogout(history)}>
                     <ListRoute title="Cerrar Sesión" icon="sign-out-alt" route={routes.login} arrow={false} activeClassName="" onClick={handleClick} />
                 </div>
@@ -60,6 +60,6 @@ const Menu = ({ user, auth: {uid}, authHandleLogout, menu: [menu, setMenu] }) =>
     )
 }
 
-const data = (state) => ({ user: state.authReducer, auth: state.authReducer });
+const data = (state) => ({ auth: state.authReducer });
 const actions = { authHandleLogout };
 export default connect(data, actions)(Menu);

@@ -10,17 +10,17 @@ export const SettingView = () => {
             <div className="settings-main">
                 <div className="settings__body">
                     <CardSetting
-                        route={routes.login}
+                        route={routes.configsProfile}
                         name="Mi Perfil"
                         icon="user"
                     />
                     <CardSetting
-                        route={routes.login}
+                        route={routes.configsPersonal}
                         name="Datos Personales"
                         icon="address-book"
                     />
                     <CardSetting
-                        route={routes.login}
+                        route={routes.configsPassword}
                         name="Cambiar Contraseña"
                         icon="lock"
                     />

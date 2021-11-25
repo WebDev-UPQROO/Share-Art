@@ -13,7 +13,7 @@ import { Posting } from '../ui/Posting';
 import { routes } from './../../routes/routes';
 
 const MainView = ({
-    auth: { uid },
+    auth: { user },
     posts,
     homePostsHandleGet,
     homePostsHandleUpdate
@@ -23,9 +23,9 @@ const MainView = ({
 
     useEffect(() => {
         if (posts.section !== "home")
-            homePostsHandleGet(uid, history);
+            homePostsHandleGet(user?._id, history);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [uid])
+    }, [user?._id])
 
     useEffect(() => {
         if (posts.error !== null)
@@ -41,7 +41,7 @@ const MainView = ({
                     dataLength={posts.posts.length}
                     next={() =>
                         homePostsHandleUpdate(
-                            uid,
+                            user?._id,
                             posts.posts[posts.posts.length - 1]?._id,
                             history
                         )}
@@ -50,7 +50,7 @@ const MainView = ({
                     scrollThreshold={1}
                     endMessage={<LastPost />}
                 >
-                    {posts.posts.map((post, index) => (<Post key={index} post={post} uid={uid} />))}
+                    {posts.posts.map((post, index) => (<Post key={index} post={post} uid={user?._id} />))}
                 </InfiniteScroll>
             </main>
 

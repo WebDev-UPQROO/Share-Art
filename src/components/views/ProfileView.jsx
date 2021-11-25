@@ -24,20 +24,21 @@ const ProfileView = ({
     profilePostsHandleUpdate,
     artistListHandleGet,
 }) => {
- 
+
     let { uid } = useParams();
     const history = useHistory();
 
     // Load Data
     useEffect(() => {
-        if (uid !== user.user._id){
+        if (uid !== user.user._id) {
             userGetInfo(uid, history);
             artistListHandleGet(history);
         }
-            
+
         if (posts.section !== "profile" || uid !== user.user._id)
             profilePostsHandleGet(uid, history);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+
     }, [uid]);
 
     // Waiting Errorss
@@ -69,29 +70,52 @@ const ProfileView = ({
                 </InfiniteScroll>
             </div>
             <footer className="footer">
+
+
                 <div className="mb-2">
-                {/* { JSON.stringify(artistList.artistList)} */}
                     <ListView title="Artistas Destacados" icon="user" route={routes.explore}>
-    
-                        
-                        {artistList?.artisList?.map(artist => ( 
-                                <p>hola</p>
-                                
-                            ))}
-                  
-                        </ListView>
+
+                        {
+                            (artistList?.artistList > 0) ?
+                                (
+                                    artistList?.artistList?.map(artist => (
+                                        <ListArtist
+                                            key={artist._id}
+                                            artistList={artist}
+                                            action={true}
+                                            route={routes.artist}
+                                        />
+                                    ))
+                                )
+                                : (
+                                    <div className="d-flex">
+                                        <div className="loading profile-image mr-1"></div>
+                                        <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
+                                    </div>
+                                )
+
+                        }
+
+
+
+
+
+
+
+
+                    </ListView>
                 </div>
 
 
 
-                <ListView title="Grupos Destacados" icon="users" list={[
-                 /*    (<ListArtist
+                {/* <ListView title="Grupos Destacados" icon="users" list={[
+                    <ListArtist
                         key="@group1"
                         artisList={null}
                         action={true}
                         route={routes.artist}
-                    />) */
-                ]} route={routes.explore} />
+                    />
+                ]} route={routes.explore} /> */}
             </footer>
         </>
 

@@ -1,7 +1,9 @@
 const initialState = {
   loading: false,
-  uid:
-    localStorage.getItem("uid") === "null" ? null : localStorage.getItem("uid"),
+  user:
+    localStorage.getItem("user") === "null"
+      ? null
+      : JSON.parse(localStorage.getItem("user")),
   error: null,
   logged: false,
 };
@@ -11,15 +13,15 @@ export const authReducer = (state = initialState, { type, payload }) => {
     case authActions.login:
       return {
         ...state,
-        uid: payload,
+        user: payload,
         loading: false,
-        error: null
+        error: null,
       };
 
     case authActions.logout:
       return {
         ...state,
-        uid: null,
+        user: null,
       };
 
     case authActions.loading:

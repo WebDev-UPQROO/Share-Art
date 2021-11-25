@@ -21,10 +21,10 @@ import { connect } from 'react-redux';
 import ScrollToTop from '../components/ScrollToTop';
 
 
-const AppRouter = ({ user }) => {
+const AppRouter = ({ user: {user} }) => {
     useEffect(() => {
-        localStorage.setItem('uid', user.uid);
-    }, [user.uid]);
+        localStorage.setItem('user', JSON.stringify(user));
+    }, [user]);
 
     const menu = useState(false);
 
@@ -57,32 +57,32 @@ const AppRouter = ({ user }) => {
                                     exact
                                     path={routes.home}
                                     component={MainView}
-                                    isAuthenticated={user.uid}
+                                    isAuthenticated={user?._id}
                                 />
                                 <PublicRoute
                                     exact
                                     path={routes.explore}
                                     component={ExploreView}
-                                    isAuthenticated={user.uid}
+                                    isAuthenticated={user?._id}
                                 />
 
                                 <PrivateRoute
                                     exact
                                     path={routes.profile + ":uid"}
                                     component={ProfileView}
-                                    isAuthenticated={user.uid}
+                                    isAuthenticated={user?._id}
                                 />
                                 <PrivateRoute
                                     exact
                                     path={routes.configs}
                                     component={SettingView}
-                                    isAuthenticated={user.uid}
+                                    isAuthenticated={user?._id}
                                 />
                                 <PrivateRoute
                                     exact
                                     path={routes.help}
                                     component={HelpView}
-                                    isAuthenticated={user.uid}
+                                    isAuthenticated={user?._id}
                                 />
                                 <Redirect to={routes.home} />
                             </Switch>

@@ -7,10 +7,7 @@ import { commentsHandleGet } from '../../../store/comments/commentsActions';
 import { MyComment } from './MyComment';
 
 const Comment = ({ id, comment, auth, commentsHandleGet, counter }) => {
-
     useEffect(() => {
-        console.log(auth);
-        console.log(comment);
         if (!comment)
             commentsHandleGet([id]);
     }, [])
@@ -22,6 +19,14 @@ const Comment = ({ id, comment, auth, commentsHandleGet, counter }) => {
     var classes = ["comment"];
     if (notFinalComment && more) classes.push('not-final');
     if (counter !== 0) classes.push('ml-4');
+
+    const reactions = {
+        like: 1,
+        dislike: 0,
+    }
+    const userReaction = comment?.votes?.find(user => user[0] === auth?.user?._id);
+    const userLike = userReaction && userReaction[1] === reactions.like;
+    const userDislike = userReaction && userReaction[1] === reactions.dislike;
 
     return (
         <>
@@ -38,6 +43,27 @@ const Comment = ({ id, comment, auth, commentsHandleGet, counter }) => {
                                 </picture>
                                 <span className="comment__content__user mr-1">{comment?.user?.name || "Desconocido"}</span>
                                 <span className="comment__content__info">{comment?.user?.username} &#8226; {getDate(comment?.date)}</span>
+
+                                {
+                                    (auth?.user?._id === comment?.user?._id) &&
+                                    (
+                                        <div className="ml-auto dropdown">
+                                            <button
+                                                className="dropdown-btn"
+                                            >
+                                                <i className="fas fa-ellipsis-v" />
+                                            </button>
+                                            <div className="menu-dropdown">
+                                                <button className="item btn btn-secondary" >
+                                                    Editar
+                                                </button>
+                                                <button className="item btn btn-secondary" >
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )
+                                }
                             </div>
 
                             <p className="comment__content__text">
@@ -46,15 +72,38 @@ const Comment = ({ id, comment, auth, commentsHandleGet, counter }) => {
                         </div>
                         <div className="comment__actions">
                             <div className="comment__actions__buttons">
-                                <button className="btn btn-link-secondary btn-animation">
+                                <input
+                                    id={"like" + comment?._id}
+                                    type="radio"
+                                    name="votes"
+                                    defaultChecked={userLike}
+                                    value={reactions.like}
+                                    className="d-none"
+                                />
+                                <label
+                                    htmlFor={"like" + comment?._id}
+                                    className={"btn btn-link-secondary btn-animation " + (userLike && "active")}
+                                >
                                     <i className="fas fa-chevron-up" />
-                                </button>
+                                </label>
 
-                                <span className="comment__actions__info">122k</span>
+                                <span className="comment__actions__info">
+                                    {comment?.votes?.length ?? 0}
+                                </span>
 
-                                <button className="btn btn-link-secondary btn-animation">
+                                <input
+                                    id={"dislike" + comment?._id}
+                                    type="radio" name="votes"
+                                    defaultChecked={userDislike}
+                                    value={reactions.dislike}
+                                    className="d-none"
+                                />
+                                <label
+                                    htmlFor={"dislike" + comment?._id}
+                                    className={"btn btn-link-secondary btn-animation " + (userDislike && "active")}
+                                >
                                     <i className="fas fa-chevron-down" />
-                                </button>
+                                </label>
 
                                 {
                                     (counter < 3) &&

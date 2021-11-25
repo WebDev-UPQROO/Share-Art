@@ -47,7 +47,7 @@ const ProfileView = ({
     return (
         <>
             <div className="main-center">
-                <ProfileInfo uid={auth.uid} />
+                <ProfileInfo uid={auth?.user?._id} />
 
                 <InfiniteScroll
                     dataLength={posts.posts.length}
@@ -62,7 +62,7 @@ const ProfileView = ({
                     scrollThreshold={1}
                     endMessage={<LastPost />}
                 >
-                    {posts.posts.map((post, index) => (<Post key={index} post={post} uid={uid} />))}
+                    {posts.posts.map((post, index) => (<Post key={index} post={post} uid={auth?.user?._id} />))}
                 </InfiniteScroll>
             </div>
             <footer className="footer">

@@ -5,12 +5,49 @@ import { CardHelp } from '../ui/CardHelp'
 export const HelpView = () => {
     const content = [
         {
-            name: "Cambiar foto de perfil",
-            content: "No puedes"
+            name: "Cambia tu foto de perfil",
+            content: (
+                <div >
+                    <p>
+                        Dirígete al menu principal y seleccina la opción <b>"Configuraciones"</b>, luego selecciona <b>"Mi Perfil"</b>
+                    </p>
+
+                    <br />
+                    <div align="center">
+                        <img src="/assets/help/editphoto1.jpg" alt="edit" className="mw-100" />
+                    </div>
+                    <br />
+
+                    <p>
+                        A continuación se te abrirá una ventana en donde podras actualizar datos de tu perfil, como tu foto, selecciona el boton <b>"Modificar"</b>
+                    </p>
+                    
+                    <br />
+                    <div align="center">
+                        <img src="/assets/help/editphoto2.jpg" alt="edit" className="mw-100" />
+                    </div>
+                </div >
+            )
         },
         {
-            name: "Modificar contraseña",
-            content: "No puedes"
+            name: "Modificar tu contraseña",
+            content: (
+                <div >
+                    <p>
+                        Dirígete al menu principal y seleccina la opción <b>"Configuraciones"</b>, luego selecciona <b>"Cambiar contraseña"</b>
+                    </p>
+
+                    <br />
+                    <div align="center">
+                        <img src="/assets/help/changePassword1.jpg" alt="edit" className="mw-100" />
+                    </div>
+                    <br />
+
+                    <p>
+                        A continuación se te abrirá una ventana en donde podras actualizar tu contraseña por una nueva<b>"Modificar"</b>
+                    </p>
+                </div >
+            )
         },
         {
             name: "Editar publicaciones y comentarios",

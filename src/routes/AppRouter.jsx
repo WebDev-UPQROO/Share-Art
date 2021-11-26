@@ -7,7 +7,7 @@ import Menu from '../components/ui/Menu';
 import Navbar from '../components/ui/Navbar';
 
 import MainView from '../components/views/MainView';
-import { ExploreView } from '../components/views/ExploreView';
+import ExploreView from '../components/views/ExploreView';
 import ProfileView from '../components/views/ProfileView';
 import { SettingView } from '../components/views/SettingView';
 import { HelpView } from '../components/views/HelpView';

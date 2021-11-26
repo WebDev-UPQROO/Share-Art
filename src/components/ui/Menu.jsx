@@ -1,7 +1,6 @@
 import React from 'react';
 import { routes } from '../../routes/routes';
 import { ListRoute } from './listView/ListRoute';
-import { ListView } from './listView/ListView';
 import { authHandleLogout } from '../../store/auth/authActions';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
@@ -19,18 +18,6 @@ const Menu = ({ auth: {user}, authHandleLogout, menu: [menu, setMenu] }) => {
         { title: 'Centro de Ayuda', icon: 'question-circle', route: routes.help },
     ];
 
-    const exploreOptions = [
-        { title: 'Grupos', icon: 'users', route: routes.groups },
-        { title: 'Artistas', icon: 'child', route: routes.artist },
-        { title: 'Publicaciones', icon: 'comment', route: routes.publications }
-    ];
-
-    const exploreList = exploreOptions.map(item =>
-        <div className="ml-3" key={item.title}>
-            <ListRoute arrow={false} title={item.title} icon={item.icon} route={item.route} onClick={handleClick} />
-        </div>
-    );
-
     return (
         <div className={`menu ${menu ? 'show' : 'hide'}`}>
             <div className="mb-2">
@@ -38,9 +25,9 @@ const Menu = ({ auth: {user}, authHandleLogout, menu: [menu, setMenu] }) => {
             </div>
 
             <div className="mb-2">
-                <ListView title="Explorar" icon="drafting-compass" list={exploreList} route={routes.explore} onClick={handleClick} />
+                <ListRoute title="Explorar" icon="drafting-compass" route={routes.explore} exact={true} onClick={handleClick} />
             </div>
-
+            
             {
                 (user?._id) &&
                 menuOptions.map(item =>

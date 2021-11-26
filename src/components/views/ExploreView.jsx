@@ -1,152 +1,72 @@
 import { Post } from '../ui/Post';
-import { CardGroup } from '../ui/CardGroup';
-import { CardCategory } from '../ui/CardCategory';
-import { routes } from './../../routes/routes';
-import { ListArtist } from '../ui/listView/ListArtist';
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Seeker } from '../ui/Seeker';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useHistory } from 'react-router';
+import { toast } from 'react-toastify';
+import { LoadingPost } from '../ui/notifications/LoadingPost';
+import { LastPost } from '../ui/notifications/LastPost';
+import { homePostsHandleGet, homePostsHandleUpdate } from '../../store/posts/postsActions';
+import { connect } from 'react-redux';
 
-export const ExploreView = () => {
+const ExploreView = ({
+    auth: { user },
+    posts,
+    homePostsHandleGet,
+    homePostsHandleUpdate
+}) => {
+
+    const history = useHistory();
+
+    useEffect(() => {
+        if (posts.section !== "home")
+            homePostsHandleGet(user?._id, history);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user?._id])
+
+    useEffect(() => {
+        if (posts.error !== null)
+            toast.error(posts.error);
+    }, [posts.error]);
+
     return (
-        <main className="main-full">
+        <main className="main-center">
             <div className="explore">
                 <h1>Explorar</h1>
                 <div className="explore__container">
                     <div className="explore__heading">
-                        <h3>Categorias</h3>
-                        <Link to="#" className="post__link btn-animation btn-link">
-                            <span className="mr-1">Ir a categorias</span>
-                            <i className="fas fa-arrow-right" />
-                        </Link>
+                        <Seeker />
                     </div>
 
-                    <div className="explore__body category">
-                        <CardCategory
-                            name="Música"
-                            image="music"
-                            route={routes.profile}
-                        />
-
-                        <CardCategory
-                            name="Teatro"
-                            image="theater-masks"
-                            route={routes.profile}
-                        />
-
-                        <CardCategory
-                            name="Escultura"
-                            image="palette"
-                            route={routes.profile}
-                        />
-
-                        <CardCategory
-                            name="PixelArt"
-                            image="laptop"
-                            route={routes.profile}
-                        />
+                    <div className="explore__body">
+                        <InfiniteScroll
+                            dataLength={posts.posts.length}
+                            next={() =>
+                                homePostsHandleUpdate(
+                                    user?._id,
+                                    posts.posts[posts.posts.length - 1]?._id,
+                                    history
+                                )}
+                            hasMore={!posts.limit}
+                            loader={<LoadingPost />}
+                            scrollThreshold={1}
+                            endMessage={<LastPost />}
+                        >
+                            {posts.posts.map((post, index) => (<Post key={index} post={post} uid={user?._id} />))}
+                        </InfiniteScroll>
                     </div>
                 </div>
-
-                <div className="explore__container">
-                    <div className="explore__heading">
-                        <h3>Grupos</h3>
-                        <Link to="#" className="post__link btn-animation btn-link">
-                            <span className="mr-1">Ir al grupos</span>
-                            <i className="fas fa-arrow-right" />
-                        </Link>
-                    </div>
-
-                    <div className="explore__body groups">
-                        <CardGroup
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            count={4}
-                            action={true}
-                            route={routes.profile}
-                        />
-
-                        <CardGroup
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            count={4}
-                            action={true}
-                            route={routes.profile}
-                        />
-
-                        <CardGroup
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            count={4}
-                            action={true}
-                            route={routes.profile}
-                        />
-
-                        <CardGroup
-                            name="@artist1"
-                            count={4}
-                            image="/assets/temp/user.jfif"
-                            action={true}
-                            route={routes.profile}
-                        />
-
-                    </div>
-                </div>
-
-                <div className="explore__container">
-                    <div className="explore__heading">
-                        <h3>Artistas</h3>
-                        <Link to="#" className="post__link btn-animation btn-link">
-                            <span className="mr-1">Ir a artistas</span>
-                            <i className="fas fa-arrow-right" />
-                        </Link>
-                    </div>
-                    <div>
-                        <ListArtist
-                            key="@artist1"
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            action={true}
-                            route={routes.profile}
-                        />
-                        <div className="divider" />
-                        <ListArtist
-                            key="@artist2"
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            action={true}
-                            route={routes.profile}
-                        />
-                        <div className="divider" />
-                        <ListArtist
-                            key="@artist3"
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            action={true}
-                            route={routes.profile}
-                        />
-                        <div className="divider" />
-                        <ListArtist
-                            key="@artist4"
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            action={true}
-                            route={routes.profile}
-                        />
-                    </div>
-                </div>
-
-                <div className="explore__container">
-                    <div className="explore__heading">
-                        <h3>Publicaciones</h3>
-                        <Link to="#" className="post__link btn-animation btn-link">
-                            <span className="mr-1">Ir al publicaciones</span>
-                            <i className="fas fa-arrow-right" />
-                        </Link>
-                    </div>
-                    <Post />
-                </div>
-
             </div>
         </main>
     )
 }
+
+const data = (state) => ({
+    posts: state.postsReducer,
+    auth: state.authReducer
+});
+const actions = {
+    homePostsHandleGet,
+    homePostsHandleUpdate
+};
+export default connect(data, actions)(ExploreView);

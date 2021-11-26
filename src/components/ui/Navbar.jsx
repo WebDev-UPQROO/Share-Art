@@ -2,13 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { routes } from '../../routes/routes';
-import { authHandleLogin } from '../../store/auth/authActions';
-import { useHistory } from 'react-router';
 import { getPhoto } from '../../helpers/getPhoto';
 
-const Navbar = ({ menu: [menu, setMenu], auth: { user }, authHandleLogin, }) => {
-    const history = useHistory();
-
+const Navbar = ({ menu: [menu, setMenu], auth: { user } }) => {
     const handleMobileMenu = () => {
         setMenu(menu => !menu);
     };
@@ -51,8 +47,18 @@ const Navbar = ({ menu: [menu, setMenu], auth: { user }, authHandleLogin, }) => 
                     :
                     (
                         <div className="navbar__login">
-                            <button className="btn btn-secondary btn-animation mr-2" onClick={() => authHandleLogin('weqeq', 'qweqeqw', history)}>Iniciar Sesión</button>
-                            <button className="btn btn-primary btn-animation">Registrarse</button>
+                            <Link
+                                to={routes.login}
+                                className="btn btn-secondary btn-animation mr-2"
+                            >
+                                Iniciar Sesión
+                            </Link>
+                            <Link
+                                to={routes.register}
+                                className="btn btn-primary btn-animation text-none"
+                            >
+                                Registrarse
+                            </Link>
                         </div>
                     )
             }
@@ -61,5 +67,4 @@ const Navbar = ({ menu: [menu, setMenu], auth: { user }, authHandleLogin, }) => 
 }
 
 const data = (state) => ({ auth: state.authReducer });
-const actions = { authHandleLogin };
-export default connect(data, actions)(Navbar);
+export default connect(data)(Navbar);

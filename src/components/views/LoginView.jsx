@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { routes } from '../../routes/routes'
 import { useHistory } from 'react-router'
 import { authHandleLogin } from '../../store/auth/authActions'
 import { connect } from 'react-redux'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import * as Yup from 'yup';
+import { ErrorForm } from '../ui/notifications/ErrorForm'
+import { toast } from 'react-toastify'
 
-const LoginView = ({ authHandleLogin }) => {
+
+const LoginView = ({ auth, authHandleLogin }) => {
     const history = useHistory();
+
+    useEffect(() => {
+        if (auth.error !== null)
+            toast.error(auth.error);
+    }, [auth.error]);
 
     return (
         <div className="login">
@@ -18,46 +28,80 @@ const LoginView = ({ authHandleLogin }) => {
                         <span>Ingresa tu usuario y contraseña para continuar</span>
                     </div>
                 </div>
-                <div className="mt-3">
-                    <div className="form-item full">
-                        <label htmlFor="email">Correo Electrónico</label>
-                        <input
-                            id="email"
-                            type="text"
-                            placeholder="Correo Electrónico"
-                            className="form-input input"
-                        />
-                    </div>
+                <Formik
+                    initialValues={{
+                        username: '',
+                        password: '',
+                    }}
 
-                    <div className="form-item full mb-1">
-                        <label htmlFor="password">Contraseña</label>
-                        <input
-                            id="password"
-                            type="text"
-                            placeholder="Contraseña"
-                            className="form-input input"
-                        />
-                    </div>
+                    validationSchema={Yup.object({
+                        username: Yup.string()
+                            .required('Ingresa tu correo electrónico'),
+                        password: Yup.string()
+                            .min(5, 'Debe ser mínimo de 8 caracteres')
+                            .required('Ingresa tu contraseña'),
+                    })}
 
-                    <div className="mb-3">
-                        <button onClick={() => authHandleLogin("qewe", "wqqwe", history)} className="btn btn-animation btn-primary w-100 mb-3">
-                            Iniciar Sesión
-                        </button>
+                    onSubmit={(values, handleReset) => authHandleLogin(values, history, handleReset)}
+                >
+                    <Form className="mt-3">
+                        <div className="form-item full">
+                            <label htmlFor="username">Nombre de usuario</label>
+                            <Field
+                                id="username"
+                                name="username"
+                                type="text"
+                                placeholder="Nombre de usuario"
+                                className="form-input input"
+                            />
+                            <ErrorMessage name="username">
+                                {msg => <ErrorForm>{msg}</ErrorForm>}
+                            </ErrorMessage>
+                        </div>
 
-                        <span className="text-xs d-in-block mb-1">Aun no tienes una cuenta?</span>
+                        <div className="form-item full mb-1">
+                            <label htmlFor="password">Contraseña</label>
+                            <Field
+                                id="password"
+                                name="password"
+                                type="password"
+                                placeholder="Contraseña"
+                                className="form-input input"
+                            />
+                            <ErrorMessage name="password">
+                                {msg => <ErrorForm>{msg}</ErrorForm>}
+                            </ErrorMessage>
+                        </div>
 
-                        <Link
-                            to={routes.register}
-                            className="btn btn-animation btn-secondary w-100 text-xs text-none">
-                            Crear Cuenta
-                        </Link>
-                    </div>
-                </div>
+                        <div className="mb-3">
+                            <button type="submit" className="btn btn-animation btn-primary w-100 mb-3" disabled={auth.loading}>
+                                {
+                                    (!auth.loading)
+                                        ? "Iniciar Sesión"
+                                        : <div className="loader" />
+
+                                }
+                            </button>
+
+                            <span className="text-xs d-in-block mb-1">Aun no tienes una cuenta?</span>
+
+                            <Link
+                                to={routes.register}
+                                className="btn btn-animation btn-secondary w-100 text-xs text-none">
+                                Crear Cuenta
+                            </Link>
+                        </div>
+                    </Form>
+
+                </Formik>
             </div>
 
         </div>
     )
 }
 
+const data = (state) => ({
+    auth: state.authReducer
+});
 const actions = { authHandleLogin };
-export default connect(null, actions)(LoginView);
+export default connect(data, actions)(LoginView);

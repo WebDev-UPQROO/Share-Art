@@ -17,12 +17,20 @@
   &:active {
     transform: scale(0.95);
   }
+
+  &:disabled{
+    transform: scale(1);
+  }
 }
 
 .btn-primary {
   background: $gradient;
   border-radius: $defRadius - 0.4rem;
   color: getColor(text-inverted);
+
+  &:disabled{
+    background: getColor(menu-hover);
+  }
 }
 
 .btn-secondary {

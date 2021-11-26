@@ -22,6 +22,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: null,
+        loading: false,
       };
 
     case authActions.loading:
@@ -37,6 +38,12 @@ export const authReducer = (state = initialState, { type, payload }) => {
         error: payload,
       };
 
+    case authActions.resetError:
+      return {
+        ...state,
+        error: null,
+      };
+
     default:
       return state;
   }
@@ -47,4 +54,5 @@ export const authActions = {
   logout: "[auth] logout",
   loading: "[auth] loading",
   failure: "[auth] failure",
+  resetError: "[auth] resetError",
 };

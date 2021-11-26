@@ -1,7 +1,8 @@
 const API = {
   // Base
   base: "https://shareart-back.herokuapp.com/shareart/v1/",
-  login: "",
+  login: "auth/login",
+  register: "auth/register",
 
   // Users
   getUser: "profile/",
@@ -12,7 +13,7 @@ const API = {
   getComments: "home/comments",
   postPost: "",
   deletePost: "",
-  
+
   //Profile
   getProfilePosts: "profile/posts",
 };

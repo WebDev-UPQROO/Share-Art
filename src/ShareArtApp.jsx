@@ -11,7 +11,7 @@ export const ShareArtApp = () => {
     return (
         <Provider store={store}>
             <AppRouter />
-            <ToastContainer theme="dark"/>
+            <ToastContainer theme="dark" hideProgressBar/>
         </Provider>
     )
 }

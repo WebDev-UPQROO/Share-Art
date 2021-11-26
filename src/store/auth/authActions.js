@@ -1,10 +1,11 @@
+import { login } from "../../services/authServices";
 import { authActions } from "./authReducer";
 
 export const authHandleLogin =
-  (email, password, history) => async (dispatch) => {
+  (formData, history, handleReset) => async (dispatch) => {
     dispatch(authLoading());
     try {
-      //   const data = await axios.get(API.base + API.getUser + userId);
+      const data = await login(formData);
       const user = {
         _id: "61993b9f7d23fe6325ca8945",
         categories: [
@@ -28,8 +29,9 @@ export const authHandleLogin =
       const lastPath = localStorage.getItem("lastPath") || "/";
       history.replace(lastPath);
     } catch (e) {
-      history.replace("/auth/login");
+      handleReset.resetForm();
       dispatch(authFailure(e.message));
+      dispatch(resetError());
     }
   };
 
@@ -63,4 +65,8 @@ export const authLoading = () => ({
 export const authFailure = (error) => ({
   type: authActions.failure,
   payload: error,
+});
+
+export const resetError = () => ({
+  type: authActions.resetError,
 });

@@ -1,8 +1,29 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import * as Yup from 'yup';
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { routes } from '../../routes/routes'
+import { ErrorForm } from '../ui/notifications/ErrorForm';
+import { toast } from 'react-toastify';
+import API from '../../services/constants';
+import axios from 'axios';
 
 export const RegisterView = () => {
+    const history = useHistory();
+    const [loading, setLoading] = useState(false)
+
+    const authHandleRegister = async (values) => {
+        setLoading(true);
+        try {
+            await axios.post(API.base + API.register, values);
+            toast.success("Usuario creado exitosamente, ya puedes iniciar sesión");
+            history.replace(routes.login);
+        } catch (e) {
+            toast.error("Ha ocurrido un error, intentalo mas tarde");
+            setLoading(false);
+        }
+    };
+
     return (
         <div>
             <div className="login">
@@ -14,63 +35,110 @@ export const RegisterView = () => {
                             <span>Crear una nueva cuenta</span>
                         </div>
                     </div>
-                    <div className="mt-3">
-                        <div className="form-item full">
-                            <label htmlFor="name">Nombre Completo</label>
-                            <input
-                                id="name"
-                                type="text"
-                                placeholder="Nombre Completo"
-                                className="form-input input"
-                            />
-                        </div>
+                    <Formik
+                        initialValues={{
+                            name: '',
+                            username: '',
+                            email: '',
+                            password: '',
+                        }}
 
-                        <div className="form-item full">
-                            <label htmlFor="username">Nombre de Usuario</label>
-                            <input
-                                id="username"
-                                type="text"
-                                placeholder="Nombre de Usuario"
-                                className="form-input input"
-                            />
-                        </div>
+                        validationSchema={Yup.object({
+                            name: Yup.string()
+                                .required('Ingresa tu nombre')
+                                .matches(/^[\w\sñ]+$/, "No se aceptan caracteres especiales"),
+                            username: Yup.string()
+                                .required('Ingresa tu nombre de usuario')
+                                .min(5, 'Debe ser mínimo de 5 caracteres')
+                                .matches(/^[\wñ]+$/, "No se aceptan caracteres especiales"),
+                            password: Yup.string()
+                                .min(8, 'Debe ser mínimo de 8 caracteres')
+                                .required('Agrega una contraseña'),
+                            email: Yup.string().email('Correo electronico invalido').required('Ingresa tu correo electrónico'),
+                        })}
 
-                        <div className="form-item full">
-                            <label htmlFor="email">Correo Electrónico</label>
-                            <input
-                                id="email"
-                                type="email"
-                                placeholder="Correo Electrónico"
-                                className="form-input input"
-                            />
-                        </div>
+                        onSubmit={authHandleRegister}
+                    >
+                        <Form className="mt-3">
+                            <div className="form-item full">
+                                <label htmlFor="name">Nombre Completo</label>
+                                <Field
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    placeholder="Nombre Completo"
+                                    className="form-input input"
+                                />
+                                <ErrorMessage name="name">
+                                    {msg => <ErrorForm>{msg}</ErrorForm>}
+                                </ErrorMessage>
+                            </div>
 
-                        <div className="form-item full mb-1">
-                            <label htmlFor="password">Contraseña</label>
-                            <input
-                                id="password"
-                                type="text"
-                                placeholder="Contraseña"
-                                className="form-input input"
-                            />
-                        </div>
+                            <div className="form-item full">
+                                <label htmlFor="username">Nombre de Usuario</label>
+                                <Field
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    placeholder="Nombre de Usuario"
+                                    className="form-input input"
+                                />
+                                <ErrorMessage name="username">
+                                    {msg => <ErrorForm>{msg}</ErrorForm>}
+                                </ErrorMessage>
+                            </div>
 
-                        <div>
-                            <button className="btn btn-animation btn-primary w-100 mb-3 text-xs text-none">
-                                Crear cuenta
-                            </button>
+                            <div className="form-item full">
+                                <label htmlFor="email">Correo Electrónico</label>
+                                <Field
+                                    name="email"
+                                    id="email"
+                                    placeholder="Correo Electrónico"
+                                    className="form-input input"
+                                />
+                                <ErrorMessage name="email">
+                                    {msg => <ErrorForm>{msg}</ErrorForm>}
+                                </ErrorMessage>
 
-                            <span className="text-xs d-in-block mb-1">Ya tienes una cuenta?</span>
-                            <Link
-                                to={routes.login}
-                                className="btn btn-animation btn-secondary w-100 text-xs text-none">
-                                Iniciar Sesión
-                            </Link>
-                        </div>
-                    </div>
+                            </div>
+
+
+                            <div className="form-item full mb-1">
+                                <label htmlFor="password">Contraseña</label>
+                                <Field
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    placeholder="Contraseña"
+                                    className="form-input input"
+                                />
+                                <ErrorMessage name="password">
+                                    {msg => <ErrorForm>{msg}</ErrorForm>}
+                                </ErrorMessage>
+                            </div>
+
+                            <div>
+                                <button type="submit" className="btn btn-animation btn-primary w-100 mb-3 text-xs text-none" disabled={loading}>
+                                    {
+                                        (!loading)
+                                            ? "Crear cuenta"
+                                            : <div className="loader" />
+
+                                    }
+                                </button>
+
+                                <span className="text-xs d-in-block mb-1">Ya tienes una cuenta?</span>
+                                <Link
+                                    to={routes.login}
+                                    className="btn btn-animation btn-secondary w-100 text-xs text-none">
+                                    Iniciar Sesión
+                                </Link>
+                            </div>
+                        </Form>
+                    </Formik>
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }

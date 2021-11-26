@@ -27,7 +27,7 @@
   width: 100%;
 }
 
-.mw-100{
+.mw-100 {
   max-width: 100%;
 }
 
@@ -70,9 +70,13 @@
   margin-bottom: 3;
 }
 
-.image-text{
+.image-text {
   display: flex;
   align-items: center;
+}
+
+.error-message {
+  color: rgb(230, 34, 34);
 }
 
 .loading {
@@ -103,5 +107,23 @@
   }
   100% {
     background-position: 0% 100%;
+  }
+}
+
+.loader {
+  border: 2px solid getColor(card-color);
+  border-top: 3px solid getColor(text-inverted);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.7s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

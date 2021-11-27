@@ -2,6 +2,7 @@ const initialState = {
     loading: true,
     artistList: [],
     error: null,
+    followed: false
   };
   
   const artistListReducer = (state = initialState, { type, payload }) => {
@@ -14,6 +15,19 @@ const initialState = {
           error: null,
         };
         return state;
+
+      case artistListActions.follow:
+        console.log("hola");
+          return {
+            ...state,
+            followed: true,
+          };
+
+      case artistListActions.unfollow:
+            return {
+              ...state,
+              followed: false,
+            };
   
       case artistListActions.loading:
         return {
@@ -37,6 +51,8 @@ const initialState = {
   
   export const artistListActions = {
     get: "[artistList] get",
+    follow: "[artistList] follow",
+    unfollow: "[artistList] unfollow",
     loading: "[artistList] loading",
     failure: "[artistList] failure",
   };

@@ -5,9 +5,9 @@ import { useHistory, useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import { routes } from '../../routes/routes'
 import { profilePostsHandleGet, profilePostsHandleUpdate } from '../../store/posts/postsActions'
-import { artistListHandleGet } from '../../store/artistList/artisListActions'
+import { artistListHandleGet } from '../../store/artistList/artistListActions'
 import { userGetInfo } from '../../store/user/userActions'
-import { ListArtist } from '../ui/listView/ListArtist'
+import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost'
 import { LoadingPost } from '../ui/notifications/LoadingPost'
@@ -74,25 +74,25 @@ const ProfileView = ({
 
 
                 <div className="mb-2">
+              
                     <ListView title="Artistas Destacados" icon="user" route={routes.explore}>
-
                         {
                             (artistList?.artistList > 0) ?
-                                (
-                                    artistList?.artistList?.map(artist => (
-                                        <ListArtist
-                                            key={artist._id}
-                                            artistList={artist}
-                                            action={true}
-                                            route={routes.artist}
-                                        />
-                                    ))
-                                )
-                                : (
+                                ( 
                                     <div className="d-flex">
                                         <div className="loading profile-image mr-1"></div>
                                         <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
                                     </div>
+                                )
+                                : (
+                                    artistList?.artistList?.map(artist => (
+                                        <ListArtist
+                                            key={artist._id}
+                                            artistList={artist}
+                                            action={artist.follow}
+                                            route={routes.artist}
+                                        />
+                                    ))
                                 )
 
                         }

@@ -2,7 +2,7 @@ import { Post } from '../ui/Post';
 import { CardGroup } from '../ui/CardGroup';
 import { CardCategory } from '../ui/CardCategory';
 import { routes } from './../../routes/routes';
-import { ListArtist } from '../ui/listView/ListArtist';
+import ListArtist from '../ui/listView/ListArtist';
 import React from 'react'
 import { Link } from 'react-router-dom';
 

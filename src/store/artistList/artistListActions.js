@@ -19,6 +19,17 @@ export const artistListGetInfoSuccess = (artistList) => {
   };
 };
 
+export const artistListFollow = (followed) => {
+  return{
+    type: artistListActions.follow,
+    payload: followed,
+  }
+};
+
+export const artistListUnfollow = () => ({
+  type: artistListActions.unfollow,
+});
+
 export const artistListLoading = () => ({
   type: artistListActions.loading,
 });

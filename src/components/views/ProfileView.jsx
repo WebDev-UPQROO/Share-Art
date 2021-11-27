@@ -74,25 +74,24 @@ const ProfileView = ({
 
 
                 <div className="mb-2">
-              
+
                     <ListView title="Artistas Destacados" icon="user" route={routes.explore}>
                         {
-                            (artistList?.artistList > 0) ?
-                                ( 
+                            (artistList?.artistList.length > 0) ?
+                                (
+                                    artistList?.artistList?.map(artist => (
+                                        <ListArtist
+                                            key={artist._id}
+                                            id={artist._id}
+                                        />
+                                    ))
+                                )
+                                : (
+
                                     <div className="d-flex">
                                         <div className="loading profile-image mr-1"></div>
                                         <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
                                     </div>
-                                )
-                                : (
-                                    artistList?.artistList?.map(artist => (
-                                        <ListArtist
-                                            key={artist._id}
-                                            artistList={artist}
-                                            action={artist.follow}
-                                            route={routes.artist}
-                                        />
-                                    ))
                                 )
 
                         }

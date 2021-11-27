@@ -1,12 +1,12 @@
 import { getArtistList } from "../../services/userService";
-import { artistListActions  } from "./artistListReducer";
+import { artistListActions } from "./artistListReducer";
 
 export const artistListHandleGet = (history) => async (dispatch) => {
   dispatch(artistListLoading());
   try {
     const data = await getArtistList();
     dispatch(artistListGetInfoSuccess(data.data));
-  } catch ({message}) {
+  } catch ({ message }) {
     history.goBack();
     dispatch(artistListFailure(message));
   }
@@ -19,12 +19,10 @@ export const artistListGetInfoSuccess = (artistList) => {
   };
 };
 
-export const artistListFollow = (followed) => {
-  return{
-    type: artistListActions.follow,
-    payload: followed,
-  }
-};
+export const artistListFollow = (id) => ({
+  type: artistListActions.follow,
+  payload: id,
+});
 
 export const artistListUnfollow = () => ({
   type: artistListActions.unfollow,

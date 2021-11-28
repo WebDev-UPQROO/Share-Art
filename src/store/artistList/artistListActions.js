@@ -24,8 +24,9 @@ export const artistListFollow = (id) => ({
   payload: id,
 });
 
-export const artistListUnfollow = () => ({
+export const artistListUnfollow = (id) => ({
   type: artistListActions.unfollow,
+  payload: id,
 });
 
 export const artistListLoading = () => ({

@@ -17,8 +17,8 @@ const artistListReducer = (state = initialState, { type, payload }) => {
       return state;
 
     case artistListActions.follow:
-      const artistList = state.artistList.map((artist) => {
-        if (artist._id == payload)
+      var artistList = state.artistList.map((artist) => {
+        if (artist._id === payload)
           return {
             ...artist,
             follow: true,
@@ -34,9 +34,21 @@ const artistListReducer = (state = initialState, { type, payload }) => {
       return state;
 
     case artistListActions.unfollow:
-      return {
+      var artistList = state.artistList.map((artist) => {
+        if (artist._id === payload)
+          return {
+            ...artist,
+            follow: false,
+          };
+
+        return artist;
+      });
+
+      state = {
         ...state,
+        artistList,
       };
+      return state;
 
     case artistListActions.loading:
       return {

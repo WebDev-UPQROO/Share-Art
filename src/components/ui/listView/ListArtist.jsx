@@ -26,9 +26,13 @@ const ListArtist = ({
             </Link>
 
             {artist?.follow ? (
-                <button className={'btn btn-animation btn-outline ' + (artist?.follow && 'selected')} onClick={artistListUnfollow}>
-                    {/*  {<i className="fas fa-plus mr-1" />} Icono para dejar de seguir*/}
-
+                <button className={
+                        'btn btn-animation btn-outline ' 
+                        + (artist?.follow && 'selected')
+                    } 
+                        onClick={() => artistListUnfollow(artist?._id)}>
+                    {
+                    /*  {<i className="fas fa-plus mr-1" />} Icono para dejar de seguir*/}
                     <span>Siguiendo</span>
                 </button>
             ) : (

@@ -3,10 +3,14 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import { Link } from 'react-router-dom';
 import { getDate } from '../../helpers/getDate';
 import { getPhoto } from '../../helpers/getPhoto';
+import useModal from '../../hooks/useModal';
 import { routes } from '../../routes/routes';
+import { CarouselModal } from './CarouselModal';
 
 export const PostPreview = ({ post }) => {
     const [isExpand, setExpand] = useState(false);
+    const { toggle: toggleCarousel, visible: visibleCarousel } = useModal(false);
+
 
     return (
         <div className="post preview">
@@ -43,12 +47,20 @@ export const PostPreview = ({ post }) => {
                     )}
                 </div>
                 {
-                    (post?.photo) &&
-                    (<div className="post__images">
-                        <img src={post?.photo} alt="pub" />
+                    (post?.images?.length > 0) &&
+                    (<div className="post__images" onClick={toggleCarousel}>
+                        <img src={post?.images[0].url} alt="pub" />
+                        <span className="carousel-hover">
+                            Ver más {post?.images.length > 1 && ` +${post?.images.length - 1}`}...
+                        </span>
                     </div>)
                 }
             </div>
+            <CarouselModal
+                toggle={toggleCarousel}
+                visible={visibleCarousel}
+                images={post?.images}
+            />
         </div >
     )
 }

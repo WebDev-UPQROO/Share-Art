@@ -16,6 +16,7 @@ const API = {
 
   //Profile
   getProfilePosts: "profile/posts",
+  getArtistList: "home/artists",
 };
 
 export default API;

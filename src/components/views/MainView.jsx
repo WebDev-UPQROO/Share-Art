@@ -57,7 +57,7 @@ const MainView = ({
             <footer className="footer">
                 <div className="mb-5">
                     <ListView title="Artistas Destacados" icon="user" list={[
-                        (
+                    /*     (
                             <ListArtist
                                 key="@artist1"
                                 name="@artist1"
@@ -65,20 +65,20 @@ const MainView = ({
                                 action={true}
                                 route={routes.profile}
                             />
-                        )
+                        ) */
                     ]} route={routes.explore} />
                 </div>
 
 
 
                 <ListView title="Grupos Destacados" icon="users" list={[
-                    (<ListArtist
+                 /*    (<ListArtist
                         key="@group1"
                         name="@group1"
                         image="/assets/temp/user.jfif"
                         action={true}
                         route={routes.profile}
-                    />)
+                    />) */
                 ]} route={routes.explore} />
             </footer>
         </>

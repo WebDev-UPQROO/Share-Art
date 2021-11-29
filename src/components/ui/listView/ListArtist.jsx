@@ -1,58 +1,65 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
+import { getPhoto } from '../../../helpers/getPhoto'
+import { connect } from 'react-redux'
+import { artistListFollow, artistListUnfollow }
+    from '../../../store/artistList/artistListActions'
+import { routes } from '../../../routes/routes'
+import { selectArtist } from '../../../selectors/artistSelectors'
 
-export const ListArtist = ({ image, name, route, action }) => {
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setTimeout(() => {
-            isMounted.current &&
-                setLoading(false)
-        }, 1000);
-    }, []);
-
-    const isMounted = useRef(true);
-    useEffect(() => {
-        return () => isMounted.current = false;
-    }, [])
-
+const ListArtist = ({
+    artist,
+    artistListFollow,
+    artistListUnfollow,
+}) => {
 
     return (
         <div className="artist__item">
-            {
-                (!loading)
-                    ? (
-                        <>
-                            <Link to={route} className="artist__item__user">
-                                <picture className="profile-image">
-                                    <img src={(image) ? image : '/assets/temp/user.jfif'} alt="default" />
-                                </picture>
-                                <div className="artist__item__name">
-                                    <span>{name}</span>
-                                </div>
-                            </Link>
+            <Link to={routes.profile} className="artist__item__user">
+                <picture className="profile-image">
+                    <img src={getPhoto(artist?.photo.url)} alt="default" />
+                </picture>
 
-                            <button className={'btn btn-animation btn-outline ' + (!action && 'selected')}>
-                                {(action) && <i className="fas fa-plus mr-1" />}
-                                <span>{action ? 'Seguir' : 'Siguiendo'}</span>
-                            </button>
-                        </>
-                    )
-                    : (
-                        <>
-                            <div className="loading profile-image mr-1"></div>
-                            <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
-                        </>
-                    )
+                <div className="artist__item__name">
+                    <span>{artist?.username}</span>
+                </div>
+            </Link>
+
+            {artist?.follow ? (
+                <button className={
+                        'btn btn-animation btn-outline ' 
+                        + (artist?.follow && 'selected')
+                    } 
+                        onClick={() => artistListUnfollow(artist?._id)}>
+                    {
+                    /*  {<i className="fas fa-plus mr-1" />} Icono para dejar de seguir*/}
+                    <span>Siguiendo</span>
+                </button>
+            ) : (
+                <button
+                    className={
+                        'btn btn-animation btn-outline '
+                        + (artist?.follow && 'selected')
+                    }
+                    onClick={() => artistListFollow(artist?._id)}
+                >
+                    <i className="fas fa-plus mr-1" />
+                    <span>Seguir</span>
+                </button>
+            )
             }
+
         </div >
     )
+
 }
 
-ListArtist.propTypes = {
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    route: PropTypes.string.isRequired,
-    action: PropTypes.bool.isRequired,
+const data = (state, { id }) => ({
+    artist: selectArtist(id, state.artistListReducer),
+});
+const actions = {
+    artistListFollow,
+    artistListUnfollow,
 };
+
+export default connect(data, actions)(ListArtist);

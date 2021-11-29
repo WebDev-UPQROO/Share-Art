@@ -5,8 +5,9 @@ import { useHistory, useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import { routes } from '../../routes/routes'
 import { profilePostsHandleGet, profilePostsHandleUpdate } from '../../store/posts/postsActions'
+import { artistListHandleGet } from '../../store/artistList/artistListActions'
 import { userGetInfo } from '../../store/user/userActions'
-import { ListArtist } from '../ui/listView/ListArtist'
+import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost'
 import { LoadingPost } from '../ui/notifications/LoadingPost'
@@ -18,8 +19,10 @@ const ProfileView = ({
     user,
     userGetInfo,
     posts,
+    artistList,
     profilePostsHandleGet,
-    profilePostsHandleUpdate
+    profilePostsHandleUpdate,
+    artistListHandleGet,
 }) => {
 
     let { uid } = useParams();
@@ -27,13 +30,15 @@ const ProfileView = ({
 
     // Load Data
     useEffect(() => {
-
-        if (uid !== user.user._id)
+        if (uid !== user.user._id) {
             userGetInfo(uid, history);
+            artistListHandleGet(history);
+        }
 
         if (posts.section !== `profile${uid}`)
             profilePostsHandleGet(uid, history);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+
     }, [uid]);
 
     // Waiting Errorss
@@ -66,29 +71,51 @@ const ProfileView = ({
                 </InfiniteScroll>
             </div>
             <footer className="footer">
+
+
                 <div className="mb-2">
-                    <ListView title="Artistas Destacados" icon="user" list={[
-                        (<ListArtist
-                            key="@artist1"
-                            name="@artist1"
-                            image="/assets/temp/user.jfif"
-                            action={true}
-                            route={routes.artist}
-                        />)
-                    ]} route={routes.explore} />
+
+                    <ListView title="Artistas Destacados" icon="user" route={routes.explore}>
+                        {
+                            (artistList?.artistList.length > 0) ?
+                                (
+                                    artistList?.artistList?.map(artist => (
+                                        <ListArtist
+                                            key={artist._id}
+                                            id={artist._id}
+                                        />
+                                    ))
+                                )
+                                : (
+
+                                    <div className="d-flex">
+                                        <div className="loading profile-image mr-1"></div>
+                                        <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
+                                    </div>
+                                )
+
+                        }
+
+
+
+
+
+
+
+
+                    </ListView>
                 </div>
 
 
 
-                <ListView title="Grupos Destacados" icon="users" list={[
-                    (<ListArtist
+                {/* <ListView title="Grupos Destacados" icon="users" list={[
+                    <ListArtist
                         key="@group1"
-                        name="@group1"
-                        image="/assets/temp/user.jfif"
+                        artisList={null}
                         action={true}
                         route={routes.artist}
-                    />)
-                ]} route={routes.explore} />
+                    />
+                ]} route={routes.explore} /> */}
             </footer>
         </>
 
@@ -98,11 +125,13 @@ const ProfileView = ({
 const data = (state) => ({
     user: state.userReducer,
     auth: state.authReducer,
-    posts: state.postsReducer
+    posts: state.postsReducer,
+    artistList: state.artistListReducer
 });
 const actions = {
     userGetInfo,
     profilePostsHandleGet,
-    profilePostsHandleUpdate
+    profilePostsHandleUpdate,
+    artistListHandleGet
 };
 export default connect(data, actions)(ProfileView);

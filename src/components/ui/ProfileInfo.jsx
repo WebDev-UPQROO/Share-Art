@@ -15,7 +15,7 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                         </div>
                         <div className="profile__content">
                             <picture className="profile-image lg">
-                                <img src={getPhoto(user?.photo)} alt="default" />
+                                <img src={getPhoto(user?.photo?.url)} alt="default" />
                             </picture>
 
                             {

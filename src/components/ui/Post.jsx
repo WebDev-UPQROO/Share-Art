@@ -3,7 +3,11 @@ import LinesEllipsis from 'react-lines-ellipsis';
 import { Link } from 'react-router-dom';
 import { getDate } from '../../helpers/getDate';
 import { getPhoto } from '../../helpers/getPhoto';
+import useModal from '../../hooks/useModal';
 import { routes } from '../../routes/routes';
+import { CarouselModal } from '../modals/CarouselModal';
+import PostingModal from '../modals/PostingModal';
+import { PostPreview } from '../modals/PostPreview';
 import { CommentsGroup } from './comments/CommentsGroup';
 
 export const Post = ({ uid, post, group = false }) => {
@@ -11,6 +15,10 @@ export const Post = ({ uid, post, group = false }) => {
         like: 1,
         dislike: 0,
     }
+    const { toggle: toggleShare, visible: visibleShare } = useModal(false);
+    const { toggle: toggleEdit, visible: visibleEdit } = useModal(false);
+    const { toggle: toggleCarousel, visible: visibleCarousel } = useModal(false);
+
     const userReaction = post?.votes?.find(user => user[0] === uid);
     const userLike = userReaction && userReaction[1] === reactions.like;
     const userDislike = userReaction && userReaction[1] === reactions.dislike;
@@ -23,7 +31,7 @@ export const Post = ({ uid, post, group = false }) => {
             <div className="post">
                 <div className="post__heading">
                     <picture className="profile-image">
-                        <img src={getPhoto(post?.user?.photo)} alt="default" />
+                        <img src={getPhoto(post?.user?.photo?.url)} alt="default" />
                     </picture>
                     <div className="ml-1">
                         <Link
@@ -62,7 +70,7 @@ export const Post = ({ uid, post, group = false }) => {
                                             <i className="fas fa-ellipsis-v" />
                                         </button>
                                         <div className="menu-dropdown">
-                                            <button className="item btn btn-secondary" >
+                                            <button className="item btn btn-secondary" onClick={toggleEdit} >
                                                 Editar
                                             </button>
                                             <button className="item btn btn-secondary" >
@@ -80,24 +88,33 @@ export const Post = ({ uid, post, group = false }) => {
 
                 <div className="post__content mt-1">
                     <span>{post?.title}</span>
-                    <div className="mb-1">
-                        {isExpand ? (
-                            <div className="">
-                                <div>{post?.post}</div>
-                                <p className="btn-link  mt-1" onClick={() => setExpand(!isExpand)}>...Ver  menos</p>
-                            </div>
+                    {(post?.post.trim() != "") &&
+                        <div className="mb-1">
+                            {isExpand ? (
+                                <div className="">
+                                    <div>{post?.post}</div>
+                                    <p className="btn-link  mt-1" onClick={() => setExpand(!isExpand)}>...Ver  menos</p>
+                                </div>
 
-                        ) : (
-                            <div onClick={() => setExpand(!isExpand)}>
-                                <LinesEllipsis text={post?.post} maxLine="2" ellipsis="...ver más" />
-                            </div>
-                        )}
-                    </div>
+                            ) : (
+                                <div onClick={() => setExpand(!isExpand)}>
+                                    <LinesEllipsis text={post?.post} maxLine="2" ellipsis="...ver más" />
+                                </div>
+                            )}
+                        </div>
+                    }
                     {
-                        (post?.photo) &&
-                        (<div className="post__images">
-                            <img src={post?.photo} alt="pub" />
+                        (post?.images?.length > 0) &&
+                        (<div className="post__images" onClick={toggleCarousel}>
+                            <img src={post?.images[0].url} alt="pub" />
+                            <span className="carousel-hover">
+                                Ver más {post?.images.length > 1 && ` +${post?.images.length - 1}`}...
+                            </span>
                         </div>)
+                    }
+                    {
+                        (post?.postShared) &&
+                        (<PostPreview post={post?.postShared} />)
                     }
                 </div>
 
@@ -150,6 +167,7 @@ export const Post = ({ uid, post, group = false }) => {
                         title={(uid === post?.user?._id ? "Ya has compartido esta publicación" : null)}
                         className={"post__share__side btn btn-secondary ml-1 "
                             + (uid !== post?.user?._id && "btn-animation")}
+                        onClick={toggleShare}
                     >
                         <i className="fas fa-share-alt btn-icon-left" />
                         <span className="text-action-post">Compartir</span>
@@ -157,6 +175,23 @@ export const Post = ({ uid, post, group = false }) => {
                 </div>
                 <CommentsGroup active={comments} comments={post?.comments} />
             </div >
+            <PostingModal
+                toggle={toggleShare}
+                visible={visibleShare}
+                post={(post?.postShared) ? post?.postShared : post}
+            />
+            <PostingModal
+                toggle={toggleEdit}
+                visible={visibleEdit}
+                editable={post}
+                post={(post?.postShared) ? post?.postShared : null}
+            />
+
+            <CarouselModal
+                toggle={toggleCarousel}
+                visible={visibleCarousel}
+                images={post?.images}
+            />
         </div>
 
     )

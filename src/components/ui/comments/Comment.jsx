@@ -10,7 +10,8 @@ const Comment = ({ id, comment, auth, commentsHandleGet, counter }) => {
     useEffect(() => {
         if (!comment)
             commentsHandleGet([id]);
-    }, [])
+
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const notFinalComment = comment?.comments?.length > 0;
     const [response, setResponse] = useState(false);
@@ -37,7 +38,7 @@ const Comment = ({ id, comment, auth, commentsHandleGet, counter }) => {
                             <div className="d-flex">
                                 <picture className='profile-image xs mr-1'>
                                     <img
-                                        src={getPhoto(comment?.user?.photo)}
+                                        src={getPhoto(comment?.user?.photo?.url)}
                                         alt="profile"
                                     />
                                 </picture>

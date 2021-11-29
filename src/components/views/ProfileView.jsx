@@ -31,7 +31,7 @@ const ProfileView = ({
         if (uid !== user.user._id)
             userGetInfo(uid, history);
 
-        if (posts.section !== "profile" || uid !== user.user._id)
+        if (posts.section !== `profile${uid}`)
             profilePostsHandleGet(uid, history);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [uid]);

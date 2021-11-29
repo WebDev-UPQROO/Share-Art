@@ -38,7 +38,7 @@ const Navbar = ({ menu: [menu, setMenu], auth: { user } }) => {
 
                             <Link className="btn btn-secondary btn-animation btn-profile text-none" to={routes.profile + user._id}>
                                 <picture className="profile-image">
-                                    <img src={getPhoto(user?.photo)} alt="profile" />
+                                    <img src={getPhoto(user?.photo?.url)} alt="profile" />
                                 </picture>
                                 <span>{user?.username ?? "Username"}</span>
                             </Link>

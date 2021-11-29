@@ -9,7 +9,7 @@ import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost';
 import { LoadingPost } from '../ui/notifications/LoadingPost';
 import { Post } from '../ui/Post';
-import { Posting } from '../ui/Posting';
+import Posting from '../ui/Posting';
 import { routes } from './../../routes/routes';
 
 const MainView = ({
@@ -22,10 +22,9 @@ const MainView = ({
     const history = useHistory();
 
     useEffect(() => {
-        if (posts.section !== "home")
+        if (posts.section !== `home${user?._id}`)
             homePostsHandleGet(user?._id, history);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user?._id])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (posts.error !== null)

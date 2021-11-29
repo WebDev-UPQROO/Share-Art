@@ -4,22 +4,24 @@
   font-size: $fontSize;
   padding: 1rem $defMargin;
 
+  &.preview {
+    border: 2px solid getColor(secondary);
+  }
+
   .post__heading {
     display: flex;
     align-items: center;
-    
 
     small {
       color: getColor(text-secondary);
       font-weight: 600;
       font-size: $fontSize - 0.2rem;
-      
     }
 
-    .post__heading--user{
+    .post__heading--user {
       color: getColor(text-primary);
       text-decoration: none;
-      &:hover{
+      &:hover {
         font-weight: 600;
       }
     }
@@ -35,8 +37,8 @@
       display: flex;
       align-items: baseline;
 
-      .post__options__menu{
-        button{
+      .post__options__menu {
+        button {
           margin: 0;
           padding: 1rem;
         }
@@ -45,7 +47,7 @@
   }
 
   .post__content {
-    span{
+    span {
       display: inline-block;
       font-size: $fontSize + 0.3;
       margin-bottom: 0.2rem;
@@ -54,35 +56,55 @@
       height: 30rem;
       border-radius: $defRadius;
       overflow: hidden;
+      position: relative;
+      cursor: pointer;
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
+
+      .carousel-hover {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        content: "Ver mas...";
+        font-size: 2rem;
+        left: 0;
+        width: 100%;
+        top: 0;
+        height: 100%;
+        background-color: #000000b6;
+        opacity: 0;
+        transition: opacity ease 0.3s;
+      }
+      &:hover .carousel-hover {
+        opacity: 1;
+      }
     }
-    .LinesEllipsis-ellipsis{
+    .LinesEllipsis-ellipsis {
       margin-left: 0.5rem;
       font-size: $fontSize;
       @extend .btn-link;
     }
   }
 
-  .post__share{
+  .post__share {
     display: flex;
     align-items: center;
 
-    .post__share__side{
+    .post__share__side {
       flex-grow: 1;
     }
-    .text-action-post{
+    .text-action-post {
       display: none;
     }
 
     @media (min-width: 480px) {
-      .text-action-post{
+      .text-action-post {
         display: inline-block;
       }
-  
     }
   }
 }

@@ -21,8 +21,13 @@
     display: none;
   }
 
+  input ~ label {
+    cursor: pointer;
+  }
+
   input:checked ~ label {
     border: 2px solid getColor(primary);
+    background-color: getColor(primary);
 
     svg {
       color: getColor(primary);
@@ -88,4 +93,8 @@
     display: flex;
     align-items: center;
   }
+}
+
+textarea{
+  font-family: sans-serif;
 }

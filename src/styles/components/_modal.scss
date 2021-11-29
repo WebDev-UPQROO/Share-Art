@@ -1,0 +1,76 @@
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(#000000, 0.6);
+  z-index: 20;
+
+  display: flex;
+  justify-content: center;
+
+  animation: fadeIn;
+  animation-duration: 0.3s;
+
+  @media (min-width: 480px) {
+    align-items: center;
+    padding-top: 3rem;
+  }
+
+  .modal-dialog {
+    position: relative;
+    box-shadow: 0px 4px 10px 0px getColor(base);
+    background-color: getColor(card-color);
+    border-radius: $defRadius;
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+
+    animation: fadeIn;
+    animation-duration: 0.3s;
+    padding: $defMargin + 2rem $defMargin;
+
+    .close {
+      position: absolute;
+      top: $defMargin;
+      right: $defMargin;
+
+      font-size: $fontSize + 1rem;
+      margin: 0;
+    }
+
+    &.xs {
+      max-width: 30rem;
+      .modal-content {
+        max-width: 25rem;
+      }
+    }
+
+    &.md {
+      max-width: 50rem;
+      .modal-content {
+        max-width: 35rem;
+      }
+    }
+
+    &.lg {
+      max-width: 80rem;
+      .modal-content {
+        max-width: 60rem;
+      }
+    }
+
+    .modal-content {
+      margin: auto;
+
+      .modal-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        font-size: 2rem;
+      }
+    }
+  }
+}

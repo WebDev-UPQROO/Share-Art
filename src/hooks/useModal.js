@@ -5,7 +5,7 @@ const useModal = (state = false) => {
   function toggle() {
     setVisible(!visible);
   }
-  return { toggle, visible };
+  return { visible, toggle };
 };
 
 export default useModal;

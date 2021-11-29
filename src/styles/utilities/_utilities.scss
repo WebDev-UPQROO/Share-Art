@@ -64,6 +64,17 @@
   }
 }
 
+.preview-img {
+  display: block;
+  height: 10rem;
+  width: 10rem;
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .divider {
   border-top: 1px solid getColor(loading-first);
   margin-top: 3;

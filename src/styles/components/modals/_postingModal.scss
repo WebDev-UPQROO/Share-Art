@@ -1,0 +1,60 @@
+.posting__form--interests {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.posting__form--buttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: $defMargin;
+  flex-wrap: wrap;
+
+  @media (min-width: 480px) {
+    flex-direction: row;
+  }
+
+  .cancel {
+    @extend .btn;
+    @extend .btn-animation;
+    @extend .btn-secondary;
+  }
+
+  .submit {
+    @extend .btn;
+    @extend .btn-animation;
+    @extend .btn-primary;
+    padding: 1rem;
+  }
+}
+
+.posting__form--media {
+  margin-bottom: 1rem;
+  label {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @extend .btn;
+    @extend .btn-animation;
+    @extend .btn-secondary;
+
+    i{
+      margin-left: 1rem;
+    }
+  }
+  input {
+    display: none;
+  }
+
+  .posting__form--media--images{
+    display: flex;
+    gap: $defMargin;
+    flex-wrap: wrap;
+    margin-top: $defMargin;
+  }
+}

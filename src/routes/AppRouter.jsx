@@ -9,6 +9,7 @@ import Navbar from '../components/ui/Navbar';
 import MainView from '../components/views/MainView';
 import ExploreView from '../components/views/ExploreView';
 import ProfileView from '../components/views/ProfileView';
+import ArtistView from '../components/views/ArtistView';
 import { SettingView } from '../components/views/SettingView';
 import { HelpView } from '../components/views/HelpView';
 import { PrivateRoute } from './PrivateRoute';
@@ -66,6 +67,20 @@ const AppRouter = ({ user: { user } }) => {
                                     exact
                                     path={routes.explore}
                                     component={ExploreView}
+                                    isAuthenticated={user?._id}
+                                />
+
+                                <PublicRoute
+                                    exact
+                                    path={routes.artistFollowers}
+                                    component={ArtistView}
+                                    isAuthenticated={user?._id}
+                                />
+
+                                <PublicRoute
+                                    exact
+                                    path={routes.artistFollowed}
+                                    component={ArtistView}
                                     isAuthenticated={user?._id}
                                 />
 

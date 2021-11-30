@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import { routes } from '../../routes/routes'
 import { profilePostsHandleGet, profilePostsHandleUpdate } from '../../store/posts/postsActions'
-import { artistListHandleGet } from '../../store/artistList/artistListActions'
+import { artistFollowersHandleGet, artistFollowedHandleGet} from '../../store/artistList/artistListActions'
 import { userGetInfo } from '../../store/user/userActions'
 import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
@@ -19,10 +19,12 @@ const ProfileView = ({
     user,
     userGetInfo,
     posts,
-    artistList,
+    artistFollowers,
+    artistFollowed,
     profilePostsHandleGet,
     profilePostsHandleUpdate,
-    artistListHandleGet,
+    artistFollowersHandleGet, 
+    artistFollowedHandleGet
 }) => {
 
     let { uid } = useParams();
@@ -32,7 +34,8 @@ const ProfileView = ({
     useEffect(() => {
         if (uid !== user.user._id) {
             userGetInfo(uid, history);
-            artistListHandleGet(history);
+            artistFollowersHandleGet(auth?.user?._id, history);
+            artistFollowedHandleGet(auth?.user?._id, history);
         }
 
         if (posts.section !== `profile${uid}`)
@@ -70,16 +73,16 @@ const ProfileView = ({
                     {posts.posts.map((post, index) => (<Post key={index} post={post} uid={auth?.user?._id} />))}
                 </InfiniteScroll>
             </div>
+
             <footer className="footer">
-
-
                 <div className="mb-2">
 
-                    <ListView title="Artistas Destacados" icon="user" route={routes.explore}>
+                    <ListView title={"Seguidores (" + artistFollowers?.artistFollowers.length + ")"  } icon="user" route={routes.artistFollowers}>
+                         
                         {
-                            (artistList?.artistList.length > 0) ?
+                            (artistFollowers?.artistFollowers.length > 0) ?
                                 (
-                                    artistList?.artistList?.map(artist => (
+                                    artistFollowers?.artistFollowers?.map(artist => (
                                         <ListArtist
                                             key={artist._id}
                                             id={artist._id}
@@ -88,34 +91,37 @@ const ProfileView = ({
                                 )
                                 : (
 
-                                    <div className="d-flex">
+                                    <div className="d-flex" style={{margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center'}}>
                                         <div className="loading profile-image mr-1"></div>
                                         <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
                                     </div>
                                 )
-
                         }
-
-
-
-
-
-
-
-
                     </ListView>
                 </div>
 
+                <div className="mb-2">
+                    <ListView title={"Seguiendo (" + artistFollowed?.artistFollowed.length + ")"  } icon="user" route={routes.artistFollowed}>
+                        {
+                            (artistFollowed?.artistFollowed.length > 0) ?
+                                (
+                                    artistFollowed?.artistFollowed?.map(artist => (
+                                        <ListArtist
+                                            key={artist._id}
+                                            id={artist._id}
+                                        />
+                                    ))
+                                )
+                                : (
 
-
-                {/* <ListView title="Grupos Destacados" icon="users" list={[
-                    <ListArtist
-                        key="@group1"
-                        artisList={null}
-                        action={true}
-                        route={routes.artist}
-                    />
-                ]} route={routes.explore} /> */}
+                                    <div className="d-flex" style={{margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center'}}>
+                                        <div className="loading profile-image mr-1"></div>
+                                        <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
+                                    </div>
+                                )
+                        }
+                    </ListView>
+                </div>
             </footer>
         </>
 
@@ -126,12 +132,14 @@ const data = (state) => ({
     user: state.userReducer,
     auth: state.authReducer,
     posts: state.postsReducer,
-    artistList: state.artistListReducer
+    artistFollowers: state.artistListReducer,
+    artistFollowed: state.artistListReducer
 });
 const actions = {
     userGetInfo,
     profilePostsHandleGet,
     profilePostsHandleUpdate,
-    artistListHandleGet
+    artistFollowersHandleGet, 
+    artistFollowedHandleGet
 };
 export default connect(data, actions)(ProfileView);

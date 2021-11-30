@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
 import { homePostsHandleGet, homePostsHandleUpdate } from '../../store/posts/postsActions';
-import { ListArtist } from '../ui/listView/ListArtist';
+import { artistListHandleGet } from '../../store/artistList/artistListActions'
+import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost';
 import { LoadingPost } from '../ui/notifications/LoadingPost';
@@ -15,8 +16,10 @@ import { routes } from './../../routes/routes';
 const MainView = ({
     auth: { user },
     posts,
+    artistList,
     homePostsHandleGet,
-    homePostsHandleUpdate
+    homePostsHandleUpdate,
+    artistListHandleGet
 }) => {
 
     const history = useHistory();
@@ -24,6 +27,7 @@ const MainView = ({
     useEffect(() => {
         if (posts.section !== `home${user?._id}`)
             homePostsHandleGet(user?._id, history);
+            artistListHandleGet(history);
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
@@ -55,31 +59,30 @@ const MainView = ({
 
 
             <footer className="footer">
-                <div className="mb-5">
-                    <ListView title="Artistas Destacados" icon="user" list={[
-                    /*     (
-                            <ListArtist
-                                key="@artist1"
-                                name="@artist1"
-                                image="/assets/temp/user.jfif"
-                                action={true}
-                                route={routes.profile}
-                            />
-                        ) */
-                    ]} route={routes.explore} />
+                <div className="mb-2">
+                    <ListView title={"Seguidores (" + artistList?.artistList.length + ")"  } icon="user" route={routes.explore}>
+                            {
+                                (artistList?.artistList.length > 0) ?
+                                    (
+                                        artistList?.artistList?.map(artist => (
+                                            <ListArtist
+                                                key={artist._id}
+                                                id={artist._id}
+                                            />
+                                        ))
+                                    )
+                                    : (
+                                        <div className="d-flex" style={{margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center'}}>
+                                            <div className="loading profile-image mr-1"></div>
+                                            <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
+                                        </div>
+                                    )
+                            }
+                        </ListView>
+                
                 </div>
 
 
-
-                <ListView title="Grupos Destacados" icon="users" list={[
-                 /*    (<ListArtist
-                        key="@group1"
-                        name="@group1"
-                        image="/assets/temp/user.jfif"
-                        action={true}
-                        route={routes.profile}
-                    />) */
-                ]} route={routes.explore} />
             </footer>
         </>
 
@@ -88,10 +91,12 @@ const MainView = ({
 
 const data = (state) => ({
     posts: state.postsReducer,
-    auth: state.authReducer
+    auth: state.authReducer,
+    artistList: state.artistListReducer,
 });
 const actions = {
     homePostsHandleGet,
-    homePostsHandleUpdate
+    homePostsHandleUpdate,
+    artistListHandleGet,
 };
 export default connect(data, actions)(MainView);

@@ -17,6 +17,9 @@ const API = {
   //Profile
   getProfilePosts: "profile/posts",
   getArtistList: "home/artists",
+  getFollowers: "profile/followers",
+  getFollowed: "profile/followed",
+
 };
 
 export default API;

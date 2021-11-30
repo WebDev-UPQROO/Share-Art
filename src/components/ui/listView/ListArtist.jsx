@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { getPhoto } from '../../../helpers/getPhoto'
 import { connect } from 'react-redux'
-import { artistListFollow, artistListUnfollow }
-    from '../../../store/artistList/artistListActions'
+import { artistListFollow, artistListUnfollow } from '../../../store/artistList/artistListActions'
 import { routes } from '../../../routes/routes'
 import { selectArtist } from '../../../selectors/artistSelectors'
 
@@ -15,9 +14,9 @@ const ListArtist = ({
 
     return (
         <div className="artist__item">
-            <Link to={routes.profile} className="artist__item__user">
+            <Link to={routes.profile + artist?._id } className="artist__item__user">
                 <picture className="profile-image">
-                    <img src={getPhoto(artist?.photo.url)} alt="default" />
+                    <img src={getPhoto(artist?.photo?.url)} alt="default" />
                 </picture>
 
                 <div className="artist__item__name">

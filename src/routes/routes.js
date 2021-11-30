@@ -6,6 +6,8 @@ export const routes = {
     explore: '/app/explore',
     profile: '/app/profile/',
     help: '/app/help',
+    artistFollowers: '/app/artist/followers',
+    artistFollowed: '/app/artist/followed',
 
     // Configs
     configs: '/app/configs',

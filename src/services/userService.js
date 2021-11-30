@@ -18,3 +18,25 @@ export const getArtistList = async () => {
       throw(Error(`Error ${status} - ${data.error}`));
   }
 };
+
+export const getFollowers = async (idUser = null, lastArtist = null) => {
+  const body = {};
+  if (idUser) body["idUser"] = idUser;
+  if (lastArtist) body["id"] = lastArtist;
+
+  try {
+    const data = await axios.put(API.base + API.getFollowers, body);
+    return data;
+  } catch ({response: {data, status}}) {
+      throw(Error(`Error ${status} - ${data.error}`));
+  }
+};
+
+export const getFollowed = async () => {
+  try {
+    const data = await axios.put(API.base + API.getFollowed);
+    return data;
+  } catch ({response: {data, status}}) {
+      throw(Error(`Error ${status} - ${data.error}`));
+  }
+};

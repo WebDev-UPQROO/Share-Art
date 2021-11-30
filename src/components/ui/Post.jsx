@@ -88,7 +88,7 @@ export const Post = ({ uid, post, group = false }) => {
 
                 <div className="post__content mt-1">
                     <span>{post?.title}</span>
-                    {(post?.post.trim() != "") &&
+                    {(post?.post.trim() !== "") &&
                         <div className="mb-1">
                             {isExpand ? (
                                 <div className="">

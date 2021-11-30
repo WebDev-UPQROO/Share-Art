@@ -25,6 +25,28 @@ export const authReducer = (state = initialState, { type, payload }) => {
         loading: false,
       };
 
+    case authActions.changeImage:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          photo: payload,
+        },
+        loading: false,
+        error: null,
+      };
+
+    case authActions.changeCover:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          cover: payload,
+        },
+        loading: false,
+        error: null,
+      };
+
     case authActions.loading:
       return {
         ...state,
@@ -52,6 +74,8 @@ export const authReducer = (state = initialState, { type, payload }) => {
 export const authActions = {
   login: "[auth] login",
   logout: "[auth] logout",
+  changeImage: "[auth] changeImage",
+  changeCover: "[auth] changeCover",
   loading: "[auth] loading",
   failure: "[auth] failure",
   resetError: "[auth] resetError",

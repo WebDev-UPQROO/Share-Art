@@ -1,7 +1,7 @@
 import React from 'react'
 import { userEditName } from '../../store/user/userActions'
 import { connect } from 'react-redux'
-import { getPhoto } from '../../helpers/getPhoto'
+import { getCover, getPhoto } from '../../helpers/getPhoto'
 import { Link } from 'react-router-dom'
 import { routes } from '../../routes/routes'
 
@@ -11,8 +11,12 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
             {
                 (!loading && !error) ? (
                     <>
-                        <div className="profile__background">
-                        </div>
+                        <div className="profile__background"
+                            style={{
+                                background: `url(${getCover(user?.cover?.url)}) center center`,
+                                backgroundSize: "cover",
+                            }}
+                        />
                         <div className="profile__content">
                             <picture className="profile-image lg">
                                 <img src={getPhoto(user?.photo?.url)} alt="default" />
@@ -97,8 +101,7 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                 )
                     : (
                         <>
-                            <div className="profile__background">
-                            </div>
+                            <div className="profile__background" />
                             <div className="profile__content">
 
                                 <div className="d-flex">
@@ -112,7 +115,7 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                         </>
                     )
             }
-        </div>
+        </div >
     )
 }
 

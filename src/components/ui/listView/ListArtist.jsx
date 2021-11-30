@@ -17,7 +17,7 @@ const ListArtist = ({
         <div className="artist__item">
             <Link to={routes.profile} className="artist__item__user">
                 <picture className="profile-image">
-                    <img src={getPhoto(artist?.photo.url)} alt="default" />
+                    <img src={getPhoto(artist?.photo?.url)} alt="default" />
                 </picture>
 
                 <div className="artist__item__name">

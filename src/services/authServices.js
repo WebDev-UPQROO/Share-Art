@@ -16,3 +16,27 @@ export const login = async (formData) => {
     }
   }
 };
+
+export const changeImage = async (formData) => {
+  try {
+    const data = await axios.put(API.base + API.changeProfile, formData);
+    return data;
+  } catch ({ response: { data, status } }) {
+    switch (status) {
+      default:
+        throw Error(`Error ${status} - ${data.error}`);
+    }
+  }
+};
+
+export const changeCover = async (formData) => {
+  try {
+    const data = await axios.put(API.base + API.changeCover, formData);
+    return data;
+  } catch ({ response: { data, status } }) {
+    switch (status) {
+      default:
+        throw Error(`Error ${status} - ${data.error}`);
+    }
+  }
+};

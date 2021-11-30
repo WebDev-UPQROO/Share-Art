@@ -1,4 +1,4 @@
-import { login } from "../../services/authServices";
+import { changeCover, changeImage, login } from "../../services/authServices";
 import { authActions } from "./authReducer";
 
 export const authHandleLogin =
@@ -27,6 +27,30 @@ export const authHandleLogout = (history) => async (dispatch) => {
   history.replace("/auth/login");
 };
 
+export const authHandleChangePhoto =
+  (formData, loading) => async (dispatch) => {
+    dispatch(authLoading());
+    try {
+      const data = await changeImage(formData);
+      dispatch(authChangeImage(data.data.photo));
+    } catch (e) {
+      dispatch(authFailure(e.message));
+    }
+    loading(false);
+  };
+
+export const authHandleChangeCover =
+  (formData, loading) => async (dispatch) => {
+    dispatch(authLoading());
+    try {
+      const data = await changeCover(formData);
+      dispatch(authChangeCover(data.data.cover));
+    } catch (e) {
+      dispatch(authFailure(e.message));
+    }
+    loading(false);
+  };
+
 export const authLogin = (uid) => {
   return {
     type: authActions.login,
@@ -43,6 +67,20 @@ export const authLogout = () => {
 export const authLoading = () => ({
   type: authActions.loading,
 });
+
+export const authChangeImage = (image) => {
+  return {
+    type: authActions.changeImage,
+    payload: image,
+  };
+};
+
+export const authChangeCover = (image) => {
+  return {
+    type: authActions.changeCover,
+    payload: image,
+  };
+};
 
 export const authFailure = (error) => ({
   type: authActions.failure,

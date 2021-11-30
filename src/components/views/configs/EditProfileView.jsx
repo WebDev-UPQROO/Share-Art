@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getPhoto } from '../../../helpers/getPhoto'
+import { toast } from 'react-toastify'
 import { routes } from '../../../routes/routes'
+import ChangeCover from '../../ui/ChangeCover'
+import ChangeImage from '../../ui/ChangeImage'
 
-export const EditProfileView = () => {
+const EditProfileView = ({ auth }) => {
+
+    useEffect(() => {
+        if (auth.error !== null)
+            toast.error(auth.error);
+    }, [auth.error]);
+
     return (
         <div className="main-full">
             <Link to={routes.configs} className="btn-animation btn-link">
@@ -12,22 +21,11 @@ export const EditProfileView = () => {
             </Link>
             <h1 className="mb-5 mt-2">Mi Perfil</h1>
 
-            <span>Foto de perfil</span>
-
-            <div className="edit-profile mt-2">
-                <div className="edit-profile__photo">
-                    <picture className="profile-image lg">
-                        <img src={getPhoto(null)} alt="default" />
-                    </picture>
-
-                    <button className="edit-profile__photo--edit">
-                        Modificar
-                    </button>
-
-                    <button className="edit-profile__photo--delete">
-                        Eliminar
-                    </button>
-                </div>
+            <div className="edit-profile">
+                <span className="edit-profile-title">Foto de perfil</span>
+                <ChangeImage auth={auth} />
+                <span className="edit-profile-title">Portada</span>
+                <ChangeCover auth={auth} />
 
                 <div className="edit-profile__form mt-4">
                     <label htmlFor="description">Descripción</label>
@@ -90,3 +88,8 @@ export const EditProfileView = () => {
         </div>
     )
 }
+
+const data = (state) => ({
+    auth: state.authReducer
+})
+export default connect(data)(EditProfileView)

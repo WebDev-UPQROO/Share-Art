@@ -101,7 +101,7 @@ const ProfileView = ({
                 </div>
 
                 <div className="mb-2">
-                    <ListView title={"Seguiendo (" + artistFollowed?.artistFollowed.length + ")"  } icon="user" route={routes.artistFollowed}>
+                    <ListView title={"Siguiendo (" + artistFollowed?.artistFollowed.length + ")"  } icon="user" route={routes.artistFollowed}>
                         {
                             (artistFollowed?.artistFollowed.length > 0) ?
                                 (

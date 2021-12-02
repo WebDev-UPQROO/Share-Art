@@ -74,8 +74,8 @@ export const ArtistView = ({
                                 >
                                     {artistFollowers?.artistFollowers?.map( ( artist, index ) => 
                                     <> 
-                                        <ListArtist key={artist._id} id={artist._id} />
-
+                                        <ListArtist key={index} id={artist._id} />
+                                        {console.log(artist._id)}
                                         {(artistFollowers?.artistFollowers?.length - 1 === index) ?  
 
                                         null : <div style={{ borderTop: "1px solid #1C1C1C ", marginTop: 3, marginBottom: 3 }}></div>}
@@ -105,7 +105,7 @@ export const ArtistView = ({
                                     >
                                         {artistFollowed?.artistFollowed?.map( ( artist, index ) => 
                                         <> 
-                                            <ListArtist key={artist._id} id={artist._id} />
+                                            <ListArtist key={index} id={artist._id} />
 
                                             {(artistFollowed?.artistFollowed?.length - 1 === index) ?  
 

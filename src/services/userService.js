@@ -32,9 +32,13 @@ export const getFollowers = async (idUser = null, lastArtist = null) => {
   }
 };
 
-export const getFollowed = async () => {
+export const getFollowed = async (idUser = null, lastArtist = null) => {
+  const body = {};
+  if (idUser) body["idUser"] = idUser;
+  if (lastArtist) body["id"] = lastArtist;
+
   try {
-    const data = await axios.put(API.base + API.getFollowed);
+    const data = await axios.put(API.base + API.getFollowed, body);
     return data;
   } catch ({response: {data, status}}) {
       throw(Error(`Error ${status} - ${data.error}`));

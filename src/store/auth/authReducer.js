@@ -47,6 +47,26 @@ export const authReducer = (state = initialState, { type, payload }) => {
         error: null,
       };
 
+    case authActions.changeProfileInfo:
+      return {
+        ...state,
+        user: {
+          ...payload,
+        },
+        loading: false,
+        error: null,
+      };
+
+    case authActions.changePersonalInfo:
+      return {
+        ...state,
+        user: {
+          ...payload,
+        },
+        loading: false,
+        error: null,
+      };
+
     case authActions.loading:
       return {
         ...state,
@@ -64,6 +84,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         error: null,
+        loading: false,
       };
 
     default:
@@ -76,6 +97,8 @@ export const authActions = {
   logout: "[auth] logout",
   changeImage: "[auth] changeImage",
   changeCover: "[auth] changeCover",
+  changeProfileInfo: "[auth] changeProfileInfo",
+  changePersonalInfo: "[auth] changePersonalInfo",
   loading: "[auth] loading",
   failure: "[auth] failure",
   resetError: "[auth] resetError",

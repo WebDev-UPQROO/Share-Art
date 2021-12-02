@@ -21,6 +21,9 @@ const API = {
   // Configs
   changeProfile: "profile/picture/profile",
   changeCover: "profile/picture/cover",
+  changeProfileInfo: "profile/update/profile",
+  changePersonalInfo: "profile/update/info",
+  changePassword: "auth/change/password",
 };
 
 export default API;

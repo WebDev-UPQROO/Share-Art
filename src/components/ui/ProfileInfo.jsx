@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getCover, getPhoto } from '../../helpers/getPhoto'
 import { Link } from 'react-router-dom'
 import { routes } from '../../routes/routes'
+import { getAge } from '../../helpers/getDate'
 
 const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
     return (
@@ -42,14 +43,18 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
 
 
                             <h2 className="profile__content__name">{user?.name}</h2>
-                            <p className="profile__content__user mb-1">{user?.username}</p>
+                            <p className="profile__content__user mb-1">@{user?.username}</p>
 
                             <p className="mb-1">{user?.bio}</p>
                             {
                                 (user?.age) &&
                                 <p>
                                     <i className="fas fa-user mr-1" />
-                                    <span>Edad: {user?.age} años</span>
+                                    <span>Edad: {
+                                        user?.birthday
+                                            ? `${getAge(user?.birthday)} años`
+                                            : "Desconocida"}
+                                    </span>
                                 </p>
                             }
 

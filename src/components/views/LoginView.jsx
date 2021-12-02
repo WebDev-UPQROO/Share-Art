@@ -47,13 +47,16 @@ const LoginView = ({ auth, authHandleLogin }) => {
                     <Form className="mt-3">
                         <div className="form-item full">
                             <label htmlFor="username">Nombre de usuario</label>
-                            <Field
-                                id="username"
-                                name="username"
-                                type="text"
-                                placeholder="Nombre de usuario"
-                                className="form-input input"
-                            />
+                            <div className="form-input username-input">
+                                <Field
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    placeholder="Nombre de usuario"
+                                    className="input"
+                                />
+                            </div>
+
                             <ErrorMessage name="username">
                                 {msg => <ErrorForm>{msg}</ErrorForm>}
                             </ErrorMessage>

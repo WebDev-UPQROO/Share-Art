@@ -20,8 +20,8 @@ import { AuthNavBar } from '../components/ui/AuthNavBar';
 import { connect } from 'react-redux';
 import ScrollToTop from '../components/ScrollToTop';
 import EditProfileView from '../components/views/configs/EditProfileView';
-import { EditPersonalView } from '../components/views/configs/EditPersonalView';
-import { EditPassword } from '../components/views/configs/EditPassword';
+import EditPersonalView from '../components/views/configs/EditPersonalView';
+import EditPassword from '../components/views/configs/EditPassword';
 
 
 const AppRouter = ({ user: { user } }) => {

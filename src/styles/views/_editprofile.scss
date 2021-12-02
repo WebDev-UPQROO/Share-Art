@@ -58,8 +58,7 @@
     width: 100%;
     max-width: 40rem;
 
-    input,
-    textarea {
+    .input{
       @extend .input;
       margin-top: 1rem;
       margin-bottom: 3rem;

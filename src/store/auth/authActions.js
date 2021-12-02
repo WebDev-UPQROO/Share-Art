@@ -1,4 +1,12 @@
-import { changeCover, changeImage, login } from "../../services/authServices";
+import { toast } from "react-toastify";
+import {
+  changeCover,
+  changeImage,
+  changePassword,
+  changePersonalInfo,
+  changeProfileInfo,
+  login,
+} from "../../services/authServices";
 import { authActions } from "./authReducer";
 
 export const authHandleLogin =
@@ -33,6 +41,7 @@ export const authHandleChangePhoto =
     try {
       const data = await changeImage(formData);
       dispatch(authChangeImage(data.data.photo));
+      toast.success("Foto actualizada exitosamente");
     } catch (e) {
       dispatch(authFailure(e.message));
     }
@@ -45,10 +54,47 @@ export const authHandleChangeCover =
     try {
       const data = await changeCover(formData);
       dispatch(authChangeCover(data.data.cover));
+      toast.success("Portada actualizada exitosamente");
     } catch (e) {
       dispatch(authFailure(e.message));
     }
     loading(false);
+  };
+
+export const authHandleChangeProfileInfo = (formData) => async (dispatch) => {
+  dispatch(authLoading());
+  try {
+    const data = await changeProfileInfo(formData);
+    dispatch(authChangeProfileInfo(data.data));
+    toast.success("Datos actualizados exitosamente");
+  } catch (e) {
+    dispatch(authFailure(e.message));
+  }
+};
+
+export const authHandleChangePersonalInfo = (formData) => async (dispatch) => {
+  dispatch(authLoading());
+  try {
+    const data = await changePersonalInfo(formData);
+    dispatch(authChangePersonalInfo(data.data));
+    toast.success("Datos actualizados exitosamente");
+  } catch (e) {
+    dispatch(authFailure(e.message));
+  }
+};
+
+export const authHandleChangePassword =
+  (formData, resetForm) => async (dispatch) => {
+    dispatch(authLoading());
+    try {
+      console.log(formData);
+      await changePassword(formData);
+      toast.success("Datos actualizados exitosamente");
+    } catch (e) {
+      dispatch(authFailure(e.message));
+    }
+    dispatch(resetError());
+    resetForm();
   };
 
 export const authLogin = (uid) => {
@@ -79,6 +125,22 @@ export const authChangeCover = (image) => {
   return {
     type: authActions.changeCover,
     payload: image,
+  };
+};
+
+export const authChangeProfileInfo = (data) => {
+  console.log(data);
+  return {
+    type: authActions.changeProfileInfo,
+    payload: data,
+  };
+};
+
+export const authChangePersonalInfo = (data) => {
+  console.log(data);
+  return {
+    type: authActions.changePersonalInfo,
+    payload: data,
   };
 };
 

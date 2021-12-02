@@ -40,3 +40,39 @@ export const changeCover = async (formData) => {
     }
   }
 };
+
+export const changeProfileInfo = async (formData) => {
+  try {
+    const data = await axios.put(API.base + API.changeProfileInfo, formData);
+    return data;
+  } catch ({ response: { data, status } }) {
+    switch (status) {
+      default:
+        throw Error(`Error ${status} - ${data.error}`);
+    }
+  }
+};
+
+export const changePersonalInfo = async (formData) => {
+  try {
+    const data = await axios.put(API.base + API.changePersonalInfo, formData);
+    return data;
+  } catch ({ response: { data, status } }) {
+    switch (status) {
+      default:
+        throw Error(`Error ${status} - ${data.error}`);
+    }
+  }
+};
+
+export const changePassword = async (formData) => {
+  try {
+    const data = await axios.put(API.base + API.changePassword, formData);
+    return data;
+  } catch ({ response: { data, status } }) {
+    switch (status) {
+      default:
+        throw Error(data.error);
+    }
+  }
+};

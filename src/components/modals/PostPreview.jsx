@@ -20,7 +20,7 @@ export const PostPreview = ({ post }) => {
                 </picture>
                 <div className="ml-1">
                     <Link to={routes.profile + post?.user?._id} className="post__heading--user"  >
-                        {post?.user?.username}
+                        @{post?.user?.username}
                     </Link>
                     <p>
                         <small>{getDate(post?.date)} </small>

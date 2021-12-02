@@ -1,9 +1,29 @@
-import React from 'react'
+import { Field, Form, Formik } from 'formik'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getPhoto } from '../../../helpers/getPhoto'
+import { toast } from 'react-toastify'
 import { routes } from '../../../routes/routes'
+import ChangeCover from '../../ui/ChangeCover'
+import ChangeImage from '../../ui/ChangeImage'
+import * as Yup from 'yup';
+import { authHandleChangeProfileInfo } from '../../../store/auth/authActions'
+import { getDateInput } from '../../../helpers/getDate'
 
-export const EditProfileView = () => {
+
+const EditProfileView = ({ auth, authHandleChangeProfileInfo }) => {
+    const interests = [
+        { id: "photo", title: "Fotografía", value: "6169b476fc358e71ee6f30e0", icon: "camera" },
+        { id: "music", title: "Música", value: "6169b476fc358e71ee6f30e1", icon: "music" },
+        { id: "paint", title: "Pintura", value: "6169b476fc358e71ee6f30e2", icon: "palette" },
+        { id: "sculpture", title: "Escultura", value: "6169b476fc358e71ee6f30e3", icon: "paint-brush" }
+    ];
+
+    useEffect(() => {
+        if (auth.error !== null)
+            toast.error(auth.error);
+    }, [auth.error]);
+
     return (
         <div className="main-full">
             <Link to={routes.configs} className="btn-animation btn-link">
@@ -12,81 +32,83 @@ export const EditProfileView = () => {
             </Link>
             <h1 className="mb-5 mt-2">Mi Perfil</h1>
 
-            <span>Foto de perfil</span>
+            <div className="edit-profile">
+                <span className="edit-profile-title">Foto de perfil</span>
+                <ChangeImage auth={auth} />
+                <span className="edit-profile-title">Portada</span>
+                <ChangeCover auth={auth} />
 
-            <div className="edit-profile mt-2">
-                <div className="edit-profile__photo">
-                    <picture className="profile-image lg">
-                        <img src={getPhoto(null)} alt="default" />
-                    </picture>
+                <Formik
+                    initialValues={{
+                        id: auth?.user?._id,
+                        bio: auth?.user?.bio || "",
+                        birthday: getDateInput(auth?.user?.birthday) || "",
+                        categories: auth?.user?.categories || [],
+                    }}
+                    onSubmit={authHandleChangeProfileInfo}
+                >
+                    <Form className="edit-profile__form mt-4">
+                        <label htmlFor="bio">Biografía</label>
+                        <Field
+                            as="textarea"
+                            id="bio"
+                            name="bio"
+                            rows="8"
+                            className="input"
+                        />
 
-                    <button className="edit-profile__photo--edit">
-                        Modificar
-                    </button>
+                        <label htmlFor="birthday">Cumpleaños</label>
+                        <Field
+                            id="birthday"
+                            name="birthday"
+                            type="date"
+                            className="input"
+                        />
 
-                    <button className="edit-profile__photo--delete">
-                        Eliminar
-                    </button>
-                </div>
+                        <label htmlFor="like">Intereses</label>
 
-                <div className="edit-profile__form mt-4">
-                    <label htmlFor="description">Descripción</label>
-                    <textarea name="description" id="description" rows="8"></textarea>
+                        <div className="edit-profile__form--interests">
 
-                    <label htmlFor="age">Cumpleaños</label>
-                    <input type="date" name="age" id="age" />
-
-                    <label htmlFor="like">Intereses</label>
-
-                    <div className="edit-profile__form--interests">
-                        <div className="check">
-                            <input type="checkbox" id="photo" name="photo" />
-                            <label htmlFor="photo">
-                                <i className={`fas fa-camera mr-1`} />
-                                Fotografia
-                            </label>
+                            {interests.map(({ id, title, value, icon }) => (
+                                <div className="check" key={id}>
+                                    <Field
+                                        type="checkbox"
+                                        id={id}
+                                        name="categories"
+                                        value={value}
+                                        className="input"
+                                    />
+                                    <label htmlFor={id}>
+                                        <i className={`fas fa-${icon} mr-1`} />
+                                        {title}
+                                    </label>
+                                </div>
+                            ))}
                         </div>
 
-                        <div className="check">
-                            <input type="checkbox" id="music" name="music" />
-                            <label htmlFor="music">
-                                <i className={`fas fa-music mr-1`} />
-                                Música
-                            </label>
+                        <div className="edit-profile__form--buttons mt-2 mb-5">
+                            <input
+                                type="reset"
+                                className="cancel"
+                                value="Deshacer"
+                                disabled={auth.loading}
+                            />
+                            <Field
+                                type="submit"
+                                className="submit"
+                                value="Guardar cambios"
+                                disabled={auth.loading}
+                            />
                         </div>
-
-                        <div className="check">
-                            <input type="checkbox" id="paint" name="paint" />
-                            <label htmlFor="paint">
-                                <i className={`fas fa-palette mr-1`} />
-                                Pintura
-                            </label>
-                        </div>
-
-                        <div className="check">
-                            <input type="checkbox" id="sculpture" name="sculpture" />
-                            <label htmlFor="sculpture">
-                                <i className={`fas fa-paint-brush mr-1`} />
-                                Escultura
-                            </label>
-                        </div>
-                    </div>
-
-                    <div className="edit-profile__form--buttons mt-2 mb-5">
-                        <Link to={routes.configs} className="cancel">
-                            Cancelar
-                        </Link>
-
-                        <button className="submit">
-                            Modificar
-                        </button>
-
-                    </div>
-
-
-                </div>
+                    </Form>
+                </Formik>
             </div>
 
         </div>
     )
 }
+
+const data = (state) => ({
+    auth: state.authReducer
+})
+export default connect(data, { authHandleChangeProfileInfo })(EditProfileView)

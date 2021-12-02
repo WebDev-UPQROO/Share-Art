@@ -1,9 +1,10 @@
 import React from 'react'
 import { userEditName } from '../../store/user/userActions'
 import { connect } from 'react-redux'
-import { getPhoto } from '../../helpers/getPhoto'
+import { getCover, getPhoto } from '../../helpers/getPhoto'
 import { Link } from 'react-router-dom'
 import { routes } from '../../routes/routes'
+import { getAge } from '../../helpers/getDate'
 
 const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
     return (
@@ -11,8 +12,12 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
             {
                 (!loading && !error) ? (
                     <>
-                        <div className="profile__background">
-                        </div>
+                        <div className="profile__background"
+                            style={{
+                                background: `url(${getCover(user?.cover?.url)}) center center`,
+                                backgroundSize: "cover",
+                            }}
+                        />
                         <div className="profile__content">
                             <picture className="profile-image lg">
                                 <img src={getPhoto(user?.photo?.url)} alt="default" />
@@ -38,14 +43,18 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
 
 
                             <h2 className="profile__content__name">{user?.name}</h2>
-                            <p className="profile__content__user mb-1">{user?.username}</p>
+                            <p className="profile__content__user mb-1">@{user?.username}</p>
 
                             <p className="mb-1">{user?.bio}</p>
                             {
                                 (user?.age) &&
                                 <p>
                                     <i className="fas fa-user mr-1" />
-                                    <span>Edad: {user?.age} años</span>
+                                    <span>Edad: {
+                                        user?.birthday
+                                            ? `${getAge(user?.birthday)} años`
+                                            : "Desconocida"}
+                                    </span>
                                 </p>
                             }
 
@@ -97,8 +106,7 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                 )
                     : (
                         <>
-                            <div className="profile__background">
-                            </div>
+                            <div className="profile__background" />
                             <div className="profile__content">
 
                                 <div className="d-flex">
@@ -112,7 +120,7 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                         </>
                     )
             }
-        </div>
+        </div >
     )
 }
 

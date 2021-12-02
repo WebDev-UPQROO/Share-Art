@@ -43,7 +43,7 @@ const Comment = ({ id, comment, auth, commentsHandleGet, counter }) => {
                                     />
                                 </picture>
                                 <span className="comment__content__user mr-1">{comment?.user?.name || "Desconocido"}</span>
-                                <span className="comment__content__info">{comment?.user?.username} &#8226; {getDate(comment?.date)}</span>
+                                <span className="comment__content__info">@{comment?.user?.username} &#8226; {getDate(comment?.date)}</span>
 
                                 {
                                     (auth?.user?._id === comment?.user?._id) &&

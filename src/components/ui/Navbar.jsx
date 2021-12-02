@@ -40,7 +40,7 @@ const Navbar = ({ menu: [menu, setMenu], auth: { user } }) => {
                                 <picture className="profile-image">
                                     <img src={getPhoto(user?.photo?.url)} alt="profile" />
                                 </picture>
-                                <span>{user?.username ?? "Username"}</span>
+                                <span>@{user?.username ?? "Username"}</span>
                             </Link>
                         </div>
                     )

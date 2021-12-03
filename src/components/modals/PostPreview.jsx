@@ -25,7 +25,13 @@ export const PostPreview = ({ post }) => {
                     <p>
                         <small>{getDate(post?.date)} </small>
                         <small className="post__heading--details">
-                            &#8226; Arte Abstracto
+                            {
+                                post?.categories.map(category =>
+                                    <>
+                                        <span>&#8226; {category?.name} </span>
+                                    </>
+                                )
+                            }
                         </small>
                     </p>
                 </div>

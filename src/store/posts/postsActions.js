@@ -1,3 +1,6 @@
+import axios from "axios";
+import { toast } from "react-toastify";
+import API from "../../services/constants";
 import { getHomePosts, getProfilePosts } from "../../services/postsServices";
 import { postsActions } from "./postsReducer";
 
@@ -47,6 +50,29 @@ export const profilePostsHandleUpdate =
     }
   };
 
+export const profilePostsHandleCreate = (formData) => async (dispatch) => {
+  dispatch(postsLoading());
+  try {
+    await axios.post(API.base + API.postPost, formData);
+    toast.success("Pubicación creada");
+  } catch ({ message }) {
+    dispatch(postsFailure(message));
+  }
+  dispatch(postsResetError());
+};
+
+export const profilePostsHandleEdit = (formData) => async (dispatch) => {
+  dispatch(postsLoading());
+  try {
+    const data = await axios.put(API.base + API.editPost, formData);
+    dispatch(postsEdit(data.data));
+    toast.success("Publicación actualizada");
+  } catch ({ message }) {
+    dispatch(postsFailure(message));
+  }
+  dispatch(postsResetError());
+};
+
 export const postsGet = (posts, section) => {
   return {
     type: postsActions.get,
@@ -61,6 +87,13 @@ export const postsUpdate = (posts) => {
   };
 };
 
+export const postsEdit = (post) => {
+  return {
+    type: postsActions.edit,
+    payload: post,
+  };
+};
+
 export const postsLoading = () => ({
   type: postsActions.loading,
 });
@@ -68,4 +101,8 @@ export const postsLoading = () => ({
 export const postsFailure = (error) => ({
   type: postsActions.failure,
   payload: error,
+});
+
+export const postsResetError = () => ({
+  type: postsActions.resetError,
 });

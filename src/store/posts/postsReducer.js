@@ -37,11 +37,29 @@ const postsReducer = (state = initialState, { type, payload }) => {
       };
       return state;
 
+    case postsActions.edit:
+      state = {
+        ...state,
+        posts: [
+          ...state.posts.map((post) => {
+            return post._id == payload._id
+              ? { ...payload, description: payload?.post }
+              : post;
+          }),
+        ],
+        loading: false,
+        error: null,
+      };
+      return state;
+
     case postsActions.loading:
       return { ...state, loading: true };
 
     case postsActions.failure:
       return { ...state, error: payload, loading: false };
+
+    case postsActions.resetError:
+      return { ...state, error: null, loading: false };
 
     default:
       return state;
@@ -51,8 +69,10 @@ const postsReducer = (state = initialState, { type, payload }) => {
 export const postsActions = {
   get: "[posts] get",
   update: "[posts] update",
+  edit: "[posts] edit",
   loading: "[posts] loading",
   failure: "[posts] failure",
+  resetError: "[posts] resetError",
 };
 
 export default postsReducer;

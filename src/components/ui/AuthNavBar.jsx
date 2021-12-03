@@ -7,7 +7,7 @@ export const AuthNavBar = () => {
         <div className="navbar">
             <div className="navbar__left" >
                 <Link to={routes.login} className="navbar__left__text btn btn-animation text-none">
-                    <img src="/assets/icons/logo.png" alt="logo" className="mr-1" />
+                    <img src="/assets/icons/logo.png" alt="logo" className="mr-1" width="28"/>
                     <span>ShareArt</span>
                 </Link>
             </div>

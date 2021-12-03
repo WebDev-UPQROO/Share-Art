@@ -43,7 +43,13 @@ export const Post = ({ uid, post, group = false }) => {
                         <p>
                             <small>{getDate(post?.date)} </small>
                             <small className="post__heading--details">
-                                &#8226; Arte Abstracto
+                                {
+                                    post?.categories.map(category =>
+                                        <>
+                                            <span>&#8226; {category?.name} </span>
+                                        </>
+                                    )
+                                }
                             </small>
                         </p>
                     </div>
@@ -113,8 +119,8 @@ export const Post = ({ uid, post, group = false }) => {
                         </div>)
                     }
                     {
-                        (post?.postShared) &&
-                        (<PostPreview post={post?.postShared} />)
+                        (post?.postOrigin) &&
+                        (<PostPreview post={post?.postOrigin} />)
                     }
                 </div>
 

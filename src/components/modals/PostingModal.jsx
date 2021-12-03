@@ -5,18 +5,19 @@ import * as Yup from 'yup';
 import { ErrorForm } from "../ui/notifications/ErrorForm";
 import { PostPreview } from "./PostPreview";
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import API from '../../services/constants';
+import { profilePostsHandleCreate, profilePostsHandleEdit } from "../../store/posts/postsActions";
 
-const PostingModal = ({ 
+const PostingModal = ({
     auth: { user },
-    visible, 
-    toggle, 
-    post = null, 
-    editable = null 
+    visible,
+    toggle,
+    post = null,
+    editable = null,
+    profilePostsHandleCreate,
+    profilePostsHandleEdit
 }) => {
-    
+
     let formInitialValues;
     const [images, setImages] = useState([]);
     const [loadedImages, setLoadedImages] = useState([]);
@@ -25,9 +26,9 @@ const PostingModal = ({
     formInitialValues = {
         id: user?._id ?? null,
         title: editable?.title ?? '',
-        description: editable?.description ?? '',//description
-        //post: post?._id ?? null,
-        categories: editable?.categories ?? [],
+        description: editable?.post ?? '',
+        idPost: post?._id ?? null,
+        categories: editable?.categories.map(item => item._id) ?? [],
 
         images: [],
         deleteImages: [],
@@ -86,14 +87,27 @@ const PostingModal = ({
     }
 
     const postHandlePosting = async (values) => {
-        console.log(values);
+        const formData = new FormData();
+
+        formData.append("id", editable?._id ? editable?._id : values?.id);
+        formData.append("title", values.title);
+        formData.append("description", values.description);
+        formData.append("idPost", values.idPost);
+
+        values.images.forEach(value => formData.append("images", value))
+        values.deleteImages.forEach(value => formData.append("deleteImages", value))
+        values.categories.forEach(value => formData.append("categories", value))
+
         try {
-            await axios.post(API.base + API.postPost, values);
-            toast.success("Usuario creado exitosamente, ya puedes iniciar sesión");
-           
+            if (!editable?._id) {
+                profilePostsHandleCreate(formData);
+            } else {
+                profilePostsHandleEdit(formData)
+            }
+            toggle();
         } catch (e) {
             toast.error("Ha ocurrido un error, intentalo mas tarde");
-           
+
         }
     };
 
@@ -145,7 +159,7 @@ const PostingModal = ({
                                     />
                                 </div>
 
-                                {(!post) && <>
+                                {(!post && !editable?.postOrigin) && <>
                                     <div className="posting__form--media">
                                         <label htmlFor="files">
                                             <span>Subir Images</span>
@@ -224,7 +238,7 @@ const PostingModal = ({
                                     </div>
                                 </>}
 
-                                {(post) && <PostPreview post={post} />}
+                                {(post || editable?.postOrigin) && <PostPreview post={post || editable?.postOrigin} />}
 
                                 <div className="posting__form--buttons mt-2">
                                     <button onClick={toggle} className="cancel">
@@ -246,10 +260,11 @@ const PostingModal = ({
 
 const data = (state) => ({
     auth: state.authReducer,
-   
+
 });
 const actions = {
-  
+    profilePostsHandleCreate,
+    profilePostsHandleEdit
 };
 export default connect(data, actions)(PostingModal);
 

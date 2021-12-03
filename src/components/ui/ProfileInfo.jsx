@@ -1,12 +1,12 @@
 import React from 'react'
-import { userEditName } from '../../store/user/userActions'
+import { userHandleFollow } from '../../store/user/userActions'
 import { connect } from 'react-redux'
 import { getCover, getPhoto } from '../../helpers/getPhoto'
 import { Link } from 'react-router-dom'
 import { routes } from '../../routes/routes'
 import { getAge } from '../../helpers/getDate'
 
-const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
+const ProfileInfo = ({ auth, user: { user, loading, error }, uid, userHandleFollow, artistFollowers, artistFollowed }) => {
     return (
         <div className="profile mb-2">
             {
@@ -32,13 +32,28 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                                         <span>Editar Perfil</span>
                                     </Link>
                                     :
-                                    <button
-                                        className={'btn btn-animation btn-outline ml-auto mb-2' + (false && 'selected')}
-                                        onClick={() => userEditName('nuevo')}
-                                    >
-                                        {(true) && <i className="fas fa-plus mr-1" />}
-                                        <span>{true ? 'Seguir' : 'Siguiendo'}</span>
-                                    </button>
+
+                                    (user?.follow ? (
+                                        <button className={
+                                            'btn btn-animation btn-outline ml-auto '
+                                            + (user?.follow && 'selected')
+                                        }
+                                            onClick={() => userHandleFollow(auth?.user?._id, user)}>
+                                            <span>Siguiendo</span>
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className={
+                                                'btn btn-animation btn-outline ml-auto '
+                                                + (user?.follow && 'selected')
+                                            }
+                                            onClick={() => userHandleFollow(auth?.user?._id, user)}
+                                        >
+                                            <i className="fas fa-plus mr-1" />
+                                            <span>Seguir</span>
+                                        </button>
+                                    ))
+
                             }
 
 
@@ -90,16 +105,12 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
                             <div className="profile__content__follows">
                                 <Link to={routes.artistFollowers + uid} className="btn btn-secondary btn-animation">
                                     <b>Seguidores</b>
-                                    {/* <p>100k</p> */}
+                                    {`(${artistFollowers?.totalFollowers || 0})`}
                                 </Link>
                                 <Link to={routes.artistFollowed + uid} className="btn btn-secondary btn-animation">
                                     <b>Siguiendo</b>
-                                    {/* <p>100k</p> */}
+                                    {`(${artistFollowed?.totalFollowed || 0})`}
                                 </Link>
-                                {/* <button className="btn btn-secondary btn-animation">
-                                    <b>Grupos</b>
-                                    <p>100k</p>
-                                </button> */}
                             </div>
                         </div>
                     </>
@@ -124,5 +135,10 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
     )
 }
 
-const data = (state) => ({ user: state.userReducer });
-export default connect(data)(ProfileInfo);
+const data = (state) => ({
+    user: state.userReducer,
+    auth: state.authReducer,
+    artistFollowers: state.artistListReducer,
+    artistFollowed: state.artistListReducer
+});
+export default connect(data, { userHandleFollow })(ProfileInfo);

@@ -1,9 +1,9 @@
 import axios from "axios";
 import API from "./constants";
 
-export const getUser = async (uid) => {
+export const getUser = async (id, idUser ) => {
   try {
-    const data = await axios.get(API.base + API.getUser + uid);
+    const data = await axios.put(API.base + API.getUser, {id, idUser});
     return data;
   } catch ({ response: { data, status } }) {
     throw Error(`Error ${status} - ${data.error}`);

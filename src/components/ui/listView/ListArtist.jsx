@@ -9,6 +9,7 @@ const ListArtist = ({
     auth,
     artist,
     artistHandleFollow,
+    userFollow = null
 }) => {
     return (
         <div className="artist__item">
@@ -28,7 +29,7 @@ const ListArtist = ({
                         'btn btn-animation btn-outline '
                         + (artist?.follow && 'selected')
                     }
-                        onClick={() => artistHandleFollow(auth?.user?._id, artist)}>
+                        onClick={() => artistHandleFollow(auth?.user?._id, artist, userFollow)}>
                         <span>Siguiendo</span>
                     </button>
                 ) : (
@@ -37,7 +38,7 @@ const ListArtist = ({
                             'btn btn-animation btn-outline '
                             + (artist?.follow && 'selected')
                         }
-                        onClick={() => artistHandleFollow(auth?.user?._id, artist)}
+                        onClick={() => artistHandleFollow(auth?.user?._id, artist, userFollow)}
                     >
                         <i className="fas fa-plus mr-1" />
                         <span>Seguir</span>

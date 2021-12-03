@@ -1,13 +1,26 @@
-import { getUser } from "../../services/userService";
+import { toast } from "react-toastify";
+import { follow, getUser } from "../../services/userService";
 import { userActions } from "./userReducer";
 
-export const userGetInfo = (userId, history) => async (dispatch) => {
+export const userGetInfo = (userId, authId, history) => async (dispatch) => {
   dispatch(userLoading());
   try {
-    const data = await getUser(userId);
+    const data = await getUser(userId, authId);
     dispatch(userGetInfoSuccess(data.data));
-  } catch ({message}) {
+  } catch ({ message }) {
     history.goBack();
+    dispatch(userFailure(message));
+  }
+};
+
+export const userHandleFollow = (authId, userId) => async (dispatch) => {
+  try {
+    const data = await follow(authId, userId);
+    dispatch(userFollow(data.follow));
+    toast.success(
+      data.follow ? "Has seguido a alguien" : "Dejaste de seguir a alguien"
+    );
+  } catch ({ message }) {
     dispatch(userFailure(message));
   }
 };
@@ -23,6 +36,13 @@ export const userEditName = (name) => {
   return {
     type: userActions.edit,
     payload: name,
+  };
+};
+
+export const userFollow = (follow) => {
+  return {
+    type: userActions.follow,
+    payload: follow
   };
 };
 

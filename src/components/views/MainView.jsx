@@ -27,9 +27,7 @@ const MainView = ({
 
     useEffect(() => {
         artistListHandleGet(null, user?._id, history, getArtistList);
-
-        if (posts.section !== `home${user?._id}`)
-            homePostsHandleGet(user?._id, history);
+        homePostsHandleGet(user?._id, history);
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
@@ -66,7 +64,7 @@ const MainView = ({
                         {
                             (artistList?.artistList) ?
                                 (
-                                    artistList?.artistList?.map(artist => (
+                                    artistList?.artistList?.slice(0, 8).map(artist => (
                                         <ListArtist
                                             key={artist._id}
                                             artist={artist}

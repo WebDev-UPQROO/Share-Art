@@ -1,8 +1,10 @@
 const initialState = {
   loading: true,
-  artistList: null,
-  artistFollowers: null,
-  artistFollowed: null,
+  artistList: [],
+  artistFollowers: [],
+  artistFollowed: [],
+  totalFollowers: 0,
+  totalFollowed: 0,
   limit: false,
   error: null,
 };
@@ -30,7 +32,8 @@ const artistListReducer = (state = initialState, { type, payload }) => {
       state = {
         ...state,
         loading: false,
-        artistFollowers: payload,
+        artistFollowers: payload || [],
+        totalFollowers: payload[0]?.total || 0,
         error: null,
       };
       return state;
@@ -45,7 +48,8 @@ const artistListReducer = (state = initialState, { type, payload }) => {
       state = {
         ...state,
         loading: false,
-        artistFollowed: payload,
+        artistFollowed: payload || [],
+        totalFollowed: payload[0]?.total || 0,
         error: null,
       };
       return state;
@@ -60,7 +64,7 @@ const artistListReducer = (state = initialState, { type, payload }) => {
       state = {
         ...state,
         loading: false,
-        artistList: payload,
+        artistList: payload || [],
         error: null,
       };
       return state;
@@ -68,10 +72,9 @@ const artistListReducer = (state = initialState, { type, payload }) => {
     //ListArtist
     case artistListActions.update:
       state =
-        payload.length === 0
+        payload?.length === 0
           ? { ...state, limit: true }
           : { ...state, limit: false };
-
       state = {
         ...state,
         loading: false,
@@ -95,22 +98,31 @@ const artistListReducer = (state = initialState, { type, payload }) => {
           payload.follow
         ),
       };
-      if (payload.follow && state.artistFollowed) {
-        state = {
-          ...state,
-          artistFollowed: [...state?.artistFollowed, {
-            ...payload?.artist,
-            follow: true
-          }],
-        };
-      } else if (!payload.follow && state.artistFollowed) {
-        state = {
-          ...state,
-          artistFollowed: state?.artistFollowed?.filter(
-            (artist) => artist._id !== payload.id
-          ),
-        };
+      if (payload.authId == payload?.userId) {
+        console.log(payload?.authId, payload?.userId);
+        if (payload.follow && state.artistFollowed) {
+          state = {
+            ...state,
+            totalFollowed: state.totalFollowed + 1,
+            artistFollowed: [
+              ...state?.artistFollowed,
+              {
+                ...payload?.artist,
+                follow: true,
+              },
+            ],
+          };
+        } else if (!payload.follow && state.artistFollowed) {
+          state = {
+            ...state,
+            totalFollowed: state.totalFollowed - 1,
+            artistFollowed: state?.artistFollowed?.filter(
+              (artist) => artist._id !== payload.id
+            ),
+          };
+        }
       }
+
       return state;
 
     case artistListActions.loading:

@@ -15,6 +15,18 @@ const userReducer = (state = initialState, { type, payload }) => {
       };
       return state;
 
+    case userActions.follow:
+      state = {
+        ...state,
+        loading: false,
+        user: {
+          ...state.user,
+          follow: payload
+        },
+        error: null,
+      };
+      return state;
+
     case userActions.loading:
       return {
         ...state,
@@ -38,6 +50,7 @@ export default userReducer;
 export const userActions = {
   get: "[user] get",
   edit: "[user] edit",
+  follow: "[user] follow",
   loading: "[user] loading",
   failure: "[user] failure",
 };

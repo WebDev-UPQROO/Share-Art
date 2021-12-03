@@ -44,9 +44,13 @@ export const getDate = (date) => {
 };
 
 export const getDateInput = (date) => {
-  const newDate = new Date(date);
-  const dateSting = newDate.toISOString().split("T")[0];
-  return dateSting;
+  if (date) {
+    const newDate = new Date(date);
+    const dateSting = newDate.toISOString().split("T")[0];
+    return dateSting;
+  } else {
+    return null;
+  }
 };
 
 export const getAge = (date) => {

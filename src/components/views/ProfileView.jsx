@@ -32,14 +32,10 @@ const ProfileView = ({
 
     // Load Data
     useEffect(() => {
-        if (uid !== user.user._id) {
-            userGetInfo(uid, history);
-            artistFollowersHandleGet(uid, auth?.user?._id);
-            artistFollowedHandleGet(uid, auth?.user?._id);
-        }
-
-        if (posts.section !== `profile${uid}`)
-            profilePostsHandleGet(uid, history);
+        userGetInfo(uid, auth?.user?._id, history);
+        profilePostsHandleGet(uid, history);
+        artistFollowersHandleGet(uid, auth?.user?._id);
+        artistFollowedHandleGet(uid, auth?.user?._id);
     }, [uid]);// eslint-disable-line react-hooks/exhaustive-deps
 
     // Waiting Errorss
@@ -74,9 +70,8 @@ const ProfileView = ({
 
             <footer className="footer">
                 <div className="mb-2">
-
                     <ListView
-                        title={`Seguidores ()`}
+                        title={`Seguidores (${artistFollowers?.totalFollowers})`}
                         icon="user"
                         route={routes.artistFollowers + uid}
                     >
@@ -88,6 +83,7 @@ const ProfileView = ({
                                         <ListArtist
                                             key={artist._id + "follower"}
                                             artist={artist}
+                                            userFollow={uid}
                                         />
                                     ))
                                 )
@@ -104,7 +100,7 @@ const ProfileView = ({
 
                 <div className="mb-2">
                     <ListView
-                        title={"Siguiendo"}
+                        title={`Siguiendo (${artistFollowers?.totalFollowed})`}
                         icon="user"
                         route={routes.artistFollowed + uid}
                     >
@@ -114,6 +110,7 @@ const ProfileView = ({
                                 <ListArtist
                                     key={artist._id + "followed"}
                                     artist={artist}
+                                    userFollow={uid}
                                 />
                             ))
 

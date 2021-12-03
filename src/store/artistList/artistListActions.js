@@ -55,11 +55,11 @@ export const artistFollowedHandleGet = (id, idUser) => async (dispatch) => {
   }
 };
 
-export const artistHandleFollow = (idFollower, artist) => async (dispatch) => {
+export const artistHandleFollow = (idFollower, artist, userFollow) => async (dispatch) => {
   dispatch(artistListLoading());
   try {
     const data = await follow(idFollower, artist._id);
-    dispatch(artistListFollow(artist, data.follow));
+    dispatch(artistListFollow(artist, data.follow, idFollower, userFollow));
     toast.success(
       data.follow ? "Has seguido a alguien" : "Dejaste de seguir a alguien"
     );
@@ -97,9 +97,9 @@ export const artistFollowedGet = (artistFollowed) => {
   };
 };
 
-export const artistListFollow = (artist, follow) => ({
+export const artistListFollow = (artist, follow, idFollower, userFollow) => ({
   type: artistListActions.follow,
-  payload: { id: artist._id, artist, follow },
+  payload: { id: artist._id, artist, follow, authId: idFollower, userId: userFollow },
 });
 
 export const artistListUnfollow = (id) => ({

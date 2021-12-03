@@ -46,6 +46,17 @@ export const profilePostsHandleUpdate =
       dispatch(postsFailure(message));
     }
   };
+//Sin finalizar
+export const postHandleLiked =
+  (uid, lastPost, artist) => async (dispatch) => {
+    dispatch(postsLoading());
+    try {
+      const data = await getHomePosts(uid, lastPost);
+      dispatch(postsUpdate(data.data));
+    } catch ({ message }) {
+      dispatch(postsFailure(message));
+    }
+  };
 
 export const postsGet = (posts, section) => {
   return {

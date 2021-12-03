@@ -35,3 +35,17 @@ export const getComments = async (comment) => {
     throw Error(`Error ${status} - ${data.error}`);
   }
 };
+
+//Sin finalizar
+export const getLike = async (id, idUser = null, idFollow = null) => {
+  const body = { id };
+  if (idUser) body["idUser"] = idUser;
+  if (idFollow) body["idFollow"] = idFollow;
+
+  try {
+    const data = await axios.put(API.base + API.getFollowed, body);
+    return data;
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
+  }
+};

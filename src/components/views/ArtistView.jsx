@@ -70,7 +70,7 @@ export const ArtistView = ({
                             artistListHandleUpdate(
                                 params.uid || null,
                                 user?._id,
-                                artistList[artistList.length - 1].idFollow,
+                                artistList[artistList.length - 1]?.idFollow || artistList[artistList.length - 1]?._id,
                                 history,
                                 actualService
                             )

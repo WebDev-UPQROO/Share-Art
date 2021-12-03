@@ -4,25 +4,36 @@ import ReactDOM from "react-dom";
 import * as Yup from 'yup';
 import { ErrorForm } from "../ui/notifications/ErrorForm";
 import { PostPreview } from "./PostPreview";
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import API from '../../services/constants';
 
-const PostingModal = ({ visible, toggle, post = null, editable = null }) => {
+const PostingModal = ({ 
+    auth: { user },
+    visible, 
+    toggle, 
+    post = null, 
+    editable = null 
+}) => {
+    
     let formInitialValues;
     const [images, setImages] = useState([]);
     const [loadedImages, setLoadedImages] = useState([]);
     const formikRef = useRef();
 
     formInitialValues = {
-        id: editable?._id ?? null,
+        id: user?._id ?? null,
         title: editable?.title ?? '',
-        description: editable?.post ?? '',
-        post: post?._id ?? null,
-        interests: editable?.interests ?? [],
+        description: editable?.description ?? '',//description
+        //post: post?._id ?? null,
+        categories: editable?.categories ?? [],
 
         images: [],
         deleteImages: [],
     }
 
-    const interests = [
+    const categories = [
         { id: "photo", title: "Fotografía", value: "6169b476fc358e71ee6f30e0", icon: "camera" },
         { id: "music", title: "Música", value: "6169b476fc358e71ee6f30e1", icon: "music" },
         { id: "paint", title: "Pintura", value: "6169b476fc358e71ee6f30e2", icon: "palette" },
@@ -74,6 +85,18 @@ const PostingModal = ({ visible, toggle, post = null, editable = null }) => {
         ]);
     }
 
+    const postHandlePosting = async (values) => {
+        console.log(values);
+        try {
+            await axios.post(API.base + API.postPost, values);
+            toast.success("Usuario creado exitosamente, ya puedes iniciar sesión");
+           
+        } catch (e) {
+            toast.error("Ha ocurrido un error, intentalo mas tarde");
+           
+        }
+    };
+
     return (
         visible ? ReactDOM.createPortal(
             <div className="modal">
@@ -96,9 +119,7 @@ const PostingModal = ({ visible, toggle, post = null, editable = null }) => {
                                 images: Yup.array().max(5, "Puedes subir maximo 5 fotos")
                             })}
 
-                            onSubmit={(values) => {
-                                console.log(values);
-                            }}
+                            onSubmit={postHandlePosting}
                         >
                             {<Form className="modal-body">
                                 <div className="form-item full">
@@ -186,12 +207,12 @@ const PostingModal = ({ visible, toggle, post = null, editable = null }) => {
                                     <label htmlFor="like">Intereses</label>
 
                                     <div className="posting__form--interests">
-                                        {interests.map(({ id, title, value, icon }) => (
+                                        {categories.map(({ id, title, value, icon }) => (
                                             <div className="check" key={id}>
                                                 <Field
                                                     type="checkbox"
                                                     id={id}
-                                                    name="interests"
+                                                    name="categories"
                                                     value={value}
                                                 />
                                                 <label htmlFor={id}>
@@ -223,4 +244,12 @@ const PostingModal = ({ visible, toggle, post = null, editable = null }) => {
             , document.querySelector('body')) : null)
 };
 
-export default PostingModal;
+const data = (state) => ({
+    auth: state.authReducer,
+   
+});
+const actions = {
+  
+};
+export default connect(data, actions)(PostingModal);
+

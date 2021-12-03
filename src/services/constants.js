@@ -11,7 +11,7 @@ const API = {
   // Home
   getHomePosts: "home/post",
   getComments: "home/comments",
-  postPost: "",
+  postPost: "home/post/create",
   deletePost: "",
 
   //Profile

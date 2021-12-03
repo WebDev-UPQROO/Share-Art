@@ -73,6 +73,19 @@ export const profilePostsHandleEdit = (formData) => async (dispatch) => {
   dispatch(postsResetError());
 };
 
+export const profilePostsHandleDelete =
+  (idUser, idPost) => async (dispatch) => {
+    dispatch(postsLoading());
+    try {
+      await axios.post(API.base + API.deletePost, { idUser, idPost });
+      dispatch(postsDelete(idPost));
+      toast.success("Publicación eliminada");
+    } catch ({ message }) {
+      dispatch(postsFailure(message));
+    }
+    dispatch(postsResetError());
+  };
+
 export const postsGet = (posts, section) => {
   return {
     type: postsActions.get,
@@ -91,6 +104,13 @@ export const postsEdit = (post) => {
   return {
     type: postsActions.edit,
     payload: post,
+  };
+};
+
+export const postsDelete = (id) => {
+  return {
+    type: postsActions.delete,
+    payload: id,
   };
 };
 

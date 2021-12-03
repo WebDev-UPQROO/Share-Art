@@ -1,4 +1,4 @@
-import { Post } from '../ui/Post';
+import Post from '../ui/Post';
 import React, { useEffect } from 'react'
 import { Seeker } from '../ui/Seeker';
 import InfiniteScroll from 'react-infinite-scroll-component';

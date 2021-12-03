@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import LinesEllipsis from 'react-lines-ellipsis';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getDate } from '../../helpers/getDate';
 import { getPhoto } from '../../helpers/getPhoto';
 import useModal from '../../hooks/useModal';
 import { routes } from '../../routes/routes';
+import { profilePostsHandleDelete } from '../../store/posts/postsActions';
 import { CarouselModal } from '../modals/CarouselModal';
 import PostingModal from '../modals/PostingModal';
 import { PostPreview } from '../modals/PostPreview';
 import { CommentsGroup } from './comments/CommentsGroup';
 
-export const Post = ({ uid, post, group = false }) => {
+const Post = ({ uid, post, group = false, profilePostsHandleDelete }) => {
     const reactions = {
         like: 1,
         dislike: 0,
@@ -79,7 +81,7 @@ export const Post = ({ uid, post, group = false }) => {
                                             <button className="item btn btn-secondary" onClick={toggleEdit} >
                                                 Editar
                                             </button>
-                                            <button className="item btn btn-secondary" >
+                                            <button className="item btn btn-secondary" onClick={() => profilePostsHandleDelete(uid, post?._id)}>
                                                 Eliminar
                                             </button>
                                         </div>
@@ -202,3 +204,5 @@ export const Post = ({ uid, post, group = false }) => {
 
     )
 }
+
+export default connect(null, { profilePostsHandleDelete })(Post);

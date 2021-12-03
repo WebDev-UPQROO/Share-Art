@@ -11,7 +11,7 @@ import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost'
 import { LoadingPost } from '../ui/notifications/LoadingPost'
-import { Post } from '../ui/Post'
+import Post from '../ui/Post'
 import ProfileInfo from '../ui/ProfileInfo'
 
 const ProfileView = ({

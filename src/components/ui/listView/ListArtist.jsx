@@ -23,7 +23,7 @@ const ListArtist = ({
                 </div>
             </Link>
 
-            {artist._id !== auth?.user?._id && (
+            {( auth?.user?._id &&artist._id !== auth?.user?._id) && (
                 artist?.follow ? (
                     <button className={
                         'btn btn-animation btn-outline '

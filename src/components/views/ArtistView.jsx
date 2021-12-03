@@ -34,18 +34,18 @@ export const ArtistView = ({
     useEffect(() => {
         switch (url) {
             case '/app/artist/followers':
-                artistListHandleGet(params.uid, user._id, history, getFollowers);
+                artistListHandleGet(params.uid, user?._id, history, getFollowers);
                 settitle("Seguidores");
                 setActualService(() => getFollowers);
                 break;
             case '/app/artist/followed':
-                artistListHandleGet(params.uid, user._id, history, getFollowed);
+                artistListHandleGet(params.uid, user?._id, history, getFollowed);
                 settitle("Siguiendo");
                 setActualService(() => getFollowed);
 
                 break;
             default:
-                artistListHandleGet(null, user._id, history, getArtistList);
+                artistListHandleGet(null, user?._id, history, getArtistList);
                 break;
         }
     }, []);// eslint-disable-line react-hooks/exhaustive-deps

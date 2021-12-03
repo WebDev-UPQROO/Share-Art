@@ -9,7 +9,7 @@ import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost';
 import { LoadingPost } from '../ui/notifications/LoadingPost';
-import { Post } from '../ui/Post';
+import Post from '../ui/Post';
 import Posting from '../ui/Posting';
 import { routes } from './../../routes/routes';
 import { getArtistList } from '../../services/userService';
@@ -38,7 +38,7 @@ const MainView = ({
     return (
         <>
             <main className="main-center">
-                <Posting />
+                {user?._id && <Posting />}
 
                 <InfiniteScroll
                     dataLength={posts.posts.length}

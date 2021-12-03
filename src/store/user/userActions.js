@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { follow, getUser } from "../../services/userService";
+import { follow, getUser, vote } from "../../services/userService";
 import { userActions } from "./userReducer";
 
 export const userGetInfo = (userId, authId, history) => async (dispatch) => {

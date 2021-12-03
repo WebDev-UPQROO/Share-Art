@@ -51,6 +51,7 @@ export const userActions = {
   get: "[user] get",
   edit: "[user] edit",
   follow: "[user] follow",
+  vote: "[user] vote",
   loading: "[user] loading",
   failure: "[user] failure",
 };

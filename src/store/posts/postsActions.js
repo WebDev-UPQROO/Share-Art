@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import API from "../../services/constants";
 import { getHomePosts, getProfilePosts } from "../../services/postsServices";
+import { vote } from "../../services/userService";
 import { postsActions } from "./postsReducer";
 
 export const homePostsHandleGet = (uid, history) => async (dispatch) => {
@@ -85,6 +86,16 @@ export const profilePostsHandleDelete =
     }
     dispatch(postsResetError());
   };
+export const postsHandleVote = (idUser, type, idPost) => async (dispatch) => {
+  dispatch(postsLoading());
+  try {
+    const data = await vote(idUser, type, idPost);
+    dispatch(postsVote(data));
+  } catch ({ message }) {
+    dispatch(postsFailure(message));
+  }
+  dispatch(postsResetError());
+};
 
 export const postsGet = (posts, section) => {
   return {
@@ -111,6 +122,13 @@ export const postsDelete = (id) => {
   return {
     type: postsActions.delete,
     payload: id,
+  };
+};
+
+export const postsVote = (post) => {
+  return {
+    type: postsActions.vote,
+    payload: post,
   };
 };
 

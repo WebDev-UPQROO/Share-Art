@@ -1,9 +1,9 @@
 import axios from "axios";
 import API from "./constants";
 
-export const getUser = async (id, idUser ) => {
+export const getUser = async (id, idUser) => {
   try {
-    const data = await axios.put(API.base + API.getUser, {id, idUser});
+    const data = await axios.put(API.base + API.getUser, { id, idUser });
     return data;
   } catch ({ response: { data, status } }) {
     throw Error(`Error ${status} - ${data.error}`);
@@ -49,11 +49,23 @@ export const getFollowed = async (id, idUser = null, idFollow = null) => {
 };
 
 export const follow = async (idFollower, idFollowed) => {
-
   try {
     const data = await axios.post(API.base + API.follow, {
       idFollower,
       idFollowed,
+    });
+    return data.data;
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
+  }
+};
+
+export const vote = async (idUser, type, idPost) => {
+  try {
+    const data = await axios.put(API.base + API.votePost, {
+      idUser,
+      type,
+      idPost,
     });
     return data.data;
   } catch ({ response: { data, status } }) {

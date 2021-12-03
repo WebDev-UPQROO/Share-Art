@@ -68,6 +68,28 @@ const postsReducer = (state = initialState, { type, payload }) => {
 
       return state;
 
+    case postsActions.vote:
+      state = {
+        ...state,
+        posts: [
+          ...state.posts.map((post) => {
+            return post._id == payload._id
+              ? { ...payload, description: payload?.post }
+              : post;
+          }),
+        ],
+        loading: false,
+        error: null,
+      };
+
+      if (state.posts.length == 0)
+        state = {
+          ...state,
+          limit: true,
+        };
+
+      return state;
+
     case postsActions.loading:
       return { ...state, loading: true };
 
@@ -87,6 +109,7 @@ export const postsActions = {
   update: "[posts] update",
   edit: "[posts] edit",
   delete: "[posts] delete",
+  vote: "[posts] vote",
   loading: "[posts] loading",
   failure: "[posts] failure",
   resetError: "[posts] resetError",

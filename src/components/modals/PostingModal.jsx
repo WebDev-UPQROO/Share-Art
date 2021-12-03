@@ -28,7 +28,7 @@ const PostingModal = ({
         title: editable?.title ?? '',
         description: editable?.post ?? '',
         idPost: post?._id ?? null,
-        categories: editable?.categories.map(item => item._id) ?? [],
+        categories: editable?.categories?.map(item => item?._id) ?? [],
 
         images: [],
         deleteImages: [],

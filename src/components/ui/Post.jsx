@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LinesEllipsis from 'react-lines-ellipsis';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,27 +6,36 @@ import { getDate } from '../../helpers/getDate';
 import { getPhoto } from '../../helpers/getPhoto';
 import useModal from '../../hooks/useModal';
 import { routes } from '../../routes/routes';
-import { profilePostsHandleDelete } from '../../store/posts/postsActions';
+import { postsHandleVote, profilePostsHandleDelete } from '../../store/posts/postsActions';
 import { CarouselModal } from '../modals/CarouselModal';
 import PostingModal from '../modals/PostingModal';
 import { PostPreview } from '../modals/PostPreview';
 import { CommentsGroup } from './comments/CommentsGroup';
 
-const Post = ({ uid, post, group = false, profilePostsHandleDelete }) => {
+const Post = ({ uid, post, group = false, profilePostsHandleDelete, postsHandleVote }) => {
     const reactions = {
         like: 1,
-        dislike: 0,
+        dislike: -1,
     }
     const { toggle: toggleShare, visible: visibleShare } = useModal(false);
     const { toggle: toggleEdit, visible: visibleEdit } = useModal(false);
     const { toggle: toggleCarousel, visible: visibleCarousel } = useModal(false);
+    const [total, setTotal] = useState(0)
 
-    const userReaction = post?.votes?.find(user => user[0] === uid);
-    const userLike = userReaction && userReaction[1] === reactions.like;
-    const userDislike = userReaction && userReaction[1] === reactions.dislike;
+    useEffect(() => {
+        setTotal(0);
+        post?.votes?.forEach(vote => {
+            setTotal(t => t + vote.action)
+        })
+    }, [post])
 
     const [comments, setComments] = useState(false);
     const [isExpand, setExpand] = useState(false);
+
+    console.log(post);
+    const vote = (e) => {
+        postsHandleVote(uid, e.target.value, post?._id);
+    };
 
     return (
         <div className="mb-2">
@@ -131,6 +140,7 @@ const Post = ({ uid, post, group = false, profilePostsHandleDelete }) => {
                     <button
                         className="post__share__side btn btn-secondary btn-animation mr-1"
                         onClick={() => setComments(!comments)}
+                        disabled={true}
                     >
                         <i className="fas fa-comment-alt btn-icon-left" />
                         <span className="text-action-post">Comentarios</span>
@@ -143,29 +153,38 @@ const Post = ({ uid, post, group = false, profilePostsHandleDelete }) => {
                         id={"like" + post?._id}
                         type="radio"
                         name="votes"
-                        defaultChecked={userLike}
                         value={reactions.like}
                         className="d-none"
+                        onChange={vote}
                     />
                     <label
                         htmlFor={"like" + post?._id}
-                        className={"btn btn-secondary btn-animation " + (userLike && "active")}
+                        className={"btn btn-secondary btn-animation " + ((post?.votes?.find(user => user.idUser === uid)?.action === 1) && "active")}
                     >
                         <i className="fas fa-chevron-up" />
                     </label>
 
-                    <p className="ml-1 mr-1 text-sm"> {post?.votes?.length ?? 0} Votos</p>
+                    <label className="ml-1 mr-1 text-sm cursor-pointer" htmlFor={"neutral" + post?._id}> {total} Votos</label>
+                    <input
+                        id={"neutral" + post?._id}
+                        type="radio"
+                        name="votes"
+                        className="d-none"
+                        onChange={vote}
+                        value={2}
+                    />
 
                     <input
                         id={"dislike" + post?._id}
-                        type="radio" name="votes"
-                        defaultChecked={userDislike}
+                        type="radio"
+                        name="votes"
                         value={reactions.dislike}
                         className="d-none"
+                        onChange={vote}
                     />
                     <label
                         htmlFor={"dislike" + post?._id}
-                        className={"btn btn-secondary btn-animation " + (userDislike && "active")}
+                        className={"btn btn-secondary btn-animation " + ((post?.votes?.find(user => user.idUser === uid)?.action === -1) && "active")}
                     >
                         <i className="fas fa-chevron-down" />
                     </label>
@@ -205,4 +224,4 @@ const Post = ({ uid, post, group = false, profilePostsHandleDelete }) => {
     )
 }
 
-export default connect(null, { profilePostsHandleDelete })(Post);
+export default connect(null, { profilePostsHandleDelete, postsHandleVote })(Post);

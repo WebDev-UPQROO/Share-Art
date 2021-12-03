@@ -1,6 +1,6 @@
 const API = {
   // Base
-  base: "https://shareart-back.herokuapp.com/shareart/v1/",
+  base: "https://975d-2806-2f0-8080-6ea-d910-fb70-6fb1-bf68.ngrok.io/shareart/v1/",
   login: "auth/login",
   register: "auth/register",
 
@@ -14,6 +14,7 @@ const API = {
   postPost: "home/post/create",
   editPost: "home/post/edit",
   deletePost: "home/post/delete",
+  votePost: "home/post/vote",
 
   //Profile
   getProfilePosts: "profile/posts",

@@ -88,18 +88,18 @@ const ProfileInfo = ({ user: { user, loading, error }, uid }) => {
 
 
                             <div className="profile__content__follows">
-                                <button className="btn btn-secondary btn-animation">
+                                <Link to={routes.artistFollowers + uid} className="btn btn-secondary btn-animation">
                                     <b>Seguidores</b>
-                                    <p>100k</p>
-                                </button>
-                                <button className="btn btn-secondary btn-animation">
+                                    {/* <p>100k</p> */}
+                                </Link>
+                                <Link to={routes.artistFollowed + uid} className="btn btn-secondary btn-animation">
                                     <b>Siguiendo</b>
-                                    <p>100k</p>
-                                </button>
-                                <button className="btn btn-secondary btn-animation">
+                                    {/* <p>100k</p> */}
+                                </Link>
+                                {/* <button className="btn btn-secondary btn-animation">
                                     <b>Grupos</b>
                                     <p>100k</p>
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </>

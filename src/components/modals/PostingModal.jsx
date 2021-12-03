@@ -32,7 +32,7 @@ const PostingModal = ({ visible, toggle, post = null, editable = null }) => {
     useEffect(() => {
         if (editable?.images) setLoadedImages(editable?.images);
         setImages([]);
-    }, [visible])
+    }, [visible])// eslint-disable-line react-hooks/exhaustive-deps
 
 
     const imagesHandle = (e) => {

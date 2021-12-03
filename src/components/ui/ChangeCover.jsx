@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
-import { getCover, getPhoto } from '../../helpers/getPhoto';
+import { getCover } from '../../helpers/getPhoto';
 import { authHandleChangeCover } from '../../store/auth/authActions';
 
 const ChangeCover = ({ auth, authHandleChangeCover }) => {
@@ -12,7 +12,7 @@ const ChangeCover = ({ auth, authHandleChangeCover }) => {
             file: null,
             url: auth?.user?.cover?.url
         });
-    }, []);
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const imagesHandle = (e) => {
         if (e.currentTarget?.files[0]) {

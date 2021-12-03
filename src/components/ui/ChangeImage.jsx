@@ -12,7 +12,7 @@ const ChangeImage = ({ auth, authHandleChangePhoto }) => {
             file: null,
             url: auth?.user?.photo?.url
         });
-    }, []);
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     const imagesHandle = (e) => {
         if (e.currentTarget?.files[0]) {

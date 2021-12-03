@@ -6,7 +6,6 @@ import { toast } from 'react-toastify'
 import { routes } from '../../../routes/routes'
 import ChangeCover from '../../ui/ChangeCover'
 import ChangeImage from '../../ui/ChangeImage'
-import * as Yup from 'yup';
 import { authHandleChangeProfileInfo } from '../../../store/auth/authActions'
 import { getDateInput } from '../../../helpers/getDate'
 

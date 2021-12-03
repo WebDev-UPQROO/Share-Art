@@ -19,6 +19,7 @@ const API = {
   getArtistList: "home/artists",
   getFollowers: "profile/followers",
   getFollowed: "profile/followed",
+  follow: "follow/",
 
 
   // Configs

@@ -32,9 +32,9 @@ const Navbar = ({ menu: [menu, setMenu], auth: { user } }) => {
                     ?
                     (
                         <div className="navbar__profile">
-                            <button className="btn btn-secondary btn-circle btn-animation mr-2">
+                            {/* <button className="btn btn-secondary btn-circle btn-animation mr-2">
                                 <i className="fas fa-bell" />
-                            </button>
+                            </button> */}
 
                             <Link className="btn btn-secondary btn-animation btn-profile text-none" to={routes.profile + user._id}>
                                 <picture className="profile-image">

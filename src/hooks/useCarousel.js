@@ -9,7 +9,7 @@ const useCarousel = (images = []) => {
         url: images[0]?.url,
         index: 0,
       });
-  }, [images?.length]);
+  }, [images?.length]);// eslint-disable-line react-hooks/exhaustive-deps
 
   const nextImage = () => {
     actualImage?.index < images?.length - 1

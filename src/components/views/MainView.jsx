@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
 import { homePostsHandleGet, homePostsHandleUpdate } from '../../store/posts/postsActions';
-import { artistListHandleGet } from '../../store/artistList/artistListActions'
+import { artistFollowersHandleGet, artistListHandleGet } from '../../store/artistList/artistListActions'
 import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
 import { LastPost } from '../ui/notifications/LastPost';
@@ -12,6 +12,7 @@ import { LoadingPost } from '../ui/notifications/LoadingPost';
 import { Post } from '../ui/Post';
 import Posting from '../ui/Posting';
 import { routes } from './../../routes/routes';
+import { getArtistList } from '../../services/userService';
 
 const MainView = ({
     auth: { user },
@@ -19,15 +20,16 @@ const MainView = ({
     artistList,
     homePostsHandleGet,
     homePostsHandleUpdate,
-    artistListHandleGet
+    artistListHandleGet,
 }) => {
 
     const history = useHistory();
 
     useEffect(() => {
+        artistListHandleGet(null, user?._id, history, getArtistList);
+
         if (posts.section !== `home${user?._id}`)
             homePostsHandleGet(user?._id, history);
-            artistListHandleGet(history);
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
@@ -60,26 +62,26 @@ const MainView = ({
 
             <footer className="footer">
                 <div className="mb-2">
-                    <ListView title={"Seguidores (" + artistList?.artistList.length + ")"  } icon="user" route={routes.explore}>
-                            {
-                                (artistList?.artistList.length > 0) ?
-                                    (
-                                        artistList?.artistList?.map(artist => (
-                                            <ListArtist
-                                                key={artist._id}
-                                                id={artist._id}
-                                            />
-                                        ))
-                                    )
-                                    : (
-                                        <div className="d-flex" style={{margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center'}}>
-                                            <div className="loading profile-image mr-1"></div>
-                                            <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
-                                        </div>
-                                    )
-                            }
-                        </ListView>
-                
+                    <ListView title="Encuentra personas" icon="user" route={routes.artistList}>
+                        {
+                            (artistList?.artistList) ?
+                                (
+                                    artistList?.artistList?.map(artist => (
+                                        <ListArtist
+                                            key={artist._id}
+                                            artist={artist}
+                                        />
+                                    ))
+                                )
+                                : (
+                                    <div className="d-flex" style={{ margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div className="loading profile-image mr-1"></div>
+                                        <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
+                                    </div>
+                                )
+                        }
+                    </ListView>
+
                 </div>
 
 

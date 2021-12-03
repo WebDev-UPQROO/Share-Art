@@ -3,8 +3,6 @@ const calcDate = (date) => {
   const postDate = new Date(date);
   const difference = nowDate.getTime() - postDate.getTime();
 
-  console.log(postDate);
-
   const diff = {
     diffMinutes: Math.trunc(difference / (1000 * 60)),
     diffHour: Math.trunc(difference / (1000 * 60 * 60)),
@@ -47,8 +45,7 @@ export const getDate = (date) => {
 
 export const getDateInput = (date) => {
   const newDate = new Date(date);
-  const dateSting = newDate.toISOString().split('T')[0];
-  console.log(dateSting);
+  const dateSting = newDate.toISOString().split("T")[0];
   return dateSting;
 };
 

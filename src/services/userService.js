@@ -5,42 +5,58 @@ export const getUser = async (uid) => {
   try {
     const data = await axios.get(API.base + API.getUser + uid);
     return data;
-  } catch ({response: {data, status}}) {
-      throw(Error(`Error ${status} - ${data.error}`));
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
   }
 };
 
-export const getArtistList = async () => {
+export const getArtistList = async (id, idUser = null, idArtist = null) => {
   try {
-    const data = await axios.put(API.base + API.getArtistList);
+    const data = await axios.put(API.base + API.getArtistList, {
+      idUser,
+      idArtist,
+    });
     return data;
-  } catch ({response: {data, status}}) {
-      throw(Error(`Error ${status} - ${data.error}`));
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
   }
 };
 
-export const getFollowers = async (idUser = null, lastArtist = null) => {
-  const body = {};
+export const getFollowers = async (id, idUser = null, idFollow = null) => {
+  const body = { id };
   if (idUser) body["idUser"] = idUser;
-  if (lastArtist) body["id"] = lastArtist;
+  if (idFollow) body["idFollow"] = idFollow;
 
   try {
     const data = await axios.put(API.base + API.getFollowers, body);
     return data;
-  } catch ({response: {data, status}}) {
-      throw(Error(`Error ${status} - ${data.error}`));
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
   }
 };
 
-export const getFollowed = async (idUser = null, lastArtist = null) => {
-  const body = {};
+export const getFollowed = async (id, idUser = null, idFollow = null) => {
+  const body = { id };
   if (idUser) body["idUser"] = idUser;
-  if (lastArtist) body["id"] = lastArtist;
+  if (idFollow) body["idFollow"] = idFollow;
 
   try {
     const data = await axios.put(API.base + API.getFollowed, body);
     return data;
-  } catch ({response: {data, status}}) {
-      throw(Error(`Error ${status} - ${data.error}`));
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
+  }
+};
+
+export const follow = async (idFollower, idFollowed) => {
+
+  try {
+    const data = await axios.post(API.base + API.follow, {
+      idFollower,
+      idFollowed,
+    });
+    return data.data;
+  } catch ({ response: { data, status } }) {
+    throw Error(`Error ${status} - ${data.error}`);
   }
 };

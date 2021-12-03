@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import { routes } from '../../routes/routes'
 import { profilePostsHandleGet, profilePostsHandleUpdate } from '../../store/posts/postsActions'
-import { artistFollowersHandleGet, artistFollowedHandleGet} from '../../store/artistList/artistListActions'
+import { artistFollowersHandleGet, artistFollowedHandleGet } from '../../store/artistList/artistListActions'
 import { userGetInfo } from '../../store/user/userActions'
 import ListArtist from '../ui/listView/ListArtist'
 import { ListView } from '../ui/listView/ListView'
@@ -23,7 +23,7 @@ const ProfileView = ({
     artistFollowed,
     profilePostsHandleGet,
     profilePostsHandleUpdate,
-    artistFollowersHandleGet, 
+    artistFollowersHandleGet,
     artistFollowedHandleGet
 }) => {
 
@@ -34,15 +34,13 @@ const ProfileView = ({
     useEffect(() => {
         if (uid !== user.user._id) {
             userGetInfo(uid, history);
-            artistFollowersHandleGet(auth?.user?._id, history);
-            artistFollowedHandleGet(auth?.user?._id, history);
+            artistFollowersHandleGet(uid, auth?.user?._id);
+            artistFollowedHandleGet(uid, auth?.user?._id);
         }
 
         if (posts.section !== `profile${uid}`)
             profilePostsHandleGet(uid, history);
-
-
-    }, [uid]);
+    }, [uid]);// eslint-disable-line react-hooks/exhaustive-deps
 
     // Waiting Errorss
     useEffect(() => {
@@ -50,7 +48,7 @@ const ProfileView = ({
             toast.error(user.error);
         if (posts.error !== null)
             toast.error(posts.error);
-    }, [user.error, posts.error]);
+    }, [user.error, posts.error]);// eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>
@@ -77,21 +75,25 @@ const ProfileView = ({
             <footer className="footer">
                 <div className="mb-2">
 
-                    <ListView title={"Seguidores (" + artistFollowers?.artistFollowers.length + ")"  } icon="user" route={routes.artistFollowers}>
-                         
+                    <ListView
+                        title={`Seguidores ()`}
+                        icon="user"
+                        route={routes.artistFollowers + uid}
+                    >
+
                         {
-                            (artistFollowers?.artistFollowers.length > 0) ?
+                            (artistFollowers?.artistFollowers) ?
                                 (
-                                    artistFollowers?.artistFollowers?.map(artist => (
+                                    artistFollowers?.artistFollowers?.slice(0, 5).map(artist => (
                                         <ListArtist
-                                            key={artist._id}
-                                            id={artist._id}
+                                            key={artist._id + "follower"}
+                                            artist={artist}
                                         />
                                     ))
                                 )
                                 : (
 
-                                    <div className="d-flex" style={{margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center'}}>
+                                    <div className="d-flex" style={{ margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div className="loading profile-image mr-1"></div>
                                         <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
                                     </div>
@@ -101,24 +103,27 @@ const ProfileView = ({
                 </div>
 
                 <div className="mb-2">
-                    <ListView title={"Siguiendo (" + artistFollowed?.artistFollowed.length + ")"  } icon="user" route={routes.artistFollowed}>
-                        {
-                            (artistFollowed?.artistFollowed.length > 0) ?
-                                (
-                                    artistFollowed?.artistFollowed?.map(artist => (
-                                        <ListArtist
-                                            key={artist._id}
-                                            id={artist._id}
-                                        />
-                                    ))
-                                )
-                                : (
+                    <ListView
+                        title={"Siguiendo"}
+                        icon="user"
+                        route={routes.artistFollowed + uid}
+                    >
+                        {(artistFollowed?.artistFollowed) ?
 
-                                    <div className="d-flex" style={{margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center'}}>
-                                        <div className="loading profile-image mr-1"></div>
-                                        <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
-                                    </div>
-                                )
+                            artistFollowed?.artistFollowed?.slice(0, 5).map(artist => (
+                                <ListArtist
+                                    key={artist._id + "followed"}
+                                    artist={artist}
+                                />
+                            ))
+
+                            : (
+
+                                <div className="d-flex" style={{ margin: '0.7rem 2rem', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <div className="loading profile-image mr-1"></div>
+                                    <div className="loading" style={{ flexGrow: '1', height: '1rem' }}></div>
+                                </div>
+                            )
                         }
                     </ListView>
                 </div>
@@ -139,7 +144,7 @@ const actions = {
     userGetInfo,
     profilePostsHandleGet,
     profilePostsHandleUpdate,
-    artistFollowersHandleGet, 
+    artistFollowersHandleGet,
     artistFollowedHandleGet
 };
 export default connect(data, actions)(ProfileView);

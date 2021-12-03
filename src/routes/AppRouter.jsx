@@ -70,19 +70,32 @@ const AppRouter = ({ user: { user } }) => {
                                     isAuthenticated={user?._id}
                                 />
 
-                                <PublicRoute
-                                    exact
-                                    path={routes.artistFollowers}
-                                    component={ArtistView}
-                                    isAuthenticated={user?._id}
-                                />
+                                <Route path={routes.artistList}>
+                                    <Switch>
+                                        <PublicRoute
+                                            exact
+                                            path={routes.artistList}
+                                            component={ArtistView}
+                                            isAuthenticated={user?._id}
+                                        />
 
-                                <PublicRoute
-                                    exact
-                                    path={routes.artistFollowed}
-                                    component={ArtistView}
-                                    isAuthenticated={user?._id}
-                                />
+                                        <PublicRoute
+                                            exact
+                                            path={routes.artistFollowers + ":uid"}
+                                            component={ArtistView}
+                                            isAuthenticated={user?._id}
+                                        />
+
+                                        <PublicRoute
+                                            exact
+                                            path={routes.artistFollowed + ":uid"}
+                                            component={ArtistView}
+                                            isAuthenticated={user?._id}
+                                        />
+                                        <Redirect to={routes.artistList} />
+                                    </Switch>
+                                </Route>
+
 
                                 <PrivateRoute
                                     exact

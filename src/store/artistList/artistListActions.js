@@ -1,94 +1,105 @@
-import { getArtistList, getFollowers, getFollowed } from "../../services/userService";
-import { artistListActions, artistFollowersActions, artistFollowedActions } from "./artistListReducer";
+import { toast } from "react-toastify";
+import {
+  getArtistList,
+  getFollowers,
+  getFollowed,
+  follow,
+} from "../../services/userService";
+import {
+  artistListActions,
+  artistFollowersActions,
+  artistFollowedActions,
+} from "./artistListReducer";
 
-export const artistListHandleGet = (history) => async (dispatch) => {
-  dispatch(artistListLoading());
-  try {
-    const data = await getArtistList();
-    dispatch(artistListGetInfoSuccess(data.data));
-  } catch ({ message }) {
-    history.goBack();
-    dispatch(artistListFailure(message));
-  }
-};
-
-export const artistFollowersHandleGet = (uid, history) => async (dispatch) => {
-  dispatch(artistListLoading());
-  try {
-    const data = await getFollowers(uid);
-    dispatch(artistFollowersGetInfoSuccess(data.data));
-  } catch ({ message }) {
-    history.goBack();
-    dispatch(artistListFailure(message));
-  }
-};
-
-export const artistFollowersHandleUpdate =
-  (uid, lastArtist, history) => async (dispatch) => {
+export const artistListHandleGet =
+  (id, idUser, history, service) => async (dispatch) => {
     dispatch(artistListLoading());
     try {
-      const data = await getFollowers(uid, lastArtist);
-      dispatch(artistFollowersUpdateInfoSuccess(data.data));
+      const data = await service(id, idUser);
+      dispatch(artistListGet(data.data));
     } catch ({ message }) {
       history.goBack();
       dispatch(artistListFailure(message));
     }
   };
 
-export const artistFollowedHandleGet = (history) => async (dispatch) => {
-  dispatch(artistListLoading());
-  try {
-    const data = await getFollowed();
-    dispatch(artistFollowedGetInfoSuccess(data.data));
-  } catch ({ message }) {
-    history.goBack();
-    dispatch(artistListFailure(message));
-  }
-};
-
-export const artistFollowedHandleUpdate =
-  (uid, lastArtist, history) => async (dispatch) => {
+export const artistListHandleUpdate =
+  (id, idUser, lastArtist, history, service) => async (dispatch) => {
     dispatch(artistListLoading());
     try {
-      const data = await getFollowed(uid, lastArtist);
-      dispatch(artistFollowersUpdateInfoSuccess(data.data));
+      const data = await service(id, idUser, lastArtist);
+      dispatch(artistListUpdate(data.data));
     } catch ({ message }) {
       history.goBack();
       dispatch(artistListFailure(message));
     }
   };
 
-export const artistListGetInfoSuccess = (artistList) => {
+export const artistFollowersHandleGet = (id, idUser) => async (dispatch) => {
+  dispatch(artistListLoading());
+  try {
+    const data = await getFollowers(id, idUser);
+    dispatch(artistFollowersGet(data.data));
+  } catch ({ message }) {
+    dispatch(artistListFailure(message));
+  }
+};
+
+export const artistFollowedHandleGet = (id, idUser) => async (dispatch) => {
+  dispatch(artistListLoading());
+  try {
+    const data = await getFollowed(id, idUser);
+    dispatch(artistFollowedGet(data.data));
+  } catch ({ message }) {
+    dispatch(artistListFailure(message));
+  }
+};
+
+export const artistHandleFollow = (idFollower, artist) => async (dispatch) => {
+  dispatch(artistListLoading());
+  try {
+    const data = await follow(idFollower, artist._id);
+    dispatch(artistListFollow(artist, data.follow));
+    toast.success(
+      data.follow ? "Has seguido a alguien" : "Dejaste de seguir a alguien"
+    );
+  } catch ({ message }) {
+    dispatch(artistListFailure(message));
+  }
+  dispatch(artistListResetError());
+};
+
+export const artistListGet = (artistList) => {
   return {
     type: artistListActions.get,
     payload: artistList,
   };
 };
 
-export const artistFollowersGetInfoSuccess = (artistFollowers) => {
+export const artistListUpdate = (artistList) => {
+  return {
+    type: artistListActions.update,
+    payload: artistList,
+  };
+};
+
+export const artistFollowersGet = (artistFollowers) => {
   return {
     type: artistFollowersActions.get,
     payload: artistFollowers,
   };
 };
 
-export const artistFollowersUpdateInfoSuccess = (artistFollowers) => {
-  return {
-    type: artistFollowersActions.update,
-    payload: artistFollowers,
-  };
-};
-
-export const artistFollowedGetInfoSuccess = (artistFollowed) => {
+export const artistFollowedGet = (artistFollowed) => {
   return {
     type: artistFollowedActions.get,
     payload: artistFollowed,
   };
 };
 
-export const artistListFollow = (id) => ({
+export const artistListFollow = (artist, follow) => ({
   type: artistListActions.follow,
-  payload: id,
+  payload: { id: artist._id, artist, follow },
 });
 
 export const artistListUnfollow = (id) => ({
@@ -103,4 +114,8 @@ export const artistListLoading = () => ({
 export const artistListFailure = (error) => ({
   type: artistListActions.failure,
   payload: error,
+});
+
+export const artistListResetError = () => ({
+  type: artistListActions.resetError,
 });
